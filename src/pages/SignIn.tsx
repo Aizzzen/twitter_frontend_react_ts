@@ -186,7 +186,6 @@ const SignIn = () => {
                                 >
                                     Войти
                                 </Button>
-                                <br/><br/><br/>
                             </FormGroup>
                         </FormControl>
                     </ModalWindow>
@@ -240,7 +239,6 @@ const SignIn = () => {
                                 <Button variant="contained" color="primary" fullWidth>
                                     Далее
                                 </Button>
-                                <br/><br/><br/>
                             </FormGroup>
                         </FormControl>
                     </ModalWindow>
