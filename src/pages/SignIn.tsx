@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC, ReactElement, useState} from 'react';
 import {Button, FormControl, FormGroup, makeStyles, TextField, Typography} from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
@@ -25,8 +25,8 @@ export const useStylesSignIn = makeStyles((theme) => ({
         left: '50%',
         top: '53%',
         transform: 'translate(-50%, -50%)',
-        width: '350%',
-        height: '350%',
+        width: '260%',
+        height: '260%',
     },
     infoPartList: {
         position: 'relative',
@@ -79,9 +79,9 @@ export const useStylesSignIn = makeStyles((theme) => ({
 
 }))
 
-const SignIn = () => {
+export const SignIn: FC = (): ReactElement => {
     const classes = useStylesSignIn();
-    const [visibleModal, setVisibleModal] = React.useState<'signIn' | 'signUp'>();
+    const [visibleModal, setVisibleModal] = useState<'signIn' | 'signUp'>();
 
     const handleClickOpenSignIn = (): void => setVisibleModal('signIn');
 
@@ -247,5 +247,3 @@ const SignIn = () => {
         </div>
     );
 };
-
-export default SignIn;
