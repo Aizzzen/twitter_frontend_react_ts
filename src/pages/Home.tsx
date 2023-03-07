@@ -20,6 +20,9 @@ import ListIcon from '@material-ui/icons/ListAltOutlined';
 import UserIcon from '@material-ui/icons/PermIdentityOutlined';
 import { grey } from '@material-ui/core/colors';
 import CommentIcon from '@material-ui/icons/ChatBubbleOutline';
+import RepostIcon from '@material-ui/icons/RepeatOutlined';
+import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import ShareIcon from '@material-ui/icons/ReplyOutlined';
 
 const useStylesHomeStyle = makeStyles(() => ({
     wrapper: {
@@ -64,7 +67,12 @@ const useStylesHomeStyle = makeStyles(() => ({
             fontWeight: 800,
         }
     },
-    tweetsUserName: {
+    tweetFooter: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: 450,
+    },
+    tweetUserName: {
         color: grey[500]
     },
 }))
@@ -146,17 +154,36 @@ export const Home = () => {
                                 </Grid>
                                 <Grid item xs={11}>
                                     <Typography>
-                                        <b>gadamurrr</b> <span className={classes.tweetsUserName}>@gadamurrr</span>
+                                        <b>gadamurrr</b> <span className={classes.tweetUserName}>@gadamurrr</span>
                                     </Typography>
                                     <Typography variant='body1' gutterBottom>
                                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam, culpa cumque dolores ea exercitationem facere id iusto molestiae molestias mollitia nemo perferendis possimus reiciendis repellat ullam voluptate! Nostrum, voluptatibus.
                                     </Typography>
-
-                                    <div>
-                                        <IconButton>
-                                            <CommentIcon style={{fontSize: 16}} />
-                                        </IconButton>
-                                        <span>1</span>
+                                    <div className={classes.tweetFooter}>
+                                        <div>
+                                            <IconButton>
+                                                <CommentIcon style={{fontSize: 20}} />
+                                            </IconButton>
+                                            <span>1</span>
+                                        </div>
+                                        <div>
+                                            <IconButton>
+                                                <RepostIcon style={{fontSize: 20}} />
+                                            </IconButton>
+                                            <span>1</span>
+                                        </div>
+                                        <div>
+                                            <IconButton>
+                                                <LikeIcon style={{fontSize: 20}} />
+                                            </IconButton>
+                                            <span>1</span>
+                                        </div>
+                                        <div>
+                                            <IconButton>
+                                                <ShareIcon style={{fontSize: 20}} />
+                                            </IconButton>
+                                            <span>1</span>
+                                        </div>
                                     </div>
                                 </Grid>
                             </Grid>
