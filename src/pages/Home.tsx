@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Avatar,
     Container,
     createStyles,
     Grid,
@@ -19,12 +18,9 @@ import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import ListIcon from '@material-ui/icons/ListAltOutlined';
 import UserIcon from '@material-ui/icons/PermIdentityOutlined';
 import { grey } from '@material-ui/core/colors';
-import CommentIcon from '@material-ui/icons/ChatBubbleOutline';
-import RepostIcon from '@material-ui/icons/RepeatOutlined';
-import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import ShareIcon from '@material-ui/icons/ReplyOutlined';
+import {Tweet} from "../components/Tweet";
 
-const useStylesHomeStyle = makeStyles(() => ({
+export const useStylesHomeStyle = makeStyles((theme) => ({
     wrapper: {
         height: '100vh',
     },
@@ -67,8 +63,22 @@ const useStylesHomeStyle = makeStyles(() => ({
             fontWeight: 800,
         }
     },
+    tweet: {
+        cursor: 'pointer',
+        padding: 15,
+        paddingLeft: 20,
+        '&:hover': {
+            backgroundColor: 'rgb(245, 248, 250)',
+        }
+    },
+    tweetAvatar: {
+        width: theme.spacing(5),
+        height: theme.spacing(5),
+    },
     tweetFooter: {
         display: 'flex',
+        position: 'relative',
+        left: -13,
         justifyContent: 'space-between',
         width: 450,
     },
@@ -144,50 +154,87 @@ export const Home = () => {
                         <Paper className={classes.tweetsHeader} variant='outlined'>
                             <Typography variant='h6'>Главная</Typography>
                         </Paper>
-                        <Paper className={classes.tweetsHeader} variant='outlined'>
-                            <Grid container spacing={3}>
-                                <Grid item xs={1}>
-                                    <Avatar
-                                        alt='User Avatar'
-                                        src='https://images.unsplash.com/photo-1541562232579-512a21360020?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-                                    />
-                                </Grid>
-                                <Grid item xs={11}>
-                                    <Typography>
-                                        <b>gadamurrr</b> <span className={classes.tweetUserName}>@gadamurrr</span>
-                                    </Typography>
-                                    <Typography variant='body1' gutterBottom>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam, culpa cumque dolores ea exercitationem facere id iusto molestiae molestias mollitia nemo perferendis possimus reiciendis repellat ullam voluptate! Nostrum, voluptatibus.
-                                    </Typography>
-                                    <div className={classes.tweetFooter}>
-                                        <div>
-                                            <IconButton>
-                                                <CommentIcon style={{fontSize: 20}} />
-                                            </IconButton>
-                                            <span>1</span>
-                                        </div>
-                                        <div>
-                                            <IconButton>
-                                                <RepostIcon style={{fontSize: 20}} />
-                                            </IconButton>
-                                            <span>1</span>
-                                        </div>
-                                        <div>
-                                            <IconButton>
-                                                <LikeIcon style={{fontSize: 20}} />
-                                            </IconButton>
-                                            <span>1</span>
-                                        </div>
-                                        <div>
-                                            <IconButton>
-                                                <ShareIcon style={{fontSize: 20}} />
-                                            </IconButton>
-                                            <span>1</span>
-                                        </div>
-                                    </div>
-                                </Grid>
-                            </Grid>
-                        </Paper>
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
+                        <Tweet
+                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                            classes={classes}
+                            user={{
+                                fullName: 'gadamurrr',
+                                userName: 'gadamurrr',
+                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                            }}
+                        />
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>

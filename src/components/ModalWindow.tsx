@@ -1,5 +1,5 @@
 import React, {FC, ReactElement, ReactNode} from 'react';
-import {useStylesSignIn} from "../../pages/SignIn";
+import {useStylesSignIn} from "../pages/SignIn";
 import {Dialog, DialogContent, DialogTitle, IconButton} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -11,7 +11,7 @@ interface ModalWindowProps {
     onClose: () => void;
 }
 
-const ModalWindow: FC<ModalWindowProps> = ({
+export const ModalWindow: FC<ModalWindowProps> = ({
         title,
         children,
         classes,
@@ -36,5 +36,3 @@ const ModalWindow: FC<ModalWindowProps> = ({
 
     );
 };
-
-export default ModalWindow;

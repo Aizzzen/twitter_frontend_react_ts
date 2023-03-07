@@ -4,7 +4,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/PeopleOutline';
 import MessageIcon from '@material-ui/icons/ModeCommentOutlined';
-import ModalWindow from "../components/ModalWindow";
+import {ModalWindow} from "../components/ModalWindow";
 
 export const useStylesSignIn = makeStyles((theme) => ({
     wrapper: {
