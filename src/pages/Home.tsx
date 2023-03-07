@@ -3,22 +3,15 @@ import {
     Container,
     createStyles,
     Grid,
-    IconButton,
     InputBase,
     makeStyles,
     Paper,
     Typography,
     withStyles
 } from "@material-ui/core";
-import TwitterIcon from '@material-ui/icons/Twitter';
-import SearchIcon from '@material-ui/icons/Search';
-import NotificationIcon from '@material-ui/icons/NotificationsNoneOutlined';
-import MessageIcon from '@material-ui/icons/EmailOutlined';
-import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
-import ListIcon from '@material-ui/icons/ListAltOutlined';
-import UserIcon from '@material-ui/icons/PermIdentityOutlined';
 import { grey } from '@material-ui/core/colors';
 import {Tweet} from "../components/Tweet";
+import {Navbar} from "../components/Navbar";
 
 export const useStylesHomeStyle = makeStyles((theme) => ({
     wrapper: {
@@ -34,10 +27,31 @@ export const useStylesHomeStyle = makeStyles((theme) => ({
         listStyle: 'none',
         padding: 0,
         margin: 0,
+        width: 230,
     },
     navbarListItem: {
-        display: 'flex',
-        alignItems: 'center',
+        cursor: 'pointer',
+        '&:hover': {
+            '& div': {
+                backgroundColor: 'rgba(29, 161, 242, 0.1)',
+                '& h6': {
+                    color: theme.palette.primary.main,
+                },
+                '& svg path': {
+                    fill: theme.palette.primary.main,
+                }
+            }
+        },
+        '& div': {
+            display: 'inline-flex',
+            alignItems: 'center',
+            position: 'relative',
+            padding: '0 25px 0 20px',
+            borderRadius: 30,
+            height: 50,
+            marginBottom: 15,
+            transition: 'background-color .1s ease-in-out',
+        }
     },
     navbarListItemLabel: {
         fontWeight: 700,
@@ -45,7 +59,12 @@ export const useStylesHomeStyle = makeStyles((theme) => ({
         marginLeft: 15
     },
     navbarListItemIcon: {
-        fontSize: 28
+        fontSize: 32,
+        marginLeft: -5,
+    },
+    navbarTweetButton: {
+        padding: theme.spacing(3.2),
+        marginTop: theme.spacing(2),
     },
     tweetsWrapper: {
         borderRadius: 0,
@@ -104,137 +123,25 @@ export const Home = () => {
     return (
         <Container className={classes.wrapper} maxWidth='lg'>
             <Grid container spacing={3}>
-                <Grid item xs={3}>
-                    <ul className={classes.navbarList}>
-                        <li className={classes.navbarListItem}>
-                            <IconButton className={classes.logo} aria-label='' color='primary'>
-                                <TwitterIcon className={classes.logoIcon}/>
-                            </IconButton>
-                        </li>
-                        <li className={classes.navbarListItem}>
-                            <IconButton aria-label=''>
-                                <SearchIcon className={classes.navbarListItemIcon}/>
-                            </IconButton>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Поиск</Typography>
-                        </li>
-                        <li className={classes.navbarListItem}>
-                            <IconButton aria-label=''>
-                                <NotificationIcon className={classes.navbarListItemIcon}/>
-                            </IconButton>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Уведомления</Typography>
-                        </li>
-                        <li className={classes.navbarListItem}>
-                            <IconButton aria-label=''>
-                                <MessageIcon className={classes.navbarListItemIcon}/>
-                            </IconButton>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Сообщения</Typography>
-                        </li>
-                        <li className={classes.navbarListItem}>
-                            <IconButton aria-label=''>
-                                <BookmarkIcon className={classes.navbarListItemIcon}/>
-                            </IconButton>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Закладки</Typography>
-                        </li>
-                        <li className={classes.navbarListItem}>
-                            <IconButton aria-label=''>
-                                <ListIcon className={classes.navbarListItemIcon}/>
-                            </IconButton>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Список</Typography>
-                        </li>
-                        <li className={classes.navbarListItem}>
-                            <IconButton aria-label=''>
-                                <UserIcon className={classes.navbarListItemIcon}/>
-                            </IconButton>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Профиль</Typography>
-                        </li>
-                    </ul>
-                </Grid>
+                <Grid item xs={3}><Navbar classes={classes}/></Grid>
                 <Grid item xs={6}>
                     <Paper className={classes.tweetsWrapper} style={{ height: '100%' }} variant='outlined'>
                         <Paper className={classes.tweetsHeader} variant='outlined'>
                             <Typography variant='h6'>Главная</Typography>
                         </Paper>
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
-                        <Tweet
-                            text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                            classes={classes}
-                            user={{
-                                fullName: 'gadamurrr',
-                                userName: 'gadamurrr',
-                                avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                            }}
-                        />
+                        {[
+                            ...new Array(20).fill(
+                                <Tweet
+                                    text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
+                                    classes={classes}
+                                    user={{
+                                        fullName: 'gadamurrr',
+                                        userName: 'gadamurrr',
+                                        avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
+                                    }}
+                                />
+                            )
+                        ]}
                     </Paper>
                 </Grid>
                 <Grid item xs={3}>
