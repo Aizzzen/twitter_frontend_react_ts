@@ -98,8 +98,10 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                         <CreateIcon/>
                     </Hidden>
                 </Button>
-                <ModalWindow title={''} visible={visibleAddTweet} onClose={onCloseAddTweet}>
-                    <AddTweetForm classes={classes} />
+                <ModalWindow visible={visibleAddTweet} onClose={onCloseAddTweet}>
+                    <div style={{ width: 550 }}>
+                        <AddTweetForm maxRows={15} classes={classes} />
+                    </div>
                 </ModalWindow>
             </li>
         </ul>

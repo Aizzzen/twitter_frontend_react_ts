@@ -6,10 +6,11 @@ import EmojiIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
 import {useStylesHomeStyle} from "../pages/Home/theme";
 
 interface AddTweetFormProps {
-    classes: ReturnType<typeof useStylesHomeStyle>
+    classes: ReturnType<typeof useStylesHomeStyle>;
+    maxRows?: number;
 }
 
-export const AddTweetForm: FC<AddTweetFormProps> = ({classes}: AddTweetFormProps): ReactElement => {
+export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweetFormProps): ReactElement => {
     const MAX_LENGTH = 280
     const [text, setText] = useState<string>('');
     const textLimitPercent = Math.round((text.length / 280) * 100);
@@ -38,6 +39,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes}: AddTweetFormProps
                     placeholder="Что происходит?"
                     value={text}
                     onChange={handleChangeTextArea}
+                    rowsMax={maxRows}
                 />
             </div>
             <div className={classes.addFormBottom}>
