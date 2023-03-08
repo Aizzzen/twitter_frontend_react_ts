@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, {FC, ReactElement} from 'react';
 import {Button, IconButton, Typography} from "@material-ui/core";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -7,6 +9,8 @@ import MessageIcon from "@material-ui/icons/EmailOutlined";
 import BookmarkIcon from "@material-ui/icons/BookmarkBorderOutlined";
 import ListIcon from "@material-ui/icons/ListAltOutlined";
 import UserIcon from "@material-ui/icons/PermIdentityOutlined";
+import CreateIcon from '@material-ui/icons/Create';
+import Hidden from "@material-ui/core/Hidden";
 import {useStylesHomeStyle} from "../pages/Home";
 
 interface NavbarProps {
@@ -24,41 +28,63 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
             <li className={classes.navbarListItem}>
                 <div>
                     <SearchIcon className={classes.navbarListItemIcon}/>
-                    <Typography className={classes.navbarListItemLabel} variant='h6'>Поиск</Typography>
+                    <Hidden smDown>
+                        <Typography className={classes.navbarListItemLabel} variant='h6'>Поиск</Typography>
+                    </Hidden>
                 </div>
             </li>
             <li className={classes.navbarListItem}>
                 <div>
                     <NotificationIcon className={classes.navbarListItemIcon}/>
-                    <Typography className={classes.navbarListItemLabel} variant='h6'>Уведомления</Typography>
+                    <Hidden smDown>
+                        <Typography className={classes.navbarListItemLabel} variant='h6'>Уведомления</Typography>
+                    </Hidden>
                 </div>
             </li>
             <li className={classes.navbarListItem}>
                 <div>
                     <MessageIcon className={classes.navbarListItemIcon}/>
-                    <Typography className={classes.navbarListItemLabel} variant='h6'>Сообщения</Typography>
+                    <Hidden smDown>
+                        <Typography className={classes.navbarListItemLabel} variant='h6'>Сообщения</Typography>
+                    </Hidden>
                 </div>
             </li>
             <li className={classes.navbarListItem}>
                 <div>
                     <BookmarkIcon className={classes.navbarListItemIcon}/>
-                    <Typography className={classes.navbarListItemLabel} variant='h6'>Закладки</Typography>
+                    <Hidden smDown>
+                        <Typography className={classes.navbarListItemLabel} variant='h6'>Закладки</Typography>
+                    </Hidden>
                 </div>
             </li>
             <li className={classes.navbarListItem}>
                 <div>
                     <ListIcon className={classes.navbarListItemIcon}/>
-                    <Typography className={classes.navbarListItemLabel} variant='h6'>Список</Typography>
+                    <Hidden smDown>
+                        <Typography className={classes.navbarListItemLabel} variant='h6'>Список</Typography>
+                    </Hidden>
                 </div>
             </li>
             <li className={classes.navbarListItem}>
                 <div>
                     <UserIcon className={classes.navbarListItemIcon}/>
-                    <Typography className={classes.navbarListItemLabel} variant='h6'>Профиль</Typography>
+                    <Hidden smDown>
+                        <Typography className={classes.navbarListItemLabel} variant='h6'>Профиль</Typography>
+                    </Hidden>
                 </div>
             </li>
             <li className={classes.navbarListItem}>
-                <Button className={classes.navbarTweetButton} variant='contained' color='primary' fullWidth>Твинуть</Button>
+                <Button
+                    className={classes.navbarTweetButton}
+                    variant='contained'
+                    color='primary'
+                    fullWidth
+                >
+                    <Hidden smDown>Твинуть</Hidden>
+                    <Hidden mdUp>
+                        <CreateIcon/>
+                    </Hidden>
+                </Button>
             </li>
         </ul>
     );

@@ -32,7 +32,7 @@ export const Tweet: FC<TweetProps> = ({text, user, classes}: TweetProps): ReactE
                     <Typography>
                         <b>{user.fullName}</b>&nbsp;
                         <span className={classes.tweetUserName}>@{user.userName}</span>&nbsp;
-                        <span className={classes.tweetUserName}>:</span>&nbsp;
+                        <span className={classes.tweetUserName}>·</span>&nbsp;
                         <span className={classes.tweetUserName}>1 чс</span>&nbsp;
                     </Typography>
                     <Typography variant='body1' gutterBottom>
