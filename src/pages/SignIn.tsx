@@ -1,12 +1,12 @@
 import React, {FC, ReactElement, useState} from 'react';
-import {Button, FormControl, FormGroup, makeStyles, TextField, Typography} from '@material-ui/core';
+import {Button, FormControl, FormGroup, makeStyles, TextField, Theme, Typography} from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/PeopleOutline';
 import MessageIcon from '@material-ui/icons/ModeCommentOutlined';
 import {ModalWindow} from "../components/ModalWindow";
 
-export const useStylesSignIn = makeStyles((theme) => ({
+export const useStylesSignIn = makeStyles((theme: Theme) => ({
     wrapper: {
         display: 'flex',
         height: '100vh',
