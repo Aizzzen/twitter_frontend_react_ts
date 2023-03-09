@@ -11,6 +11,7 @@ import Divider from "@material-ui/core/Divider";
 
 import {useSelector} from "react-redux";
 import {selectIsTagsLoaded, selectTagsItems} from "../store/tags/selectors";
+import {Link} from "react-router-dom";
 
 interface TagsProps {
     classes: ReturnType<typeof useStylesHomeStyle>;
@@ -34,14 +35,16 @@ export const Tags: FC<TagsProps> = ({classes}: TagsProps): ReactElement | null =
                     items.map((item) => (
                         <Fragment key={item._id}>
                             <ListItem className={classes.rightSideBlockItem}>
-                                <ListItemText
-                                    primary={item.name}
-                                    secondary={
-                                        <Typography component="span" variant="body2" color="textSecondary">
-                                            Твитов: {item.count}
-                                        </Typography>
-                                    }
-                                />
+                                {/*<Link to={`/home/searching?q=${item.name}`}>*/}
+                                    <ListItemText
+                                        primary={item.name}
+                                        secondary={
+                                            <Typography component="span" variant="body2" color="textSecondary">
+                                                Твитов: {item.count}
+                                            </Typography>
+                                        }
+                                    />
+                                {/*</Link>*/}
                             </ListItem>
                             <Divider component="li" />
                         </Fragment>

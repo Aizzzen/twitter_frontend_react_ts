@@ -19,6 +19,7 @@ import Hidden from "@material-ui/core/Hidden";
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {ModalWindow} from "./ModalWindow";
 import {AddTweetForm} from "./AddTweetForm";
+import {Link} from "react-router-dom";
 
 interface NavbarProps {
     classes: ReturnType<typeof useStylesHomeStyle>
@@ -38,9 +39,11 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
     return (
         <ul className={classes.navbarList}>
             <li className={classes.navbarListItem}>
-                <IconButton className={classes.logo} aria-label='' color='primary'>
-                    <TwitterIcon className={classes.logoIcon}/>
-                </IconButton>
+                {/*<Link to='/home'>*/}
+                    <IconButton className={classes.logo} aria-label='' color='primary'>
+                        <TwitterIcon className={classes.logoIcon}/>
+                    </IconButton>
+                {/*</Link>*/}
             </li>
             <li className={classes.navbarListItem}>
                 <div>
