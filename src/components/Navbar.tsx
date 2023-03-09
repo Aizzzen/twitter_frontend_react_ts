@@ -1,7 +1,11 @@
 // @ts-nocheck
 
 import React, {FC, ReactElement, useState} from 'react';
-import {Button, IconButton, Typography} from "@material-ui/core";
+
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+
 import TwitterIcon from "@material-ui/icons/Twitter";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationIcon from "@material-ui/icons/NotificationsNoneOutlined";
@@ -11,6 +15,7 @@ import ListIcon from "@material-ui/icons/ListAltOutlined";
 import UserIcon from "@material-ui/icons/PermIdentityOutlined";
 import CreateIcon from '@material-ui/icons/Create';
 import Hidden from "@material-ui/core/Hidden";
+
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {ModalWindow} from "./ModalWindow";
 import {AddTweetForm} from "./AddTweetForm";

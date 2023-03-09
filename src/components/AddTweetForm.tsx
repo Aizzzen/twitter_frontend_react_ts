@@ -1,8 +1,15 @@
 import React, {FC, FormEvent, ReactElement, useState} from 'react';
 import classNames from "classnames";
-import {Avatar, Button, CircularProgress, IconButton, TextareaAutosize} from "@material-ui/core";
+
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import IconButton from "@material-ui/core/IconButton";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import EmojiIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
+
 import {useStylesHomeStyle} from "../pages/Home/theme";
 
 interface AddTweetFormProps {

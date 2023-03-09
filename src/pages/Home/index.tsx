@@ -1,11 +1,19 @@
-import React, {FC, ReactElement} from 'react';
-import {
-    Avatar, Button,
-    Container, Divider,
-    Grid, InputAdornment, List, ListItem, ListItemAvatar, ListItemText,
-    Paper,
-    Typography,
-} from "@material-ui/core";
+import React, {FC, ReactElement, useEffect} from 'react';
+
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+
 import {Tweet} from "../../components/Tweet";
 import {Navbar} from "../../components/Navbar";
 import {AddTweetForm} from "../../components/AddTweetForm";
@@ -14,9 +22,20 @@ import PersonAddIcon from "@material-ui/icons/PersonAddOutlined";
 import {useStylesHomeStyle} from "./theme";
 import {SearchTextField} from "../../components/SearchTextField";
 
+import {useDispatch, useSelector} from "react-redux";
+import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
+import {selectIsTweetsLoading, selectTweetsItems} from "../../store/ducks/tweets/selectors";
+
 
 export const Index: FC = (): ReactElement => {
     const classes = useStylesHomeStyle();
+    const dispatch = useDispatch();
+    const tweets = useSelector(selectTweetsItems);
+    const isLoading = useSelector(selectIsTweetsLoading);
+
+    useEffect(() => {
+        dispatch(fetchTweets())
+    }, [dispatch])
 
     return (
         <Container className={classes.wrapper} maxWidth='lg'>
@@ -34,33 +53,15 @@ export const Index: FC = (): ReactElement => {
                             <div className={classes.addFormBottomLine} />
                         </Paper>
 
-                        {/*{isLoading ? (*/}
-                        {/*    <div className={classes.tweetsCentred}>*/}
-                        {/*        <CircularProgress />*/}
-                        {/*    </div>*/}
-                        {/*) : (*/}
-                        {/*    tweets.map((tweet) => (*/}
-                        {/*        <Tweet key={tweet._id} text={tweet.text} user={tweet.user} classes={classes} />*/}
-                        {/*    ))*/}
-                        {/*)}*/}
-
-
-                        {/**/}
-                        {[
-                            ...new Array(20).fill(
-                                <Tweet
-                                    text='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut, est fuga iste maxime quibusdam quisquam sed veniam? Accusantium debitis doloremque earum eveniet id laboriosam nemo nulla numquam ullam voluptas?'
-                                    classes={classes}
-                                    user={{
-                                        fullName: 'gadamurrr',
-                                        userName: 'gadamurrr',
-                                        avatarUrl: 'https://occ-0-990-420.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYxJFBDckfZw1YUEIPwyuIg43Kw_HUBLvnCcgdOlvvf5Nc90SF3HSAi5L8uLyBqjziKBY-kGD2wu2JAqVsdHVR0frb6qG26I_U5v.jpg?r=77f',
-                                    }}
-                                />
-                            )
-                        ]}
-                        {/**/}
-
+                        {isLoading ? (
+                            <div className={classes.tweetsCentred}>
+                                <CircularProgress />
+                            </div>
+                        ) : (
+                            tweets.map((tweet) => (
+                                <Tweet key={tweet._id} text={tweet.text} user={tweet.user} classes={classes} />
+                            ))
+                        )}
                     </Paper>
                 </Grid>
                 <Grid item sm={3} md={3}>
@@ -145,7 +146,6 @@ export const Index: FC = (): ReactElement => {
                             </List>
                         </Paper>
                     </div>
-
                 </Grid>
             </Grid>
         </Container>

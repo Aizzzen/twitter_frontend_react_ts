@@ -1,14 +1,21 @@
 import React, {FC, ReactElement} from 'react';
 import classNames from "classnames";
-import {Avatar, Grid, IconButton, Paper, Typography} from "@material-ui/core";
+
+import Avatar from "@material-ui/core/Avatar";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+
 import CommentIcon from "@material-ui/icons/ChatBubbleOutline";
 import RepostIcon from "@material-ui/icons/RepeatOutlined";
 import LikeIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import ShareIcon from "@material-ui/icons/ReplyOutlined";
+
 import {useStylesHomeStyle} from "../pages/Home/theme";
 
 interface TweetProps {
-    text?: string;
+    text: string;
     classes: ReturnType<typeof useStylesHomeStyle>;
     user: {
         fullName: string;
