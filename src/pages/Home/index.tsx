@@ -25,6 +25,8 @@ import {SearchTextField} from "../../components/SearchTextField";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
 import {selectIsTweetsLoading, selectTweetsItems} from "../../store/ducks/tweets/selectors";
+import {fetchTags} from "../../store/tags/actionCreators";
+import {Tags} from "../../components/Tags";
 
 
 export const Index: FC = (): ReactElement => {
@@ -35,6 +37,7 @@ export const Index: FC = (): ReactElement => {
 
     useEffect(() => {
         dispatch(fetchTweets())
+        dispatch(fetchTags())
     }, [dispatch])
 
     return (
@@ -78,46 +81,7 @@ export const Index: FC = (): ReactElement => {
                             }}
                             fullWidth
                         />
-                        <Paper className={classes.rightSideBlock}>
-                            <Paper className={classes.rightSideBlockHeader} variant="outlined">
-                                <b>Актуальные темы</b>
-                            </Paper>
-                            <List>
-                                <ListItem className={classes.rightSideBlockItem}>
-                                    <ListItemText
-                                        primary="Санкт-Петербург"
-                                        secondary={
-                                            <Typography component="span" variant="body2" color="textSecondary">
-                                                Твитов: 3 331
-                                            </Typography>
-                                        }
-                                    />
-                                </ListItem>
-                                <Divider component="li" />
-                                <ListItem className={classes.rightSideBlockItem}>
-                                    <ListItemText
-                                        primary="#коронавирус"
-                                        secondary={
-                                            <Typography component="span" variant="body2" color="textSecondary">
-                                                Твитов: 163 122
-                                            </Typography>
-                                        }
-                                    />
-                                </ListItem>
-                                <Divider component="li" />
-                                <ListItem className={classes.rightSideBlockItem}>
-                                    <ListItemText
-                                        primary="Беларусь"
-                                        secondary={
-                                            <Typography component="span" variant="body2" color="textSecondary">
-                                                Твитов: 13 554
-                                            </Typography>
-                                        }
-                                    />
-                                </ListItem>
-                                <Divider component="li" />
-                            </List>
-                        </Paper>
+                        <Tags classes={classes} />
                         <Paper className={classes.rightSideBlock}>
                             <Paper className={classes.rightSideBlockHeader} variant="outlined">
                                 <b>Кого читать</b>
