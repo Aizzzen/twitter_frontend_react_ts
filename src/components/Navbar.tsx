@@ -39,11 +39,11 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
     return (
         <ul className={classes.navbarList}>
             <li className={classes.navbarListItem}>
-                {/*<Link to='/home'>*/}
+                <Link to='/home'>
                     <IconButton className={classes.logo} aria-label='' color='primary'>
                         <TwitterIcon className={classes.logoIcon}/>
                     </IconButton>
-                {/*</Link>*/}
+                </Link>
             </li>
             <li className={classes.navbarListItem}>
                 <div>

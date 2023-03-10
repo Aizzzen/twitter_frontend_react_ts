@@ -35,7 +35,7 @@ export const Tags: FC<TagsProps> = ({classes}: TagsProps): ReactElement | null =
                     items.map((item) => (
                         <Fragment key={item._id}>
                             <ListItem className={classes.rightSideBlockItem}>
-                                {/*<Link to={`/home/searching?q=${item.name}`}>*/}
+                                <Link to={`/home/search?q=${item.name}`}>
                                     <ListItemText
                                         primary={item.name}
                                         secondary={
@@ -44,7 +44,7 @@ export const Tags: FC<TagsProps> = ({classes}: TagsProps): ReactElement | null =
                                             </Typography>
                                         }
                                     />
-                                {/*</Link>*/}
+                                </Link>
                             </ListItem>
                             <Divider component="li" />
                         </Fragment>

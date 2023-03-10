@@ -27,12 +27,13 @@ import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
 import {selectIsTweetsLoading, selectTweetsItems} from "../../store/ducks/tweets/selectors";
 import {fetchTags} from "../../store/tags/actionCreators";
 import {Tags} from "../../components/Tags";
-import {Route, useParams} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 
-export const Index: FC = (): ReactElement => {
+export const Home: FC = (): ReactElement => {
     const classes = useStylesHomeStyle();
-    // const {params} = useParams();
+
+
     const dispatch = useDispatch();
     const tweets = useSelector(selectTweetsItems);
     const isLoading = useSelector(selectIsTweetsLoading);
@@ -49,25 +50,51 @@ export const Index: FC = (): ReactElement => {
                 <Grid item sm={8} md={6}>
                     <Paper className={classes.tweetsWrapper} variant='outlined'>
                         <Paper className={classes.tweetsHeader} variant='outlined'>
-                            <Typography variant='h6'>Главная</Typography>
+                            {['home', 'home/search'].map(path => {
+                                return (
+                                    <Routes>
+                                        <Route path={path} element={
+                                            <Typography variant='h6'>Твиты</Typography>
+                                        }/>
+                                    </Routes>
+                                )
+                            })}
+                            <Routes>
+                                <Route path='home/tweet/:id' element={
+                                    <Typography variant='h6'>Твитнуть</Typography>
+                                } />
+                            </Routes>
                         </Paper>
-                        <Paper>
-                            <div className={classes.addForm}>
-                                <AddTweetForm classes={classes} />
-                            </div>
-                            <div className={classes.addFormBottomLine} />
-                        </Paper>
-                        {/*<Route path='/home' exact>*/}
-                            {isLoading ? (
-                                <div className={classes.tweetsCentred}>
-                                    <CircularProgress />
-                                </div>
-                            ) : (
-                                tweets.map((tweet) => (
-                                    <Tweet key={tweet._id} text={tweet.text} user={tweet.user} classes={classes} />
-                                ))
-                            )}
-                        {/*</Route>*/}
+
+                        {['home', 'home/search'].map(path => {
+                            return (
+                                <Routes>
+                                    <Route path={path} element={
+                                        <Paper>
+                                            <div className={classes.addForm}>
+                                                <AddTweetForm classes={classes} />
+                                            </div>
+                                            <div className={classes.addFormBottomLine} />
+                                        </Paper>
+                                    }/>
+                                </Routes>
+                            )
+                        })}
+
+                        <Routes>
+                            <Route path='home' element={
+                                isLoading ? (
+                                    <div className={classes.tweetsCentred}>
+                                        <CircularProgress />
+                                    </div>
+                                ) : (
+                                    tweets.map((tweet) => (
+                                        <Tweet key={tweet._id} {...tweet} classes={classes} />
+                                    ))
+                                )
+                            }/>
+                        </Routes>
+
                     </Paper>
                 </Grid>
                 <Grid item sm={3} md={3}>
