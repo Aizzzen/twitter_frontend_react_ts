@@ -25,15 +25,14 @@ import {SearchTextField} from "../../components/SearchTextField";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
 import {selectIsTweetsLoading, selectTweetsItems} from "../../store/ducks/tweets/selectors";
-import {fetchTags} from "../../store/tags/actionCreators";
+import {fetchTags} from "../../store/ducks/tags/actionCreators";
 import {Tags} from "../../components/Tags";
 import {Route, Routes} from "react-router-dom";
+import {GoBackButton} from "../../components/GoBackButton";
 
 
 export const Home: FC = (): ReactElement => {
     const classes = useStylesHomeStyle();
-
-
     const dispatch = useDispatch();
     const tweets = useSelector(selectTweetsItems);
     const isLoading = useSelector(selectIsTweetsLoading);
@@ -50,6 +49,11 @@ export const Home: FC = (): ReactElement => {
                 <Grid item sm={8} md={6}>
                     <Paper className={classes.tweetsWrapper} variant='outlined'>
                         <Paper className={classes.tweetsHeader} variant='outlined'>
+                            <Routes>
+                                <Route path='home/search/*' element={<GoBackButton />} />
+                                <Route path='home/tweet/*' element={<GoBackButton />} />
+                            </Routes>
+
                             {['home', 'home/search'].map(path => {
                                 return (
                                     <Routes>

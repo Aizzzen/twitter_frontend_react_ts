@@ -13,7 +13,7 @@ import LikeIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import ShareIcon from "@material-ui/icons/ReplyOutlined";
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
-import {Link, Route, Routes} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 interface TweetProps {
     _id: string;

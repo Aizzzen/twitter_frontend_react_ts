@@ -4,7 +4,7 @@ import {
     setTagsLoadingState,
     TagsActionsType,
 } from "./actionCreators";
-import {TagsApi} from "../../services/api/tagsApi";
+import {TagsApi} from "../../../services/api/tagsApi";
 import {LoadingState} from "./contracts/state";
 
 

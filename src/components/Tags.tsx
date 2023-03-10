@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 
 import {useSelector} from "react-redux";
-import {selectIsTagsLoaded, selectTagsItems} from "../store/tags/selectors";
+import {selectIsTagsLoaded, selectTagsItems} from "../store/ducks/tags/selectors";
 import {Link} from "react-router-dom";
 
 interface TagsProps {
