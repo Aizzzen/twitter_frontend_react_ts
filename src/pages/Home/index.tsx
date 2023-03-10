@@ -14,7 +14,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
-import {Tweet} from "../../components/Tweet";
+import {TweetItem} from "../../components/TweetItem";
 import {Navbar} from "../../components/Navbar";
 import {AddTweetForm} from "../../components/AddTweetForm";
 import SearchIcon from "@material-ui/icons/Search";
@@ -29,6 +29,7 @@ import {fetchTags} from "../../store/ducks/tags/actionCreators";
 import {Tags} from "../../components/Tags";
 import {Route, Routes} from "react-router-dom";
 import {GoBackButton} from "../../components/GoBackButton";
+import {FullTweet} from "../../components/FullTweet";
 
 
 export const Home: FC = (): ReactElement => {
@@ -93,10 +94,11 @@ export const Home: FC = (): ReactElement => {
                                     </div>
                                 ) : (
                                     tweets.map((tweet) => (
-                                        <Tweet key={tweet._id} {...tweet} classes={classes} />
+                                        <TweetItem key={tweet._id} {...tweet} classes={classes} />
                                     ))
                                 )
                             }/>
+                            <Route path='home/tweet/:id' element={<FullTweet />} />
                         </Routes>
 
                     </Paper>

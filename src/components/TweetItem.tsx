@@ -26,7 +26,7 @@ interface TweetProps {
     }
 }
 
-export const Tweet: FC<TweetProps> = ({_id, text, user, classes}: TweetProps): ReactElement => {
+export const TweetItem: FC<TweetProps> = ({_id, text, user, classes}: TweetProps): ReactElement => {
     return (
         <Link className={classes.tweetWrapper} to={`/home/tweet/${_id}`}>
             <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
