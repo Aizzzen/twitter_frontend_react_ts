@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC, ReactElement, useEffect} from 'react';
 import {selectIsTweetLoading, selectTweetData} from "../store/ducks/tweet/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweetData, setTweetData} from "../store/ducks/tweet/actionCreators";
@@ -7,7 +7,7 @@ import {useStylesHomeStyle} from "../pages/Home/theme";
 import {TweetItem} from "./TweetItem";
 import {useParams} from "react-router-dom";
 
-export const FullTweet: React.FC = (): React.ReactElement | null => {
+export const FullTweet: FC = (): ReactElement | null => {
     const classes = useStylesHomeStyle();
     const dispatch = useDispatch();
     const tweetData = useSelector(selectTweetData);
@@ -15,7 +15,7 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
     const params: { id?: string } = useParams();
     const id = params.id;
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (id) {
             dispatch(fetchTweetData(id));
         }
