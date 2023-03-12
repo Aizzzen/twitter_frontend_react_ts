@@ -6,6 +6,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {TweetItem} from "./TweetItem";
 import {useParams} from "react-router-dom";
+import Paper from "@material-ui/core/Paper";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
+import classNames from "classnames";
 
 export const FullTweet: FC = (): ReactElement | null => {
     const classes = useStylesHomeStyle();
@@ -34,7 +38,29 @@ export const FullTweet: FC = (): ReactElement | null => {
     }
 
     if (tweetData) {
-        return <TweetItem classes={classes} {...tweetData} />;
+        return (
+            <Paper className={classes.fullTweet}>
+                <div className={classNames(classes.tweetsHeaderUser)}>
+                    <Avatar
+                        className={classes.tweetAvatar}
+                        alt={`Аватарка пользователя ${tweetData.user.fullName}`}
+                        src={tweetData.user.avatarUrl}
+                    />
+                    <Typography>
+                        <b>{tweetData.user.fullName}</b>&nbsp;
+                        <div>
+                            <span className={classes.tweetUserName}>@{tweetData.user.userName}</span>&nbsp;
+                            <span className={classes.tweetUserName}>·</span>&nbsp;
+                            <span className={classes.tweetUserName}>1 ч</span>
+                        </div>
+                    </Typography>
+                </div>
+                <Typography className={classes.fullTweetText} gutterBottom>
+                    {tweetData.text}
+                </Typography>
+            </Paper>
+        );
+
     }
 
     return null;
