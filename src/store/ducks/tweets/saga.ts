@@ -23,9 +23,9 @@ export function* fetchAddTweetRequest({ payload }: FetchAddTweetActionInterface)
             _id: Math.random().toString(36).substr(2),
             text: payload,
             user: {
-                fullName: 'Brian Vaughn 🖤',
-                userName: 'brian_d_vaughn',
-                avatarUrl: 'https://pbs.twimg.com/profile_images/1290320630521487362/UKVSbU2V_bigger.jpg',
+                fullname: 'Brian Vaughn 🖤',
+                username: 'brian_d_vaughn',
+                avatar_url: 'https://pbs.twimg.com/profile_images/1290320630521487362/UKVSbU2V_bigger.jpg',
             },
         };
         // @ts-ignore

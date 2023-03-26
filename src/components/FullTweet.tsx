@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTweetData, setTweetData} from "../store/ducks/tweet/actionCreators";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {useStylesHomeStyle} from "../pages/Home/theme";
-import {TweetItem} from "./TweetItem";
 import {useParams} from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
@@ -43,13 +42,18 @@ export const FullTweet: FC = (): ReactElement | null => {
                 <div className={classNames(classes.tweetsHeaderUser)}>
                     <Avatar
                         className={classes.tweetAvatar}
-                        alt={`Аватарка пользователя ${tweetData.user.fullName}`}
-                        src={tweetData.user.avatarUrl}
+                        alt={`Аватарка пользователя`}
+                        // alt={`Аватарка пользователя ${tweetData.user.fullname}`}
+                        // src={tweetData.user.avatar_url}
                     />
                     <Typography>
-                        <b>{tweetData.user.fullName}</b>&nbsp;
+                        {/*<b>{tweetData.user.fullname}</b>&nbsp;*/}
+                        <b>fullname</b>&nbsp;
                         <div>
-                            <span className={classes.tweetUserName}>@{tweetData.user.userName}</span>&nbsp;
+                            <span className={classes.tweetUserName}>
+                                {/*@{tweetData.user.username}*/}
+                                username
+                            </span>&nbsp;
                             <span className={classes.tweetUserName}>·</span>&nbsp;
                             <span className={classes.tweetUserName}>1 ч</span>
                         </div>

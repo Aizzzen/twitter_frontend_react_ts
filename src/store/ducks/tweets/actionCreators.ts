@@ -1,4 +1,3 @@
-import { Action } from 'redux';
 import {AddFormState, LoadingState, Tweet, TweetsState} from './contracts/state';
 import {
     AddTweetActionInterface,

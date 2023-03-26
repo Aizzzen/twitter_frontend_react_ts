@@ -20,9 +20,9 @@ interface TweetProps {
     text: string;
     classes: ReturnType<typeof useStylesHomeStyle>;
     user: {
-        fullName: string;
-        userName: string;
-        avatarUrl: string;
+        fullname: string;
+        username: string;
+        avatar_url: string;
     }
 }
 
@@ -33,15 +33,20 @@ export const TweetItem: FC<TweetProps> = ({_id, text, user, classes}: TweetProps
                 <Grid container spacing={3}>
                     <Grid item xs={1}>
                         <Avatar
-                            alt={`Аватарка пользователя ${user.fullName}`}
-                            src={user.avatarUrl}
+                            alt={`Аватарка пользователя`}
+                            // alt={`Аватарка пользователя ${user.fullname}`}
+                            // src={user.avatar_url}
                             className={classes.tweetAvatar}
                         />
                     </Grid>
                     <Grid item xs={11}>
                         <Typography>
-                            <b>{user.fullName}</b>&nbsp;
-                            <span className={classes.tweetUserName}>@{user.userName}</span>&nbsp;
+                            {/*<b>{user.fullname}</b>&nbsp;*/}
+                            <b>fullname</b>&nbsp;
+                            <span className={classes.tweetUserName}>
+                                {/*@{user.username}*/}
+                                username
+                            </span>&nbsp;
                             <span className={classes.tweetUserName}>·</span>&nbsp;
                             <span className={classes.tweetUserName}>1 чс</span>&nbsp;
                         </Typography>
