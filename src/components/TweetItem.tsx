@@ -16,7 +16,7 @@ import {useStylesHomeStyle} from "../pages/Home/theme";
 import {Link} from "react-router-dom";
 
 interface TweetProps {
-    _id: string;
+    id: string;
     text: string;
     classes: ReturnType<typeof useStylesHomeStyle>;
     user: {
@@ -26,9 +26,9 @@ interface TweetProps {
     }
 }
 
-export const TweetItem: FC<TweetProps> = ({_id, text, user, classes}: TweetProps): ReactElement => {
+export const TweetItem: FC<TweetProps> = ({id, text, user, classes}: TweetProps): ReactElement => {
     return (
-        <Link className={classes.tweetWrapper} to={`/home/tweet/${_id}`}>
+        <Link className={classes.tweetWrapper} to={`/home/tweet/${id}`}>
             <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
                 <Grid container spacing={3}>
                     <Grid item xs={1}>

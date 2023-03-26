@@ -94,7 +94,7 @@ export const Home: FC = (): ReactElement => {
                                     </div>
                                 ) : (
                                     tweets.map((tweet) => (
-                                        <TweetItem key={tweet._id} {...tweet} classes={classes} />
+                                        <TweetItem key={tweet.id} {...tweet} classes={classes} />
                                     ))
                                 )
                             }/>

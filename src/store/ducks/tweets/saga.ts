@@ -17,19 +17,19 @@ export function* fetchTweetsRequest() {
     }
 }
 
-export function* fetchAddTweetRequest({ payload }: FetchAddTweetActionInterface) {
+export function* fetchAddTweetRequest({ payload: text }: FetchAddTweetActionInterface) {
     try {
-        const data: Tweet = {
-            _id: Math.random().toString(36).substr(2),
-            text: payload,
-            user: {
-                fullname: 'Brian Vaughn 🖤',
-                username: 'brian_d_vaughn',
-                avatar_url: 'https://pbs.twimg.com/profile_images/1290320630521487362/UKVSbU2V_bigger.jpg',
-            },
-        };
+        // const data: Tweet = {
+        //     _id: Math.random().toString(36).substr(2),
+        //     text: payload,
+        //     user: {
+        //         fullname: 'Brian Vaughn 🖤',
+        //         username: 'brian_d_vaughn',
+        //         avatar_url: 'https://pbs.twimg.com/profile_images/1290320630521487362/UKVSbU2V_bigger.jpg',
+        //     },
+        // };
         // @ts-ignore
-        const item = yield call(TweetsApi.addTweet, data);
+        const item = yield call(TweetsApi.addTweet, text);
         yield put(addTweet(item));
     } catch (error) {
         yield put(setAddFormState(AddFormState.ERROR));
