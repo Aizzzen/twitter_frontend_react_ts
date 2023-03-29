@@ -14,11 +14,13 @@ import ShareIcon from "@material-ui/icons/ReplyOutlined";
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {Link} from "react-router-dom";
+import {formatDate} from "../utils/formatDate";
 
 interface TweetProps {
     id: string;
     text: string;
     classes: ReturnType<typeof useStylesHomeStyle>;
+    created_at: string;
     user: {
         fullname: string;
         username: string;
@@ -26,7 +28,7 @@ interface TweetProps {
     }
 }
 
-export const TweetItem: FC<TweetProps> = ({id, text, user, classes}: TweetProps): ReactElement => {
+export const TweetItem: FC<TweetProps> = ({id, text, user, classes, created_at}: TweetProps): ReactElement => {
     return (
         <Link className={classes.tweetWrapper} to={`/home/tweet/${id}`}>
             <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
@@ -48,7 +50,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, user, classes}: TweetProps)
                                 username
                             </span>&nbsp;
                             <span className={classes.tweetUserName}>·</span>&nbsp;
-                            <span className={classes.tweetUserName}>1 чс</span>&nbsp;
+                            <span className={classes.tweetUserName}>{formatDate(new Date(created_at))}</span>&nbsp;
                         </Typography>
                         <Typography variant='body1' gutterBottom>
                             {text}
