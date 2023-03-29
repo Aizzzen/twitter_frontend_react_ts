@@ -98,14 +98,14 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
                         {addFormState === AddFormState.LOADING ? (
                             <CircularProgress/>
                         ) : (
-                            'Твитнуть'
+                            'типоТвитнуть'
                         )}
                     </Button>
                 </div>
             </div>
             {addFormState === AddFormState.ERROR && (
                 <Alert severity="error">
-                    Ошибка при добавлении твита{' '}
+                    Ошибка при добавлении типотвита{' '}
                     <span aria-label="emoji-plak" role="img">😞</span>
                 </Alert>
 

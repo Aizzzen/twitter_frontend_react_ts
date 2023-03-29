@@ -131,7 +131,7 @@ export const SignIn: FC = (): ReactElement => {
                         Узнайте, что происходит в мире прямо сейчас
                     </Typography>
                     <Typography>
-                        <b>Присоединяйтесь к Твиттеру прямо сейчас!</b>
+                        <b>Присоединяйтесь к типоТвиттеру прямо сейчас!</b>
                     </Typography><br/>
                     <Button
                         onClick={handleClickOpenSignUp}
