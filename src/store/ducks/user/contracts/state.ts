@@ -1,10 +1,10 @@
 import { LoadingStatus } from "../../../types";
 
 export interface User {
-    // _id?: string;
-    // email: string;
+    id?: number;
+    email: string;
     // fullname: string;
-    // username: string;
+    username: string;
     // password: string;
     // confirmHash: string;
     // confirmed?: boolean;

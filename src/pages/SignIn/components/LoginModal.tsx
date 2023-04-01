@@ -1,4 +1,4 @@
-import React, {FC, ReactElement} from 'react';
+import React, {FC, ReactElement, useEffect} from 'react';
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
@@ -44,7 +44,7 @@ export const LoginModal: FC<LoginModalProps> = ({open, onClose}: LoginModalProps
         dispatch(fetchSignIn(data));
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (loadingStatus === LoadingStatus.SUCCESS) {
             openNotificationRef.current('Авторизация успешна!', 'success');
             onClose();
