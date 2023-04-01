@@ -66,7 +66,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, user, classes, created_at}:
                     </Grid>
                     <Grid item xs={11}>
                         <div className={classes.tweetContent}>
-                            <Typography className={classes.tweetHeader}>
+                            <div className={classes.tweetHeader}>
                                 <div>
                                     {/*<b>{user.fullname}</b>&nbsp;*/}
                                     <b>fullname</b>&nbsp;
@@ -101,7 +101,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, user, classes, created_at}:
                                         </MenuItem>
                                     </Menu>
                                 </div>
-                            </Typography>
+                            </div>
                             <Typography variant='body1' gutterBottom>
                                 {text}
                             </Typography>

@@ -2,6 +2,7 @@ import { Action } from 'redux';
 import {LoginFormProps} from "../../../pages/SignIn/components/LoginModal";
 import {User} from "./contracts/state";
 import {LoadingStatus} from "../../types";
+import {RegisterFormProps} from "../../../pages/SignIn/components/RegisterModal";
 
 export enum UserActionsType {
     SET_USER_DATA = 'user/SET_USER_DATA',
@@ -21,10 +22,10 @@ export interface FetchSignInActionInterface extends Action<UserActionsType> {
     payload: LoginFormProps;
 }
 
-// export interface FetchSignUpActionInterface extends Action<UserActionsType> {
-//     type: UserActionsType.FETCH_SIGN_UP;
-//     payload: RegisterFormProps;
-// }
+export interface FetchSignUpActionInterface extends Action<UserActionsType> {
+    type: UserActionsType.FETCH_SIGN_UP;
+    payload: RegisterFormProps;
+}
 
 // export interface FetchUserDataActionInterface extends Action<UserActionsType> {
 //     type: UserActionsType.FETCH_USER_DATA;

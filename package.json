@@ -81,12 +81,12 @@
     "workbox-webpack-plugin": "^6.4.1",
     "yup": "^1.0.2"
   },
-  "proxy": "http://127.0.0.1:8000/api/v1",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "json-server": "json-server --watch public/db.json --port 3001"
+    "json-server": "json-server --watch public/db.json --port 3001",
+    "proxy": "http://127.0.0.1:8000/api/v1"
   },
   "eslintConfig": {
     "extends": [

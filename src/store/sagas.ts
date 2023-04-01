@@ -10,5 +10,6 @@ export default function* rootSaga() {
         tagsSaga(),
         tweetSaga(),
         userSaga(),
+        userSaga(),
     ])
 }

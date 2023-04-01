@@ -4,19 +4,21 @@ import {Home} from "./pages/Home";
 import {Routes, Route, useNavigate} from "react-router-dom";
 import {UserPage} from "./pages/UserPage";
 import {Layout} from "./pages/Layout";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {UserApi} from "./services/api/usersApi";
 import {setUserData} from "./store/ducks/user/actionCreators";
+import {selectIsAuth} from "./store/ducks/user/selectors";
 
 function App() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const isAuth = useSelector(selectIsAuth)
 
     const checkAuth = async() => {
         try {
             const {data} = await UserApi.getMe()
             dispatch(setUserData(data))
-            navigate('/home', { replace: true })
+            // navigate('/home', { replace: true })
         } catch (e) {
             console.log(e)
         }
@@ -25,6 +27,12 @@ function App() {
     useEffect(() => {
         checkAuth()
     }, [])
+
+    useEffect(() => {
+        if(isAuth) {
+            navigate('/home', { replace: true })
+        }
+    }, [isAuth])
 
     return (
         <div className="App">
