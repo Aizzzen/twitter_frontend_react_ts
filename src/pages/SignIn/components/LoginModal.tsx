@@ -5,13 +5,15 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {ModalWindow} from "../../../components/ModalWindow";
 import {useStylesSignIn} from "../index";
-
 import * as yup from 'yup';
 import {useForm, Controller} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {UsersApi} from "../../../services/api/usersApi";
 import {Notification} from "../../../components/Notification";
 import {Color} from "@material-ui/lab/Alert";
+import {useDispatch, useSelector} from "react-redux";
+import {LoadingStatus} from "../../../store/types";
+import {fetchSignIn} from "../../../store/ducks/user/actionCreators";
+import {selectUserStatus} from "../../../store/ducks/user/selectors";
 
 interface LoginModalProps {
     open: boolean;
@@ -29,79 +31,90 @@ export interface LoginFormProps {
 }
 
 export const LoginModal: FC<LoginModalProps> = ({open, onClose}: LoginModalProps): ReactElement => {
-    const classes = useStylesSignIn()
+    const classes = useStylesSignIn();
+    const dispatch = useDispatch();
+    const openNotificationRef = React.useRef<(text: string, type: Color) => void>(() => { });
+    const loadingStatus = useSelector(selectUserStatus);
 
     const { control, handleSubmit, errors } = useForm<LoginFormProps>({
         resolver: yupResolver(LoginFormSchema)
     });
 
-    const onSubmit = async (openNotification: (text: string, type: Color) => void, data: LoginFormProps) => {
-        const userAuthTokens = UsersApi.signIn(data)
-        // openNotification('Неверный логин или пароль', 'error')
-        // openNotification('Авторизация прошла успешно', 'success')
-        console.log(userAuthTokens)
+    const onSubmit = async (data: LoginFormProps) => {
+        dispatch(fetchSignIn(data));
     };
+
+    React.useEffect(() => {
+        if (loadingStatus === LoadingStatus.SUCCESS) {
+            openNotificationRef.current('Авторизация успешна!', 'success');
+            onClose();
+        } else if (loadingStatus === LoadingStatus.ERROR) {
+            openNotificationRef.current('Неверный логин или пароль', 'error');
+        }
+    }, [loadingStatus]);
+
 
     return (
         <Notification>
             {
-                openNotification => (
-                    <ModalWindow
-                        visible={open}
-                        onClose={onClose}
-                        classes={classes}
-                        title="Войти в аккаунт"
-                    >
-                        <form onSubmit={handleSubmit(onSubmit.bind(null, openNotification))}>
-                            <FormControl className={classes.loginFormControl} component="fieldset" fullWidth>
-                                <FormGroup aria-label="position" row>
-                                    <Controller
-                                        as={TextField}
-                                        control={control}
-                                        name="username"
-                                        className={classes.loginPartField}
-                                        id="username"
-                                        label="Имя пользователя"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        variant="filled"
-                                        type="username"
-                                        defaultValue=""
-                                        helperText={errors.username?.message}
-                                        error={!!errors.username}
-                                        fullWidth
-                                        autoFocus
-                                    />
-                                    <Controller
-                                        as={TextField}
-                                        control={control}
-                                        name="password"
-                                        className={classes.loginPartField}
-                                        id="password"
-                                        label="Пароль"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        variant="filled"
-                                        type="password"
-                                        defaultValue=""
-                                        helperText={errors.password?.message}
-                                        error={!!errors.password}
-                                        fullWidth
-                                    />
-                                    <Button
-                                        // disabled={loadingStatus === LoadingStatus.LOADING}
-                                        type="submit" variant="contained" color="primary" fullWidth
-                                    >
-                                        Войти
-                                    </Button>
-                                </FormGroup>
-                            </FormControl>
-                        </form>
-                    </ModalWindow>
-                )
-            }
+                callback => {
+                    openNotificationRef.current = callback;
+                    return (
+                        <ModalWindow
+                            visible={open}
+                            onClose={onClose}
+                            classes={classes}
+                            title="Войти в аккаунт"
+                        >
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <FormControl className={classes.loginFormControl} component="fieldset" fullWidth>
+                                    <FormGroup aria-label="position" row>
+                                        <Controller
+                                            as={TextField}
+                                            control={control}
+                                            name="username"
+                                            className={classes.loginPartField}
+                                            id="username"
+                                            label="Имя пользователя"
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            variant="filled"
+                                            type="username"
+                                            defaultValue=""
+                                            helperText={errors.username?.message}
+                                            error={!!errors.username}
+                                            fullWidth
+                                            autoFocus
+                                        />
+                                        <Controller
+                                            as={TextField}
+                                            control={control}
+                                            name="password"
+                                            className={classes.loginPartField}
+                                            id="password"
+                                            label="Пароль"
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            variant="filled"
+                                            type="password"
+                                            defaultValue=""
+                                            helperText={errors.password?.message}
+                                            error={!!errors.password}
+                                            fullWidth
+                                        />
+                                        <Button
+                                            disabled={loadingStatus === LoadingStatus.LOADING}
+                                            type="submit" variant="contained" color="primary" fullWidth
+                                        >
+                                            Войти
+                                        </Button>
+                                    </FormGroup>
+                                </FormControl>
+                            </form>
+                        </ModalWindow>
+                    )}}
         </Notification>
     );
 };

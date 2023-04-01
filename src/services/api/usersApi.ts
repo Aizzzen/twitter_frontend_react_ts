@@ -1,4 +1,3 @@
-import {Tweet} from "../../store/ducks/tweets/contracts/state";
 import axios from "axios";
 import {LoginFormProps} from "../../pages/SignIn/components/LoginModal";
 
@@ -8,9 +7,11 @@ interface Response {
 }
 
 export const UsersApi = {
-    async signIn(authData: LoginFormProps): Promise<Response> {
-        const {data} = await axios.post<Response>('/auth/jwt/create/', authData);
-        console.log(data);
-        return data;
+    async signIn(authData: LoginFormProps) {
+        return await axios
+            .post<Response>('/auth/jwt/create/', authData)
+            .then(response => {
+                return response;
+            })
     },
 }
