@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ThemeProvider theme={theme}>
         <CssBaseline/>
         <Router>
@@ -21,7 +21,7 @@ root.render(
             </Provider>
         </Router>
     </ThemeProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // т.к. MUI это css in js все стили будут прикручиваться через функции

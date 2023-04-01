@@ -16,7 +16,7 @@ import ShareIcon from "@material-ui/icons/ReplyOutlined";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {formatDate} from "../utils/formatDate";
 
 interface TweetProps {
