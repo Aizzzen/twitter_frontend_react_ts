@@ -25,7 +25,7 @@ export const UserApi = {
     },
     async getMe() {
         return await axios
-            .get<Response>(`${process.env.REACT_APP_API_URL}auth/users/me/`)
+            .get<Response>(`${process.env.REACT_APP_API_URL}/auth/users/me/`)
             .then(response => {
                 return response;
             })
