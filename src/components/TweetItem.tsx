@@ -1,4 +1,4 @@
-import React, {FC, ReactElement} from 'react';
+import React, {FC, ReactElement, useState} from 'react';
 import classNames from "classnames";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -32,7 +32,7 @@ interface TweetProps {
 }
 
 export const TweetItem: FC<TweetProps> = ({id, text, user, classes, created_at}: TweetProps): ReactElement => {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 
