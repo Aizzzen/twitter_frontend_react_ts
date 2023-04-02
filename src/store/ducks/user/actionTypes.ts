@@ -27,9 +27,9 @@ export interface FetchSignUpActionInterface extends Action<UserActionsType> {
     payload: RegisterFormProps;
 }
 
-// export interface FetchUserDataActionInterface extends Action<UserActionsType> {
-//     type: UserActionsType.FETCH_USER_DATA;
-// }
+export interface FetchUserDataActionInterface extends Action<UserActionsType> {
+    type: UserActionsType.FETCH_USER_DATA;
+}
 
 export interface SetUserDataActionInterface extends Action<UserActionsType> {
     type: UserActionsType.SET_USER_DATA;

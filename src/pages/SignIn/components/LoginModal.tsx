@@ -55,66 +55,59 @@ export const LoginModal: FC<LoginModalProps> = ({open, onClose}: LoginModalProps
 
 
     return (
-        <Notification>
-            {
-                callback => {
-                    openNotificationRef.current = callback;
-                    return (
-                        <ModalWindow
-                            visible={open}
-                            onClose={onClose}
-                            classes={classes}
-                            title="Войти в аккаунт"
+        <ModalWindow
+            visible={open}
+            onClose={onClose}
+            classes={classes}
+            title="Войти в аккаунт"
+        >
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <FormControl className={classes.loginFormControl} component="fieldset" fullWidth>
+                    <FormGroup aria-label="position" row>
+                        <Controller
+                            as={TextField}
+                            control={control}
+                            name="username"
+                            className={classes.loginPartField}
+                            id="username"
+                            label="Имя пользователя"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="filled"
+                            type="username"
+                            defaultValue=""
+                            helperText={errors.username?.message}
+                            error={!!errors.username}
+                            fullWidth
+                            autoFocus
+                        />
+                        <Controller
+                            as={TextField}
+                            control={control}
+                            name="password"
+                            className={classes.loginPartField}
+                            id="password"
+                            label="Пароль"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            variant="filled"
+                            type="password"
+                            defaultValue=""
+                            helperText={errors.password?.message}
+                            error={!!errors.password}
+                            fullWidth
+                        />
+                        <Button
+                            disabled={loadingStatus === LoadingStatus.LOADING}
+                            type="submit" variant="contained" color="primary" fullWidth
                         >
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <FormControl className={classes.loginFormControl} component="fieldset" fullWidth>
-                                    <FormGroup aria-label="position" row>
-                                        <Controller
-                                            as={TextField}
-                                            control={control}
-                                            name="username"
-                                            className={classes.loginPartField}
-                                            id="username"
-                                            label="Имя пользователя"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            variant="filled"
-                                            type="username"
-                                            defaultValue=""
-                                            helperText={errors.username?.message}
-                                            error={!!errors.username}
-                                            fullWidth
-                                            autoFocus
-                                        />
-                                        <Controller
-                                            as={TextField}
-                                            control={control}
-                                            name="password"
-                                            className={classes.loginPartField}
-                                            id="password"
-                                            label="Пароль"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            variant="filled"
-                                            type="password"
-                                            defaultValue=""
-                                            helperText={errors.password?.message}
-                                            error={!!errors.password}
-                                            fullWidth
-                                        />
-                                        <Button
-                                            disabled={loadingStatus === LoadingStatus.LOADING}
-                                            type="submit" variant="contained" color="primary" fullWidth
-                                        >
-                                            Войти
-                                        </Button>
-                                    </FormGroup>
-                                </FormControl>
-                            </form>
-                        </ModalWindow>
-                    )}}
-        </Notification>
+                            Войти
+                        </Button>
+                    </FormGroup>
+                </FormControl>
+            </form>
+        </ModalWindow>
     );
 };

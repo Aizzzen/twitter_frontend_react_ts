@@ -1,38 +1,43 @@
 import React, {useEffect} from 'react';
 import {SignIn} from "./pages/SignIn";
 import {Home} from "./pages/Home";
-import {Routes, Route, useNavigate} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import {UserPage} from "./pages/UserPage";
 import {Layout} from "./pages/Layout";
 import {useDispatch, useSelector} from "react-redux";
-import {UserApi} from "./services/api/usersApi";
-import {setUserData} from "./store/ducks/user/actionCreators";
-import {selectIsAuth} from "./store/ducks/user/selectors";
+import {fetchUserData} from "./store/ducks/user/actionCreators";
+import {selectIsAuth, selectUserStatus} from "./store/ducks/user/selectors";
+import {LoadingStatus} from "./store/types";
+import {useStylesHomeStyle} from "./pages/Home/theme";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
 function App() {
+    const classes = useStylesHomeStyle()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const isAuth = useSelector(selectIsAuth)
-
-    const checkAuth = async() => {
-        try {
-            const {data} = await UserApi.getMe()
-            dispatch(setUserData(data))
-            // navigate('/home', { replace: true })
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    const loadingStatus = useSelector(selectUserStatus)
+    const isReady = loadingStatus !== LoadingStatus.NEVER && loadingStatus !== LoadingStatus.LOADING
 
     useEffect(() => {
-        checkAuth()
+        dispatch(fetchUserData())
     }, [])
 
     useEffect(() => {
-        if(isAuth) {
+        if(!isAuth && isReady) {
+            navigate('/signin', { replace: true })
+        } else {
             navigate('/home', { replace: true })
         }
-    }, [isAuth])
+    }, [isAuth, isReady])
+
+    if(!isReady) {
+        return (
+            <div className={classes.centered}>
+                <TwitterIcon color='primary' style={{width: 80, height: 80}} />
+            </div>
+        )
+    }
 
     return (
         <div className="App">
