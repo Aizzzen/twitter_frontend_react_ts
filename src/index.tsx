@@ -14,6 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
     <ThemeProvider theme={theme}>
+        <input type="file" id='media'/>
         <CssBaseline/>
         <Router>
             <Provider store={store}>

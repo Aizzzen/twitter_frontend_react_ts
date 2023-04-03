@@ -7,10 +7,12 @@ interface Response {
     data: any
 }
 
+const api_url = process.env.REACT_APP_API_URL
+
 export const UserApi = {
     async signIn(authData: LoginFormProps) {
         return await axios
-            .post<Response>(`${process.env.REACT_APP_API_URL}/auth/jwt/create/`, authData)
+            .post<Response>(`${api_url}/auth/jwt/create/`, authData)
             .then(response => {
                 return response;
             })
@@ -18,14 +20,14 @@ export const UserApi = {
     async signUp(authData: RegisterFormProps) {
         return await axios
             // .post<Response>('/auth/users/', authData)
-            .post<Response>(`${process.env.REACT_APP_API_URL}/auth/users/`, authData)
+            .post<Response>(`${api_url}/auth/users/`, authData)
             .then(response => {
                 return response
             })
     },
     async getMe() {
         return await axios
-            .get<Response>(`${process.env.REACT_APP_API_URL}/auth/users/me/`)
+            .get<Response>(`${api_url}/auth/users/me/`)
             .then(response => {
                 return response;
             })

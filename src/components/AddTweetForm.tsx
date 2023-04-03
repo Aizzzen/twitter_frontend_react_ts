@@ -16,6 +16,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AddFormState} from "../store/ducks/tweets/contracts/state";
 import {fetchAddTweet} from "../store/ducks/tweets/actionCreators";
 import {selectAddFormState} from "../store/ducks/tweets/selectors";
+import {UploadMedia} from "./UploadMedia";
 
 interface AddTweetFormProps {
     classes: ReturnType<typeof useStylesHomeStyle>;
@@ -59,12 +60,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
             </div>
             <div className={classes.addFormBottom}>
                 <div className={classNames(classes.tweetFooter, classes.addFormBottomActions)}>
-                    <IconButton color="primary">
-                        <ImageOutlinedIcon style={{ fontSize: 26 }} />
-                    </IconButton>
-                    <IconButton color="primary">
-                        <EmojiIcon style={{ fontSize: 26 }} />
-                    </IconButton>
+                    <UploadMedia />
                 </div>
                 <div className={classes.addFormBottomRight}>
                     {text && (

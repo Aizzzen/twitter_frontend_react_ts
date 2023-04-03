@@ -7,22 +7,24 @@ interface Response<T> {
     status: string;
 }
 
+const api_url = process.env.REACT_APP_API_URL
+
 // Promise который возвращает TweetsState['items']
 export const TweetsApi = {
     async fetchTweets(): Promise<Response<Tweet[]>> {
         // const {data} = await axios.get('http://127.0.0.1:8000/api/v1/tweets/');
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/tweets/`);
+        const {data} = await axios.get(`${api_url}/tweets/`);
         console.log(data)
         console.log(process.env.REACT_APP_API_URL)
         return data;
     },
     async fetchTweetData(id: string): Promise<Response<Tweet>> {
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/tweets/${id}/`);
+        const {data} = await axios.get(`${api_url}/tweets/${id}/`);
         console.log(data[0]);
         return data[0];
     },
     async addTweet(payload: string): Promise<Response<Tweet>> {
-        const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/tweets/`, {text: payload});
+        const {data} = await axios.post(`${api_url}/tweets/`, {text: payload});
         console.log(data);
         return data;
     }
