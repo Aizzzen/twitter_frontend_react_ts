@@ -1,12 +1,18 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from "@material-ui/icons/Clear";
 import {useStylesHomeStyle} from "../pages/Home/theme";
+import {ImageObj} from "./AddTweetForm";
 
-export const UploadMedia = () => {
+
+interface UploadMediaProps {
+    media: ImageObj[];
+    onChangeMedia: (callback: (prev: ImageObj[]) => ImageObj[]) => void;
+}
+
+export const UploadMedia: FC<UploadMediaProps> = ({media, onChangeMedia}: UploadMediaProps) => {
     const classes = useStylesHomeStyle()
-    const [media, setMedia] = useState<string[]>([])
     const inputRef = useRef<HTMLInputElement>(null)
 
     const handleClickMedia = () => {
@@ -16,7 +22,7 @@ export const UploadMedia = () => {
     }
 
     const removeImage = (url: string) => {
-        setMedia(prev => prev.filter(_url => _url !== url))
+        onChangeMedia(prev => prev.filter(obj => obj.blobUrl !== url))
     }
 
     // useCallback - мемоизирует данные, чтобы ссылка не терялась
@@ -26,7 +32,10 @@ export const UploadMedia = () => {
             const file = target.files?.[0]
             if(file) {
                 const fileObj = new Blob([file])
-                setMedia(prev => [...prev, URL.createObjectURL(fileObj)])
+                onChangeMedia(prev => [...prev, {
+                    blobUrl: URL.createObjectURL(fileObj),
+                    file
+                }])
             }
         }
     }, [])
@@ -45,16 +54,16 @@ export const UploadMedia = () => {
     return (
         <div>
             <div className={classes.mediaList}>
-                {media.map((url) => (
+                {media.map((obj) => (
                     <>
                         <div
-                            key={url}
+                            key={obj.blobUrl}
                             className={classes.mediaListItem}
-                            style={{ backgroundImage: `url(${url})` }}
+                            style={{ backgroundImage: `url(${obj.blobUrl})` }}
                         >
                             <IconButton
                                 className={classes.mediaListItemRemove}
-                                onClick={(): void => removeImage(url)}
+                                onClick={(): void => removeImage(obj.blobUrl)}
                             >
                                 <ClearIcon style={{ fontSize: 15 }} />
                             </IconButton>

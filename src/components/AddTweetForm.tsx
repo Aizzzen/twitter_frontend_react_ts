@@ -23,9 +23,15 @@ interface AddTweetFormProps {
     maxRows?: number;
 }
 
+export interface ImageObj {
+    blobUrl: string;
+    file: File;
+}
+
 export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweetFormProps): ReactElement => {
     const dispatch = useDispatch()
     const addFormState = useSelector(selectAddFormState)
+    const [media, setMedia] = useState<ImageObj[]>([])
     const MAX_LENGTH = 280
     const [text, setText] = useState<string>('');
     const textLimitPercent = Math.round((text.length / 280) * 100);
@@ -38,7 +44,10 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
     }
 
     const handleClickAddTweet = (): void => {
-        dispatch(fetchAddTweet(text))
+        console.log(media)
+        console.log(media[0].blobUrl)
+        console.log(media[0].file)
+        dispatch(fetchAddTweet({text, media: media[0].file}))
         setText('');
     }
 
@@ -60,7 +69,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
             </div>
             <div className={classes.addFormBottom}>
                 <div className={classNames(classes.tweetFooter, classes.addFormBottomActions)}>
-                    <UploadMedia />
+                    <UploadMedia media={media} onChangeMedia={setMedia} />
                 </div>
                 <div className={classes.addFormBottomRight}>
                     {text && (
