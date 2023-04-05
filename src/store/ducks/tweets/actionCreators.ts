@@ -13,7 +13,7 @@ export const setTweets = (payload: TweetsState['items']): SetTweetsActionInterfa
     payload,
 });
 
-export const fetchAddTweet = (payload: {text: string, media: File}): FetchAddTweetActionInterface => ({
+export const fetchAddTweet = (payload: { formData: FormData, text: string }): FetchAddTweetActionInterface => ({
     type: TweetsActionsType.FETCH_ADD_TWEET,
     payload,
 });

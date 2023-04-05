@@ -75,7 +75,7 @@ export const UploadMedia: FC<UploadMediaProps> = ({media, onChangeMedia}: Upload
             <IconButton onClick={handleClickMedia} color="primary">
                 <ImageOutlinedIcon style={{ fontSize: 26 }} />
             </IconButton>
-            <input ref={inputRef} type="file" hidden id="upload-media"/>
+            <input ref={inputRef} type="file" multiple hidden id="upload-media"/>
         </div>
     );
 };

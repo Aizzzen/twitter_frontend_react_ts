@@ -23,11 +23,8 @@ export const TweetsApi = {
         console.log(data[0]);
         return data[0];
     },
-    async addTweet(payload: {text: string, media: File}): Promise<Response<Tweet>> {
-        const formData = new FormData();
-        formData.append('text', payload.text);
-        formData.append('media', payload.media);
-        const {data} = await axios.post(`${api_url}/tweets/`, formData, {
+    async addTweet(payload: {text: string, formData: FormData}): Promise<Response<Tweet>> {
+        const {data} = await axios.post(`${api_url}/tweets/`, payload.formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             }
@@ -36,18 +33,3 @@ export const TweetsApi = {
         return data;
     }
 }
-
-// export const uploadMedia = async (media: File, text: string): Promise<UploadMediaReturnProps> => {
-//     const formData = new FormData();
-//     formData.append('media', media);
-//     formData.append('text', text);
-//
-//     const { data } = await axios.post('/upload', formData, {
-//         headers: {
-//             'Content-Type': 'multipart/form-data',
-//         },
-//     });
-//
-//     return data;
-//
-// };

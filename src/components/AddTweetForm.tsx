@@ -5,16 +5,12 @@ import Alert from "@material-ui/lab/Alert";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import IconButton from "@material-ui/core/IconButton";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-
-import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
-import EmojiIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {useDispatch, useSelector} from "react-redux";
 import {AddFormState} from "../store/ducks/tweets/contracts/state";
-import {fetchAddTweet} from "../store/ducks/tweets/actionCreators";
+import {fetchAddTweet, setAddFormState} from "../store/ducks/tweets/actionCreators";
 import {selectAddFormState} from "../store/ducks/tweets/selectors";
 import {UploadMedia} from "./UploadMedia";
 
@@ -32,6 +28,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
     const dispatch = useDispatch()
     const addFormState = useSelector(selectAddFormState)
     const [media, setMedia] = useState<ImageObj[]>([])
+    // const [media, setMedia] = useState<object[]>([])
     const MAX_LENGTH = 280
     const [text, setText] = useState<string>('');
     const textLimitPercent = Math.round((text.length / 280) * 100);
@@ -44,11 +41,19 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
     }
 
     const handleClickAddTweet = (): void => {
-        console.log(media)
-        console.log(media[0].blobUrl)
-        console.log(media[0].file)
-        dispatch(fetchAddTweet({text, media: media[0].file}))
+        dispatch(setAddFormState(AddFormState.LOADING))
+
+        let files: File[] = []
+        media.map(obj => files.push(obj.file))
+        const formData = new FormData();
+        formData.append('text', text);
+        for(let i = 0; i < files.length; i++) {
+            formData.append('media', files[i]);
+        }
+
+        dispatch(fetchAddTweet({text, formData}))
         setText('');
+        setMedia([]);
     }
 
     return (
