@@ -28,7 +28,7 @@ export const MediaList: FC<MediaListProps> = ({media, classes, removeImage}: Med
                     <div
                         key={typeof obj === 'string' ? obj : obj.id}
                         className={classes.mediaListItem}
-                        style={{ backgroundImage: `url(${typeof obj === 'string' ? obj : `${process.env.REACT_APP_URL}/media/${obj.media}`})` }}
+                        style={{ backgroundImage: `url(${typeof obj === 'string' ? obj : `${process.env.REACT_APP_SERVER_URL}/media/${obj.media}`})` }}
                     >
                         {removeImage && (
                             <IconButton

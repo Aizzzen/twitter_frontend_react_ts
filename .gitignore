@@ -23,3 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+env
+
+.env/
+env/
+
+.idea
+.idea/
