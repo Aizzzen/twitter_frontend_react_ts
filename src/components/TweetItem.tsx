@@ -19,7 +19,8 @@ import {useStylesHomeStyle} from "../pages/Home/theme";
 import {useNavigate} from "react-router-dom";
 import {formatDate} from "../utils/formatDate";
 import {MediaList} from "./MediaList";
-import {ImageObj} from "./AddTweetForm";
+import {removeTweet} from "../store/ducks/tweets/actionCreators";
+import {useDispatch} from "react-redux";
 
 interface TweetProps {
     id: string;
@@ -37,12 +38,14 @@ interface TweetProps {
 }
 
 export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, created_at}: TweetProps): ReactElement => {
+    const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 
     const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
         event.preventDefault();
+        // event.stopPropagation();
         navigate(`/home/tweet/${id}`);
     }
 
@@ -52,10 +55,18 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (event: React.MouseEvent<HTMLElement>): void => {
+        event.stopPropagation();
+        event.preventDefault();
         setAnchorEl(null);
     };
 
+    const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
+        handleClose(event)
+        if(window.confirm('Вы действительно хотите удалить твит?')) {
+            dispatch(removeTweet(id))
+        }
+    };
 
     return (
         <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${id}`}>
@@ -73,12 +84,11 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                         <div className={classes.tweetContent}>
                             <div className={classes.tweetHeader}>
                                 <div>
-                                    {/*<b>{user.fullname}</b>&nbsp;*/}
-                                    {/*<b>fullname</b>&nbsp;*/}
+                                    {/*<b>{fullname}</b>&nbsp;*/}
+                                    <b>fullname</b>&nbsp;
                                     <span className={classes.tweetUserName}>
                                         @{username}
-                                        {/*username*/}
-                                </span>&nbsp;
+                                    </span>&nbsp;
                                     <span className={classes.tweetUserName}>·</span>&nbsp;
                                     <span className={classes.tweetUserName}>{formatDate(new Date(created_at))}</span>&nbsp;
                                 </div>
@@ -101,7 +111,8 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                                         <MenuItem onClick={handleClose}>
                                             Редактировать
                                         </MenuItem>
-                                        <MenuItem onClick={handleClose}>
+                                        {/*<MenuItem onClick={handleClose}>*/}
+                                        <MenuItem onClick={handleRemove}>
                                             Удалить типотвит
                                         </MenuItem>
                                     </Menu>

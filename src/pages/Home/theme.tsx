@@ -265,12 +265,16 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
     mediaListItem: {
         width: 50,
         height: 50,
-        overflow: 'hidden',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        overflow: 'hidden', // чтобы содержимое не выхлдило за пределы блока
         borderRadius: 6,
         marginRight: 10,
         marginBottom: 10,
+        position: 'relative',
+        '& img': {
+            width: '100%',
+            height: '100%',
+            'object-fit': 'cover,'
+        },
         '& svg path': {
             fill: 'white'
         }

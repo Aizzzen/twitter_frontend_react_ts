@@ -41,6 +41,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
     }
 
     const handleClickAddTweet = (): void => {
+        console.log(media)
         dispatch(setAddFormState(AddFormState.LOADING))
 
         let files: File[] = []

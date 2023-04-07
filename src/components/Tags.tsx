@@ -31,25 +31,23 @@ export const Tags: FC<TagsProps> = ({classes}: TagsProps): ReactElement | null =
                 <b>Актуальные темы</b>
             </Paper>
             <List>
-                {
-                    items.map((item) => (
-                        <Fragment key={item._id}>
-                            <ListItem className={classes.rightSideBlockItem}>
-                                <Link to={`/home/search?q=${item.name}`}>
-                                    <ListItemText
-                                        primary={item.name}
-                                        secondary={
-                                            <Typography component="span" variant="body2" color="textSecondary">
-                                                Твитов: {item.count}
-                                            </Typography>
-                                        }
-                                    />
-                                </Link>
-                            </ListItem>
-                            <Divider component="li" />
-                        </Fragment>
-                    ))
-                }
+                {items.map((item) => (
+                    <Fragment key={item._id}>
+                        <ListItem className={classes.rightSideBlockItem}>
+                            <Link to={`/home/search?q=${item.name}`}>
+                                <ListItemText
+                                    primary={item.name}
+                                    secondary={
+                                    <Typography component="span" variant="body2" color="textSecondary">
+                                        Твитов: {item.count}
+                                    </Typography>
+                                }
+                                />
+                            </Link>
+                        </ListItem>
+                        <Divider component="li" />
+                    </Fragment>
+                ))}
             </List>
         </Paper>
     )

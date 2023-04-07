@@ -1,4 +1,5 @@
 import React, {FC, ReactElement, useEffect} from 'react';
+import mediumZoom from 'medium-zoom';
 import {selectIsTweetLoading, selectTweetData} from "../store/ducks/tweet/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweetData, setTweetData} from "../store/ducks/tweet/actionCreators";
@@ -20,6 +21,7 @@ import ru from 'date-fns/locale/ru'
 import { TweetItem } from './TweetItem';
 
 import classNames from "classnames";
+import {MediaList} from "./MediaList";
 
 export const FullTweet: FC = (): ReactElement | null => {
     const classes = useStylesHomeStyle();
@@ -33,11 +35,16 @@ export const FullTweet: FC = (): ReactElement | null => {
         if (id) {
             dispatch(fetchTweetData(id));
         }
-
         return () => {
             dispatch(setTweetData(undefined));
         };
     }, [dispatch, id]);
+
+    useEffect(() => {
+        if(!isLoading) {
+            mediumZoom('.tweet-media img')
+        }
+    }, [isLoading])
 
     if (isLoading) {
         return (
@@ -59,18 +66,20 @@ export const FullTweet: FC = (): ReactElement | null => {
                             // src={tweetData.user.avatar_url}
                         />
                         <Typography>
-                            {/*<b>{tweetData.user.fullname}</b>&nbsp;*/}
-                            {/*<b>fullname</b>&nbsp;*/}
+                            {/*<b>{tweetData.fullname}</b>&nbsp;*/}
+                            <b>fullname</b>&nbsp;
                             <div>
                                 <span className={classes.tweetUserName}>
                                     @{tweetData.username}
-                                    {/*username*/}
                                 </span>&nbsp;
                             </div>
                         </Typography>
                     </div>
                     <Typography className={classes.fullTweetText} gutterBottom>
                         {tweetData.text}
+                        <div className='tweet-media'>
+                            {tweetData.photos && <MediaList media={tweetData.photos} classes={classes}/>}
+                        </div>
                     </Typography>
                     <Typography>
                         <span className={classes.tweetUserName}>{format(new Date(tweetData.created_at), 'H:mm', { locale: ru })} · </span>
