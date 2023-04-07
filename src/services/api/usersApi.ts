@@ -14,14 +14,15 @@ export const UserApi = {
         return await axios
             .post<Response>(`${api_url}/auth/jwt/create/`, authData)
             .then(response => {
+                console.log(response)
                 return response;
             })
     },
     async signUp(authData: RegisterFormProps) {
         return await axios
-            // .post<Response>('/auth/users/', authData)
             .post<Response>(`${api_url}/auth/users/`, authData)
             .then(response => {
+                console.log(response)
                 return response
             })
     },
@@ -29,6 +30,7 @@ export const UserApi = {
         return await axios
             .get<Response>(`${api_url}/auth/users/me/`)
             .then(response => {
+                console.log(response)
                 return response;
             })
     },

@@ -1,8 +1,12 @@
 import axios from "axios";
 
+
 axios.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${window.localStorage.getItem('Bearer')}`
-    // config.headers['Bearer'] = window.localStorage.getItem('Bearer')
+    if(window.localStorage.getItem('Bearer')) {
+        config.headers.Authorization = `Bearer ${window.localStorage.getItem('Bearer')}`
+    } else {
+        config.headers.Authorization = null
+    }
     return config
 })
 

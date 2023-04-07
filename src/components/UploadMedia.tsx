@@ -4,6 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from "@material-ui/icons/Clear";
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {ImageObj} from "./AddTweetForm";
+import {MediaList} from "./MediaList";
 
 
 interface UploadMediaProps {
@@ -53,25 +54,7 @@ export const UploadMedia: FC<UploadMediaProps> = ({media, onChangeMedia}: Upload
 
     return (
         <div>
-            <div className={classes.mediaList}>
-                {media.map((obj) => (
-                    <>
-                        <div
-                            key={obj.blobUrl}
-                            className={classes.mediaListItem}
-                            style={{ backgroundImage: `url(${obj.blobUrl})` }}
-                        >
-                            <IconButton
-                                className={classes.mediaListItemRemove}
-                                onClick={(): void => removeImage(obj.blobUrl)}
-                            >
-                                <ClearIcon style={{ fontSize: 15 }} />
-                            </IconButton>
-                        </div>
-
-                    </>
-                ))}
-            </div>
+            <MediaList media={media.map(obj => obj.blobUrl)} classes={classes} removeImage={removeImage}/>
             <IconButton onClick={handleClickMedia} color="primary">
                 <ImageOutlinedIcon style={{ fontSize: 26 }} />
             </IconButton>

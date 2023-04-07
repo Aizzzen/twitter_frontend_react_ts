@@ -18,20 +18,25 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {useNavigate} from "react-router-dom";
 import {formatDate} from "../utils/formatDate";
+import {MediaList} from "./MediaList";
+import {ImageObj} from "./AddTweetForm";
 
 interface TweetProps {
     id: string;
     text: string;
+    // media: ImageObj[];
     classes: ReturnType<typeof useStylesHomeStyle>;
     created_at: string;
-    user: {
-        fullname: string;
-        username: string;
-        avatar_url: string;
-    }
+    // user: {
+    //     fullname: string;
+    //     username: string;
+    //     avatar_url: string;
+    // }
+    photos?: string[];
+    username?: string;
 }
 
-export const TweetItem: FC<TweetProps> = ({id, text, user, classes, created_at}: TweetProps): ReactElement => {
+export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, created_at}: TweetProps): ReactElement => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
@@ -69,10 +74,10 @@ export const TweetItem: FC<TweetProps> = ({id, text, user, classes, created_at}:
                             <div className={classes.tweetHeader}>
                                 <div>
                                     {/*<b>{user.fullname}</b>&nbsp;*/}
-                                    <b>fullname</b>&nbsp;
+                                    {/*<b>fullname</b>&nbsp;*/}
                                     <span className={classes.tweetUserName}>
-                                        {/*@{user.username}*/}
-                                        username
+                                        @{username}
+                                        {/*username*/}
                                 </span>&nbsp;
                                     <span className={classes.tweetUserName}>·</span>&nbsp;
                                     <span className={classes.tweetUserName}>{formatDate(new Date(created_at))}</span>&nbsp;
@@ -104,31 +109,32 @@ export const TweetItem: FC<TweetProps> = ({id, text, user, classes, created_at}:
                             </div>
                             <Typography variant='body1' gutterBottom>
                                 {text}
+                                {photos && <MediaList media={photos} classes={classes}/>}
                             </Typography>
                             <div className={classes.tweetFooter}>
                                 <div>
                                     <IconButton>
                                         <CommentIcon style={{fontSize: 20}} />
                                     </IconButton>
-                                    <span>1</span>
+                                    <span></span>
                                 </div>
                                 <div>
                                     <IconButton>
                                         <RepostIcon style={{fontSize: 20}} />
                                     </IconButton>
-                                    <span>1</span>
+                                    <span></span>
                                 </div>
                                 <div>
                                     <IconButton>
                                         <LikeIcon style={{fontSize: 20}} />
                                     </IconButton>
-                                    <span>1</span>
+                                    <span></span>
                                 </div>
                                 <div>
                                     <IconButton>
                                         <ShareIcon style={{fontSize: 20}} />
                                     </IconButton>
-                                    <span>1</span>
+                                    <span></span>
                                 </div>
                             </div>
                         </div>

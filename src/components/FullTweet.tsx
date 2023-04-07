@@ -60,11 +60,11 @@ export const FullTweet: FC = (): ReactElement | null => {
                         />
                         <Typography>
                             {/*<b>{tweetData.user.fullname}</b>&nbsp;*/}
-                            <b>fullname</b>&nbsp;
+                            {/*<b>fullname</b>&nbsp;*/}
                             <div>
                                 <span className={classes.tweetUserName}>
-                                    {/*@{tweetData.user.username}*/}
-                                    username
+                                    @{tweetData.username}
+                                    {/*username*/}
                                 </span>&nbsp;
                             </div>
                         </Typography>
@@ -96,39 +96,23 @@ export const FullTweet: FC = (): ReactElement | null => {
                     id="101"
                     text="Any more to move? You might need to adjust your stretching routines!"
                     created_at={new Date().toString()}
-                    user={{
-                        fullname: 'Arlene Andrews',
-                        username: 'ArleneAndrews_1',
-                        avatar_url:
-                            'https://pbs.twimg.com/profile_images/1172922412029136897/gFRmgn1W_bigger.jpg',
-                    }}
+                    username='ArleneAndrews_1'
                     classes={classes}
                 />
                 <TweetItem
                     id="102"
                     text="Any more to move? You might need to adjust your stretching routines!"
                     created_at={new Date().toString()}
-                    user={{
-                        fullname: 'Arlene Andrews',
-                        username: 'ArleneAndrews_1',
-                        avatar_url:
-                            'https://pbs.twimg.com/profile_images/1172922412029136897/gFRmgn1W_bigger.jpg',
-                    }}
+                    username='ArleneAndrews_1'
                     classes={classes}
                 />
                 <TweetItem
                     id="103"
                     text="Any more to move? You might need to adjust your stretching routines!"
                     created_at={new Date().toString()}
-                    user={{
-                        fullname: 'Arlene Andrews',
-                        username: 'ArleneAndrews_1',
-                        avatar_url:
-                            'https://pbs.twimg.com/profile_images/1172922412029136897/gFRmgn1W_bigger.jpg',
-                    }}
+                    username='ArleneAndrews_1'
                     classes={classes}
                 />
-
             </>
         );
 
