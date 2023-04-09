@@ -38,7 +38,7 @@ export const Home: FC = (): ReactElement => {
 
                 {['/', '/search'].map(path => {
                     return (
-                        <Routes>
+                        <Routes key={path}>
                             <Route path={path} element={
                                 <Typography variant='h6'>типоТвиты</Typography>
                             }/>
@@ -54,7 +54,7 @@ export const Home: FC = (): ReactElement => {
 
             {['/', '/search'].map(path => {
                 return (
-                    <Routes>
+                    <Routes key={path}>
                         <Route path={path} element={
                             <Paper>
                                 <div className={classes.addForm}>

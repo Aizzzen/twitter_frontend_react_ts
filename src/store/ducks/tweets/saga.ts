@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {addTweet, removeTweet, setAddFormState, setTweets, setTweetsLoadingState} from "./actionCreators";
+import {addTweet, setAddFormState, setTweets, setTweetsLoadingState} from "./actionCreators";
 import {TweetsApi} from "../../../services/api/tweetsApi";
 import {AddFormState, LoadingState} from "./contracts/state";
 import {FetchAddTweetActionInterface, RemoveTweetActionInterface, TweetsActionsType} from "./actionTypes";
@@ -8,8 +8,14 @@ import {FetchAddTweetActionInterface, RemoveTweetActionInterface, TweetsActionsT
 // yield put === dispatch
 export function* fetchTweetsRequest() {
     try {
-        // @ts-ignore
-        const items = yield call(TweetsApi.fetchTweets)
+        let items = []
+        const pathname = window.location.pathname
+        const user = pathname.includes('/user')
+        if(user) {
+            items = yield call(TweetsApi.fetchCurrentUserTweets)
+        } else {
+            items = yield call(TweetsApi.fetchTweets)
+        }
         yield put(setTweets(items))
     }
     catch (e) {

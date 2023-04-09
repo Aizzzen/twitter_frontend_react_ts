@@ -264,6 +264,10 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
         boxShadow: '1px 1px 10px rgba(0, 0, 0, 0.08)',
         borderRadius: 20,
         border: '1px solid rgba(0, 0, 0, 0.1)',
+        '& a': {
+            color: 'black',
+            textDecoration: 'none',
+        }
     },
     mediaList: {
         display: 'flex',

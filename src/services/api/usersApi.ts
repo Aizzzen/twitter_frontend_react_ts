@@ -14,7 +14,6 @@ export const UserApi = {
         return await axios
             .post<Response>(`${api_url}/auth/jwt/create/`, authData)
             .then(response => {
-                console.log(response)
                 return response;
             })
     },
@@ -22,7 +21,6 @@ export const UserApi = {
         return await axios
             .post<Response>(`${api_url}/auth/users/`, authData)
             .then(response => {
-                console.log(response)
                 return response
             })
     },
@@ -30,7 +28,13 @@ export const UserApi = {
         return await axios
             .get<Response>(`${api_url}/auth/users/me/`)
             .then(response => {
-                console.log(response)
+                return response;
+            })
+    },
+    async getCurrentUserData() {
+        return await axios
+            .get<Response>(`${api_url}/user-data/`)
+            .then(response => {
                 return response;
             })
     },

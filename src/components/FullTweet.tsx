@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTweetData, setTweetData} from "../store/ducks/tweet/actionCreators";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {useStylesHomeStyle} from "../pages/Home/theme";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
@@ -67,6 +67,7 @@ export const FullTweet: FC = (): ReactElement | null => {
                         />
                         <Typography>
                             {/*<b>{tweetData.fullname ? tweetData.fullname : 'fullname'}</b>&nbsp;*/}
+                            <Link to={`user/${tweetData.username}`}><b>{tweetData.fullname ? tweetData.fullname : 'fullname'}</b>&nbsp;</Link>
                             <div>
                                 <span className={classes.tweetUserName}>
                                     @{tweetData.username}

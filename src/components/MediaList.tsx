@@ -23,12 +23,9 @@ export const MediaList: FC<MediaListProps> = ({media, classes, removeImage}: Med
 
     return (
         <div className={classes.mediaList}>
-            {media && media.map((obj) => (
-                <>
-                    <div
-                        key={typeof obj === 'string' ? obj : obj.id}
-                        className={classes.mediaListItem}
-                        // style={{ backgroundImage: `url(${typeof obj === 'string' ? obj : `${process.env.REACT_APP_SERVER_URL}/media/${obj.media}`})` }}
+            {media && media.map((obj, i) => (
+                    <div key={i} className={classes.mediaListItem}
+                        // key={typeof obj === 'string' ? obj : obj.id}
                     >
                         <div>
                             <img
@@ -44,7 +41,6 @@ export const MediaList: FC<MediaListProps> = ({media, classes, removeImage}: Med
                             </IconButton>
                         )}
                     </div>
-                </>
             ))}
         </div>
     );

@@ -100,7 +100,7 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                     </div>
                 </li>
                 <li className={classes.navbarListItem}>
-                    <Link to="/user/*">
+                    <Link to='/user/me'>
                         <div>
                             <UserIcon className={classes.navbarListItemIcon} />
                             <Hidden smDown>

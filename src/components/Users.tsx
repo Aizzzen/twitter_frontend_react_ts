@@ -56,7 +56,7 @@ export const Users = () => {
                         primary="Dock Of Shame"
                         secondary={
                             <Typography component="span" variant="body2" color="textSecondary">
-                                @FavDockOfShame
+                                Грузить всееех пользователей
                             </Typography>
                         }
                     />
