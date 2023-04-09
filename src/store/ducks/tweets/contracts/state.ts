@@ -17,6 +17,7 @@ export interface Tweet {
     created_at: string;
     photos?: [];
     username: string
+    fullname?: string
 }
 
 export interface TweetsState {

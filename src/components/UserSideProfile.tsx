@@ -42,8 +42,7 @@ export const UserSideProfile: FC<UserSideProfileProps> = ({classes}: UserSidePro
             <div onClick={handleOpenPopup} className={classes.sideProfile}>
                 <Avatar src='' />
                 <div className={classes.sideProfileInfo}>
-                    {/*<b>{userData.fullname}</b>*/}
-                    <b>fullname</b>
+                    {/*<b>{userData.fullname ? userData.fullname : 'fullname'}</b>*/}
                     <Typography style={{ color: colors.grey[500] }}>@{userData.username}</Typography>
                 </div>
                 <ArrowBottomIcon />
@@ -56,7 +55,7 @@ export const UserSideProfile: FC<UserSideProfileProps> = ({classes}: UserSidePro
                 open={Boolean(anchorEl)}
                 onClose={handleClosePopup}
                 keepMounted>
-                <Link to={`/user/${userData._id}`}>
+                <Link to={`/user/${userData.username}`}>
                     <MenuItem onClick={handleClosePopup}>Мой профиль</MenuItem>
                 </Link>
                 <MenuItem onClick={handleSignOut}>Выйти</MenuItem>

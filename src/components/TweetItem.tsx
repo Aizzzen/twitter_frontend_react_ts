@@ -25,16 +25,12 @@ import {useDispatch} from "react-redux";
 interface TweetProps {
     id: string;
     text: string;
-    // media: ImageObj[];
     classes: ReturnType<typeof useStylesHomeStyle>;
     created_at: string;
-    // user: {
-    //     fullname: string;
-    //     username: string;
-    //     avatar_url: string;
-    // }
+    // avatar_url: string;
     photos?: string[];
     username?: string;
+    // fullname?: string;
 }
 
 export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, created_at}: TweetProps): ReactElement => {
@@ -84,8 +80,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                         <div className={classes.tweetContent}>
                             <div className={classes.tweetHeader}>
                                 <div>
-                                    {/*<b>{fullname}</b>&nbsp;*/}
-                                    <b>fullname</b>&nbsp;
+                                    {/*<b>{fullname ? fullname : 'fullname'}</b>&nbsp;*/}
                                     <span className={classes.tweetUserName}>
                                         @{username}
                                     </span>&nbsp;

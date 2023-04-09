@@ -66,8 +66,7 @@ export const FullTweet: FC = (): ReactElement | null => {
                             // src={tweetData.user.avatar_url}
                         />
                         <Typography>
-                            {/*<b>{tweetData.fullname}</b>&nbsp;*/}
-                            <b>fullname</b>&nbsp;
+                            {/*<b>{tweetData.fullname ? tweetData.fullname : 'fullname'}</b>&nbsp;*/}
                             <div>
                                 <span className={classes.tweetUserName}>
                                     @{tweetData.username}
