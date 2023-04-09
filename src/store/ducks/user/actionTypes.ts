@@ -13,9 +13,9 @@ export enum UserActionsType {
     SIGN_OUT = 'user/SIGN_OUT',
 }
 
-// export interface SignOutActionInterface extends Action<UserActionsType> {
-//     type: UserActionsType.SIGN_OUT;
-// }
+export interface FetchSignOutActionInterface extends Action<UserActionsType> {
+    type: UserActionsType.SIGN_OUT;
+}
 
 export interface FetchSignInActionInterface extends Action<UserActionsType> {
     type: UserActionsType.FETCH_SIGN_IN;

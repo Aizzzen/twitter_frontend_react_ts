@@ -256,6 +256,15 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
             fontSize: 16,
         },
     },
+    profileMenu: {
+        bottom: '110px !important',
+        width: '250px !important',
+        left: '17.5% !important',
+        top: 'auto !important',
+        boxShadow: '1px 1px 10px rgba(0, 0, 0, 0.08)',
+        borderRadius: 20,
+        border: '1px solid rgba(0, 0, 0, 0.1)',
+    },
     mediaList: {
         display: 'flex',
         alignItems: 'center',
@@ -266,7 +275,7 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
         width: 50,
         height: 50,
         overflow: 'hidden', // чтобы содержимое не выхлдило за пределы блока
-        borderRadius: 6,
+        // borderRadius: 6,
         marginRight: 10,
         marginBottom: 10,
         position: 'relative',
@@ -280,12 +289,12 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
         }
     },
     mediaListItemRemove: {
-        position: 'relative',
-        // position: 'absolute',
-        // top: 12,
-        top: -4,
-        // right: 2,
-        right: -35,
+        // position: 'relative',
+        position: 'absolute',
+        top: 1,
+        // top: -4,
+        right: 1,
+        // right: -35,
         padding: '0 !important',
         backgroundColor: '#ff4d4d !important',
     },

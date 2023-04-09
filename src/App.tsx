@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {SignIn} from "./pages/SignIn";
 import {Home} from "./pages/Home";
 import {Route, Routes, useNavigate} from "react-router-dom";
-import {UserPage} from "./pages/UserPage";
+import {UserPage} from "./pages/User/UserPage";
 import {Layout} from "./pages/Layout";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserData} from "./store/ducks/user/actionCreators";

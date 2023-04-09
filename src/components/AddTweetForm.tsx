@@ -28,7 +28,6 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
     const dispatch = useDispatch()
     const addFormState = useSelector(selectAddFormState)
     const [media, setMedia] = useState<ImageObj[]>([])
-    // const [media, setMedia] = useState<object[]>([])
     const MAX_LENGTH = 280
     const [text, setText] = useState<string>('');
     const textLimitPercent = Math.round((text.length / 280) * 100);
@@ -63,7 +62,7 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
                 <Avatar
                     className={classes.tweetAvatar}
                     alt={`Аватарка пользователя UserAvatar`}
-                    src="https://pbs.twimg.com/profile_images/796061890451542016/J-O1AguD_bigger.jpg"
+                    // src={avatar_url}
                 />
                 <TextareaAutosize
                     className={classes.addFormTextarea}
@@ -119,7 +118,6 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
                     Ошибка при добавлении типотвита{' '}
                     <span aria-label="emoji-plak" role="img">😞</span>
                 </Alert>
-
             )}
         </div>
     );

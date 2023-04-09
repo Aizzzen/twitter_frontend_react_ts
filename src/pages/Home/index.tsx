@@ -25,7 +25,7 @@ export const Home: FC = (): ReactElement => {
 
     useEffect(() => {
         dispatch(fetchTweets())
-        dispatch(fetchTags())
+        // dispatch(fetchTags())
     }, [dispatch])
 
     return (

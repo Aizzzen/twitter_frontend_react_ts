@@ -27,4 +27,5 @@ export const TweetsApi = {
         return data;
     },
     removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets-detail/${id}/`),
+    // removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets/${id}/`),
 }

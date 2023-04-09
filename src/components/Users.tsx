@@ -22,29 +22,48 @@ export const Users = () => {
                 <b>Кого читать</b>
             </Paper>
             <List>
-                {
-                    items.map((obj) => (
-                        <ListItem className={classes.rightSideBlockItem}>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"
-                                />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary="Dock Of Shame"
-                                secondary={
-                                    <Typography component="span" variant="body2" color="textSecondary">
-                                        @FavDockOfShame
-                                    </Typography>
-                                }
-                            />
-                            <Button color="primary">
-                                <PersonAddIcon />
-                            </Button>
-                        </ListItem>
-                    ))
-                }
+                {/*{*/}
+                {/*    items.map((obj) => (*/}
+                {/*        <ListItem className={classes.rightSideBlockItem}>*/}
+                {/*            <ListItemAvatar>*/}
+                {/*                <Avatar*/}
+                {/*                    alt="Remy Sharp"*/}
+                {/*                    // src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"*/}
+                {/*                />*/}
+                {/*            </ListItemAvatar>*/}
+                {/*            <ListItemText*/}
+                {/*                primary="Dock Of Shame"*/}
+                {/*                secondary={*/}
+                {/*                    <Typography component="span" variant="body2" color="textSecondary">*/}
+                {/*                        @FavDockOfShame*/}
+                {/*                    </Typography>*/}
+                {/*                }*/}
+                {/*            />*/}
+                {/*            <Button color="primary">*/}
+                {/*                <PersonAddIcon />*/}
+                {/*            </Button>*/}
+                {/*        </ListItem>*/}
+                {/*    ))*/}
+                {/*}*/}
+                <ListItem className={classes.rightSideBlockItem}>
+                    <ListItemAvatar>
+                        <Avatar
+                            alt="Remy Sharp"
+                            // src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"
+                        />
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary="Dock Of Shame"
+                        secondary={
+                            <Typography component="span" variant="body2" color="textSecondary">
+                                @FavDockOfShame
+                            </Typography>
+                        }
+                    />
+                    <Button color="primary">
+                        <PersonAddIcon />
+                    </Button>
+                </ListItem>
                 <Divider component="li" />
             </List>
         </Paper>
