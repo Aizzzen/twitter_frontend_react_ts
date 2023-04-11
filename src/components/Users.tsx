@@ -53,7 +53,7 @@ export const Users = () => {
                         />
                     </ListItemAvatar>
                     <ListItemText
-                        primary="Dock Of Shame"
+                        primary="Пользователи"
                         secondary={
                             <Typography component="span" variant="body2" color="textSecondary">
                                 Грузить всееех пользователей

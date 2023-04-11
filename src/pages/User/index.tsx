@@ -58,16 +58,21 @@ export const UserPage = () => {
             <div className="user__header"></div>
             <div className="user__info">
                 <Avatar />
+                <h2 className='user__info-fullname'>Gadamurov Yunus</h2>
                 {/*<h2 className='user__info-fullname'>{userData?.fullname}</h2>*/}
                 <h4 className='user__info-username'>{userData?.username}</h4>
-                <p className='user__info-description'>{userData?.about}</p>
+                <p className='user__info-description'>FullStack developer (React & Django)</p>
+                {/*<p className='user__info-description'>{userData?.about}</p>*/}
                 <ul className='user__info-details'>
-                    <li>{userData?.location}</li>
+                    <li>Russia, Grozny</li>
+                    {/*<li>{userData?.location}</li>*/}
                     <li>
                         <a target='_blank' href="https://career.habr.com/aizzzen">{userData?.website}</a>
                     </li>
                     {/*<li>Дата рождения: {userData?.username}</li>*/}
-                    <li>Дата регистрации: {userData?.data_joined}</li>
+                    <li>Дата рождения: 18.06.2002</li>
+                    <li>Дата регистрации: 09.04.2023</li>
+                    {/*<li>Дата регистрации: {userData?.data_joined}</li>*/}
                 </ul>
             </div>
             <Tabs value={activeTab} indicatorColor="primary" textColor="primary" onChange={handleChange}>
