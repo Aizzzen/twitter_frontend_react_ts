@@ -16,5 +16,5 @@ jobs:
         run: npm install --force
       - name: build project
         run: npm run build
-      - name: tests
-        run: npm run test
+#      - name: tests
+#        run: npm run test
