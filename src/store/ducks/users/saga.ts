@@ -1,17 +1,21 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { TagsApi } from '../../../services/api/tagsApi';
+import { UserApi } from '../../../services/api/usersApi';
 import { LoadingStatus } from '../../types';
+import {setUsers, UsersActionsType} from "./actionCreators";
 
 export function* fetchUsersRequest() {
     // try {
-    //   const items = yield call(TagsApi.fetchTags);
-    //   yield put(setTags(items));
+    //   // @ts-ignore
+    //     const items = yield call(UserApi.fetchUsers);
+    //     console.log(items)
+    //   yield put(setUsers(items));
     // } catch (error) {
-    //   yield put(setTagsLoadingStatus(LoadingStatus.ERROR));
+    //   alert('Ошибка при загрузке пользователей')
     // }
 }
 
 export function* usersSaga() {
-    // yield takeLatest(TagsActionsType.FETCH_TAGS, fetchTagsRequest);
+    // yield takeLatest(UsersActionsType.FETCH_ITEMS, fetchUsersRequest);
 }
 

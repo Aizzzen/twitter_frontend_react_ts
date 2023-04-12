@@ -46,6 +46,7 @@ export const RegisterModal: FC<RegisterModalProps> = ({open, onClose}: RegisterM
 
     const onSubmit = async (data: RegisterFormProps) => {
         dispatch(fetchSignUp(data));
+        alert('Проверьте введенную вами почту')
     };
 
     useEffect(() => {

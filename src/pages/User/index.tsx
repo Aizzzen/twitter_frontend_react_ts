@@ -14,8 +14,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectIsTweetsLoading, selectTweetsItems} from "../../store/ducks/tweets/selectors";
 import {TweetItem} from "../../components/TweetItem";
 import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
-import {User} from "../../store/ducks/user/contracts/state";
 import {UserApi} from "../../services/api/usersApi";
+import format from "date-fns/format";
+import ru from "date-fns/locale/ru";
 
 export const UserPage = () => {
     const dispatch = useDispatch();
@@ -58,20 +59,21 @@ export const UserPage = () => {
             <div className="user__header"></div>
             <div className="user__info">
                 <Avatar />
-                <h2 className='user__info-fullname'>Gadamurov Yunus</h2>
+                <h2 className='user__info-fullname'>{userData?.username}</h2>
                 {/*<h2 className='user__info-fullname'>{userData?.fullname}</h2>*/}
-                <h4 className='user__info-username'>{userData?.username}</h4>
-                <p className='user__info-description'>FullStack developer (React & Django)</p>
+                <h4 className='user__info-username'>{userData?.id}-й пользователь типоТвиттера</h4>
+                {/*<h4 className='user__info-username'>{userData?.username}</h4>*/}
+                <p className='user__info-description'>{userData?.email}</p>
                 {/*<p className='user__info-description'>{userData?.about}</p>*/}
                 <ul className='user__info-details'>
                     <li>Russia, Grozny</li>
                     {/*<li>{userData?.location}</li>*/}
                     <li>
-                        <a target='_blank' href="https://career.habr.com/aizzzen">{userData?.website}</a>
+                        {/*<a target='_blank' href="">{userData?.website}</a>*/}
                     </li>
-                    {/*<li>Дата рождения: {userData?.username}</li>*/}
-                    <li>Дата рождения: 18.06.2002</li>
-                    <li>Дата регистрации: 09.04.2023</li>
+                    <li>Дата регистрации:
+                        <span> {format(new Date(userData?.date_joined), 'dd.MM.yyyy г.', { locale: ru })}</span>
+                    </li>
                     {/*<li>Дата регистрации: {userData?.data_joined}</li>*/}
                 </ul>
             </div>

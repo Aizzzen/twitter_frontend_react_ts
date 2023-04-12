@@ -35,7 +35,16 @@ export const UserApi = {
         return await axios
             .get<Response>(`${api_url}/user-data/`)
             .then(response => {
+                console.log(response)
                 return response;
             })
     },
+    // async fetchUsers() {
+    //     return await axios
+    //         .get<Response>(`${api_url}/users-list/`)
+    //         .then(response => {
+    //             console.log(response)
+    //             return response;
+    //         })
+    // },
 }
