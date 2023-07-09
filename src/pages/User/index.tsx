@@ -49,7 +49,7 @@ export const UserPage = () => {
                 <GoBackButton />
                 <div>
                     {/*<Typography variant="h6">{userData?.fullname}</Typography>*/}
-                    <Typography variant="h6">{userData?.username}</Typography>
+                    <Typography variant="h5">{userData?.username}</Typography>
                     <Typography variant="caption" display="block" gutterBottom>
                         твитов {tweets.length}
                     </Typography>
@@ -71,9 +71,9 @@ export const UserPage = () => {
                     <li>
                         {/*<a target='_blank' href="">{userData?.website}</a>*/}
                     </li>
-                    <li>Дата регистрации:
+                    {/* <li>Дата регистрации:
                         <span> {format(new Date(userData?.date_joined), 'dd.MM.yyyy г.', { locale: ru })}</span>
-                    </li>
+                    </li> */}
                     {/*<li>Дата регистрации: {userData?.data_joined}</li>*/}
                 </ul>
             </div>

@@ -18,6 +18,8 @@ export interface Tweet {
     photos?: [];
     username: string
     fullname?: string
+    likes?: number;
+    comments?: any;
 }
 
 export interface TweetsState {

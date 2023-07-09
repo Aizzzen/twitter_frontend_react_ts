@@ -21,6 +21,7 @@ import {formatDate} from "../utils/formatDate";
 import {MediaList} from "./MediaList";
 import {removeTweet} from "../store/ducks/tweets/actionCreators";
 import {useDispatch} from "react-redux";
+import { textWithLinks } from '../utils/textWithLinks'; 
 
 interface TweetProps {
     id: string;
@@ -30,15 +31,19 @@ interface TweetProps {
     // avatar_url: string;
     photos?: string[];
     username?: string;
+    likes?: number;
+    comments?: any;
+    isComment?: boolean;
     // fullname?: string;
 }
 
-export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, created_at}: TweetProps): ReactElement => {
+export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, likes, comments, created_at, isComment}: TweetProps): ReactElement => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
-
+    const newText = textWithLinks(text)
+    
     const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
         event.preventDefault();
         // event.stopPropagation();
@@ -65,7 +70,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
     };
 
     return (
-        <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${id}`}>
+        <a onClick={isComment ? undefined : handleClickTweet} className={classes.tweetWrapper} href={isComment ? undefined : `/home/tweet/${id}`}>
             <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
                 <Grid container spacing={3}>
                     <Grid item xs={1}>
@@ -113,8 +118,9 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                                     </Menu>
                                 </div>
                             </div>
-                            <Typography variant='body1' gutterBottom>
-                                {text}
+                            <Typography style={{"whiteSpace": "pre-line"}} variant='body1' gutterBottom>
+                                {/* {newText} */}
+                                <span dangerouslySetInnerHTML={{__html: newText}}/>
                                 {photos && <MediaList media={photos} classes={classes}/>}
                             </Typography>
                             <div className={classes.tweetFooter}>
@@ -122,7 +128,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                                     <IconButton>
                                         <CommentIcon style={{fontSize: 20}} />
                                     </IconButton>
-                                    <span></span>
+                                    <span>{comments?.length}</span>
                                 </div>
                                 <div>
                                     <IconButton>
@@ -134,7 +140,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                                     <IconButton>
                                         <LikeIcon style={{fontSize: 20}} />
                                     </IconButton>
-                                    <span></span>
+                                    <span style={{position: 'relative', top: 1}}>{likes}</span>
                                 </div>
                                 <div>
                                     <IconButton>

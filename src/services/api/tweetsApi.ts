@@ -16,7 +16,7 @@ export const TweetsApi = {
         return data;
     },
     async fetchCurrentUserTweets(): Promise<Response<Tweet[]>> {
-        const {data} = await axios.get(`${api_url}/tweets-data/`);
+        const {data} = await axios.get(`${api_url}/tweets/my/`);
         console.log(data)
         return data;
     },
@@ -33,6 +33,6 @@ export const TweetsApi = {
         console.log(data)
         return data;
     },
-    removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets-detail/${id}/`),
+    removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets/detail/${id}/`),
     // removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets/${id}/`),
 }

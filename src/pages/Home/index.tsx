@@ -75,7 +75,7 @@ export const Home: FC = (): ReactElement => {
                         </div>
                     ) : (
                         tweets.map((tweet) => (
-                            <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} classes={classes} />
+                            <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} likes={tweet.likes} comments={tweet.comments} classes={classes} />
                         ))
                     )
                 }/>

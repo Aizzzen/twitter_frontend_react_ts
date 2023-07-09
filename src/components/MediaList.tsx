@@ -5,7 +5,7 @@ import {useStylesHomeStyle} from "../pages/Home/theme";
 import {ImageObj} from "./AddTweetForm";
 
 interface MediaListProps {
-    media?: string[] | Photo[];
+    media?: string[] | Photo[] | any;
     classes: ReturnType<typeof useStylesHomeStyle>
     removeImage?: (url: string) => void;
 }
@@ -23,13 +23,14 @@ export const MediaList: FC<MediaListProps> = ({media, classes, removeImage}: Med
 
     return (
         <div className={classes.mediaList}>
-            {media && media.map((obj, i) => (
+            {media && media.map((obj: any, i: any) => (
                     <div key={i} className={classes.mediaListItem}
                         // key={typeof obj === 'string' ? obj : obj.id}
                     >
                         <div>
                             <img
-                                src={typeof obj === 'string' ? obj : `${process.env.REACT_APP_SERVER_URL}/media/${obj.media}`}
+                                // src={typeof obj === 'string' ? obj : `${process.env.REACT_APP_SERVER_URL}/media/${obj.media}`}
+                                src={obj.media}
                             />
                         </div>
                         {removeImage && (

@@ -17,6 +17,7 @@ import { Divider, IconButton } from '@material-ui/core';
 
 import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
+import { textWithLinks } from '../utils/textWithLinks';
 
 import { TweetItem } from './TweetItem';
 
@@ -30,6 +31,7 @@ export const FullTweet: FC = (): ReactElement | null => {
     const isLoading = useSelector(selectIsTweetLoading);
     const params: { id?: string } = useParams();
     const id = params.id;
+    const newText = textWithLinks(tweetData ? tweetData.text : "")
 
     useEffect(() => {
         if (id) {
@@ -76,7 +78,7 @@ export const FullTweet: FC = (): ReactElement | null => {
                         </Typography>
                     </div>
                     <Typography className={classes.fullTweetText} gutterBottom>
-                        {tweetData.text}
+                        <span dangerouslySetInnerHTML={{__html: newText}}/>
                         <div className='tweet-media'>
                             {tweetData.photos && <MediaList media={tweetData.photos} classes={classes}/>}
                         </div>
@@ -86,42 +88,41 @@ export const FullTweet: FC = (): ReactElement | null => {
                         <span className={classes.tweetUserName}>{format(new Date(tweetData.created_at), 'dd.MM.yyyy г.', { locale: ru })}</span>
                     </Typography>
                     <div className={classNames(classes.tweetFooter, classes.fullTweetFooter)}>
-                        <IconButton>
-                            <CommentIcon style={{ fontSize: 25 }} />
-                        </IconButton>
-                        <IconButton>
-                            <RepostIcon style={{ fontSize: 25 }} />
-                        </IconButton>
-                        <IconButton>
-                            <LikeIcon style={{ fontSize: 25 }} />
-                        </IconButton>
-                        <IconButton>
-                            <ShareIcon style={{ fontSize: 25 }} />
-                        </IconButton>
+                        <div>
+                            <IconButton>
+                                <CommentIcon style={{ fontSize: 25 }} />
+                            </IconButton>
+                            <span>{tweetData.comments?.length}</span>
+                        </div>
+                        <div>
+                            <IconButton>
+                                <RepostIcon style={{ fontSize: 25 }} />
+                            </IconButton>
+                        </div>
+                        <div>
+                            <IconButton>
+                                <LikeIcon style={{ fontSize: 25 }} />
+                            </IconButton>
+                            <span>{tweetData.likes}</span>
+                        </div>
+                        <div>
+                            <IconButton>
+                                <ShareIcon style={{ fontSize: 25 }} />
+                            </IconButton>
+                        </div>
                     </div>
                 </Paper>
                 <Divider />
-                <TweetItem
-                    id="101"
-                    text="Any more to move? You might need to adjust your stretching routines!"
-                    created_at={new Date().toString()}
-                    username='ArleneAndrews_1'
-                    classes={classes}
-                />
-                <TweetItem
-                    id="102"
-                    text="Any more to move? You might need to adjust your stretching routines!"
-                    created_at={new Date().toString()}
-                    username='ArleneAndrews_1'
-                    classes={classes}
-                />
-                <TweetItem
-                    id="103"
-                    text="Any more to move? You might need to adjust your stretching routines!"
-                    created_at={new Date().toString()}
-                    username='ArleneAndrews_1'
-                    classes={classes}
-                />
+                {tweetData.comments?.map((el: any) => (
+                    <TweetItem
+                        id={el.id}
+                        username={el.user}
+                        text={el.text}
+                        created_at={el.created_at}
+                        classes={classes}
+                        isComment={true}
+                    />
+                ))}
             </>
         );
 
