@@ -19,11 +19,19 @@ export interface Tweet {
     username: string
     fullname?: string
     likes?: number;
-    comments?: any;
+    comments: Comment[];
 }
 
 export interface TweetsState {
     items: Tweet[];
     loading_state: LoadingState;
     add_form_state: AddFormState;
+}
+
+export interface Comment {
+    id?: number;
+    text: string;
+    created_at?: Date;
+    tweet: number;
+    user: number;
 }

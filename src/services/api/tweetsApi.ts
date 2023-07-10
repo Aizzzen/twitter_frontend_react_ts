@@ -35,4 +35,9 @@ export const TweetsApi = {
     },
     removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets/detail/${id}/`),
     // removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets/${id}/`),
+    async addComment(payload: {text: string, user: number, tweet: number}): Promise<Response<any>> {
+        const {data} = await axios.post(`${api_url}/comments/`, payload);
+        console.log(data)
+        return data;
+    },
 }

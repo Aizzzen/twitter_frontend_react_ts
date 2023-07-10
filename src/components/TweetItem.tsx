@@ -124,30 +124,38 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                                 {photos && <MediaList media={photos} classes={classes}/>}
                             </Typography>
                             <div className={classes.tweetFooter}>
-                                <div>
-                                    <IconButton>
-                                        <CommentIcon style={{fontSize: 20}} />
-                                    </IconButton>
-                                    <span>{comments?.length}</span>
-                                </div>
-                                <div>
-                                    <IconButton>
-                                        <RepostIcon style={{fontSize: 20}} />
-                                    </IconButton>
-                                    <span></span>
-                                </div>
-                                <div>
-                                    <IconButton>
-                                        <LikeIcon style={{fontSize: 20}} />
-                                    </IconButton>
-                                    <span style={{position: 'relative', top: 1}}>{likes}</span>
-                                </div>
-                                <div>
-                                    <IconButton>
-                                        <ShareIcon style={{fontSize: 20}} />
-                                    </IconButton>
-                                    <span></span>
-                                </div>
+                                {isComment 
+                                    ? (<></>) 
+                                    : 
+                                    (
+                                        <>
+                                            <div>
+                                                <IconButton>
+                                                    <CommentIcon style={{fontSize: 20}} />
+                                                </IconButton>
+                                                <span>{comments?.length}</span>
+                                            </div>
+                                            <div>
+                                                <IconButton>
+                                                    <RepostIcon style={{fontSize: 20}} />
+                                                </IconButton>
+                                                <span></span>
+                                            </div>
+                                            <div>
+                                                <IconButton>
+                                                    <LikeIcon style={{fontSize: 20}} />
+                                                </IconButton>
+                                                <span style={{position: 'relative', top: 1}}>{likes}</span>
+                                            </div>
+                                            <div>
+                                                <IconButton>
+                                                    <ShareIcon style={{fontSize: 20}} />
+                                                </IconButton>
+                                                <span></span>
+                                            </div>
+                                        </>
+                                    )
+                                }
                             </div>
                         </div>
                     </Grid>

@@ -28,7 +28,6 @@ export interface SetTweetLoadingStateActionInterface extends Action<TweetActions
     payload: LoadingState;
 }
 
-
 export const setTweetLoadingState = (
     payload: LoadingState,
 ): SetTweetLoadingStateActionInterface => ({

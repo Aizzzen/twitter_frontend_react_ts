@@ -1,5 +1,5 @@
 import {Action} from "redux";
-import {AddFormState, LoadingState, Tweet, TweetsState} from "./contracts/state";
+import {AddFormState, Comment, LoadingState, Tweet, TweetsState} from "./contracts/state";
 
 export enum TweetsActionsType {
     SET_TWEETS = 'tweets/SET_TWEETS',
@@ -7,6 +7,8 @@ export enum TweetsActionsType {
     SET_LOADING_STATE = 'tweets/SET_LOADING_STATE',
     FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
     ADD_TWEET = 'tweets/ADD_TWEET',
+    FETCH_ADD_COMMENT = 'tweets/FETCH_ADD_COMMENT',
+    ADD_COMMENT = 'tweets/ADD_COMMENT',
     REMOVE_TWEET = 'tweets/REMOVE_TWEET',
     SET_ADD_FORM_STATE = 'tweets/SET_ADD_FORM_STATE',
 }
@@ -25,6 +27,17 @@ export interface FetchAddTweetActionInterface extends Action<TweetsActionsType> 
 export interface AddTweetActionInterface extends Action<TweetsActionsType> {
     type: TweetsActionsType.ADD_TWEET;
     payload: Tweet;
+}
+
+export interface FetchAddCommentActionInterface extends Action<TweetsActionsType> {
+    type: TweetsActionsType.FETCH_ADD_COMMENT;
+    payload: {text: string, user: number, tweet: number};
+}
+
+
+export interface AddTweetCommentActionInterface extends Action<TweetsActionsType> {
+    type: TweetsActionsType.ADD_COMMENT;
+    payload: Comment;
 }
 
 export interface RemoveTweetActionInterface extends Action<TweetsActionsType> {

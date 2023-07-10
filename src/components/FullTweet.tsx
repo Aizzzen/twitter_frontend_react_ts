@@ -23,6 +23,8 @@ import { TweetItem } from './TweetItem';
 
 import classNames from "classnames";
 import {MediaList} from "./MediaList";
+import { AddTweetForm } from './AddTweetForm';
+import { AddCommentForm } from './AddCommentForm';
 
 export const FullTweet: FC = (): ReactElement | null => {
     const classes = useStylesHomeStyle();
@@ -78,7 +80,7 @@ export const FullTweet: FC = (): ReactElement | null => {
                         </Typography>
                     </div>
                     <Typography className={classes.fullTweetText} gutterBottom>
-                        <span dangerouslySetInnerHTML={{__html: newText}}/>
+                        <span style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html: newText}}/>
                         <div className='tweet-media'>
                             {tweetData.photos && <MediaList media={tweetData.photos} classes={classes}/>}
                         </div>
@@ -112,6 +114,10 @@ export const FullTweet: FC = (): ReactElement | null => {
                         </div>
                     </div>
                 </Paper>
+                <Divider />
+                <div style={{padding: 20}}>
+                    <AddCommentForm classes={classes}/>
+                </div>
                 <Divider />
                 {tweetData.comments?.map((el: any) => (
                     <TweetItem
