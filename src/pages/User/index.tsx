@@ -48,8 +48,8 @@ export const UserPage = () => {
             <Paper className={classes.tweetsHeader} variant="outlined">
                 <GoBackButton />
                 <div>
-                    {/*<Typography variant="h6">{userData?.fullname}</Typography>*/}
-                    <Typography variant="h5">{userData?.username}</Typography>
+                    <Typography variant="h5">{userData?.profile?.fullname}</Typography>
+                    {/* <Typography variant="h5">{userData?.username}</Typography> */}
                     <Typography variant="caption" display="block" gutterBottom>
                         твитов {tweets.length}
                     </Typography>
@@ -59,17 +59,20 @@ export const UserPage = () => {
             <div className="user__header"></div>
             <div className="user__info">
                 <Avatar />
-                <h2 className='user__info-fullname'>{userData?.username}</h2>
-                {/*<h2 className='user__info-fullname'>{userData?.fullname}</h2>*/}
+                {/* <h2 className='user__info-fullname'>{userData?.username}</h2> */}
+                <span>
+                    {userData?.profile?.fullname}
+                    @{userData?.username}
+                    {/* <h2 className='user__info-fullname'>{userData?.profile?.fullname}</h2>
+                    <h4 className='user__info-username'>@{userData?.username}</h4> */}
+                </span>
                 <h4 className='user__info-username'>{userData?.id}-й пользователь типоТвиттера</h4>
-                {/*<h4 className='user__info-username'>{userData?.username}</h4>*/}
                 <p className='user__info-description'>{userData?.email}</p>
-                {/*<p className='user__info-description'>{userData?.about}</p>*/}
+                <p className='user__info-description'>{userData?.profile?.about}</p>
                 <ul className='user__info-details'>
-                    <li>Russia, Grozny</li>
-                    {/*<li>{userData?.location}</li>*/}
+                    <li>{userData?.profile?.location}</li>
                     <li>
-                        {/*<a target='_blank' href="">{userData?.website}</a>*/}
+                        <a target='_blank' href={userData?.profile?.website}>{userData?.profile?.website}</a>
                     </li>
                     {/* <li>Дата регистрации:
                         <span> {format(new Date(userData?.date_joined), 'dd.MM.yyyy г.', { locale: ru })}</span>
