@@ -34,10 +34,10 @@ interface TweetProps {
     likes?: number;
     comments?: any;
     isComment?: boolean;
-    // fullname?: string;
+    fullname?: string;
 }
 
-export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, likes, comments, created_at, isComment}: TweetProps): ReactElement => {
+export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos, classes, likes, comments, created_at, isComment}: TweetProps): ReactElement => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -84,8 +84,8 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                     <Grid item xs={11}>
                         <div className={classes.tweetContent}>
                             <div className={classes.tweetHeader}>
-                                <div>
-                                    {/*<b>{fullname ? fullname : 'fullname'}</b>&nbsp;*/}
+                                <div style={{marginBottom: 8}}>
+                                    <b>{fullname ? fullname : 'fullname'}</b>&nbsp;
                                     <span className={classes.tweetUserName}>
                                         @{username}
                                     </span>&nbsp;
@@ -118,8 +118,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, photos, classes, 
                                     </Menu>
                                 </div>
                             </div>
-                            <Typography style={{"whiteSpace": "pre-line"}} variant='body1' gutterBottom>
-                                {/* {newText} */}
+                            <Typography style={{"whiteSpace": "pre-line", marginRight: 10}} variant='body1' gutterBottom>
                                 <span dangerouslySetInnerHTML={{__html: newText}}/>
                                 {photos && <MediaList media={photos} classes={classes}/>}
                             </Typography>

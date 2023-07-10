@@ -48,8 +48,7 @@ export const UserPage = () => {
             <Paper className={classes.tweetsHeader} variant="outlined">
                 <GoBackButton />
                 <div>
-                    <Typography variant="h5">{userData?.profile?.fullname}</Typography>
-                    {/* <Typography variant="h5">{userData?.username}</Typography> */}
+                    <Typography variant="h6" style={{fontWeight: 500}}>{userData?.profile?.fullname}</Typography>
                     <Typography variant="caption" display="block" gutterBottom>
                         твитов {tweets.length}
                     </Typography>
