@@ -80,7 +80,6 @@ export const AddTweetForm: FC<AddTweetFormProps> = ({classes, maxRows}: AddTweet
                     {text && (
                         <>
                             <span>{textCount}</span>
-                            {/*<span>{text.length} / 280</span>*/}
                             <div className={classes.addFormCircleProgress}>
                                 <CircularProgress
                                     style={text.length > MAX_LENGTH ? {color: 'red'} : undefined}

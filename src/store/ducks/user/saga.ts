@@ -20,7 +20,8 @@ export function* fetchSignInRequest({ payload }: FetchSignInActionInterface) {
 export function* fetchUserDataRequest() {
     try {
         yield put(setUserLoadingStatus(LoadingStatus.LOADING));
-        const { data } = yield call(UserApi.getMe);
+        // const { data } = yield call(UserApi.getMe);
+        const { data } = yield call(UserApi.getCurrentUserData);
         yield put(setUserData(data));
     } catch (error) {
         yield put(setUserLoadingStatus(LoadingStatus.ERROR));

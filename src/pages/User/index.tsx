@@ -17,6 +17,9 @@ import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
 import {UserApi} from "../../services/api/usersApi";
 import format from "date-fns/format";
 import ru from "date-fns/locale/ru";
+import {selectUserData} from "../../store/ducks/user/selectors";
+import {AddFormState} from "../../store/ducks/tweets/contracts/state";
+import Button from "@material-ui/core/Button";
 
 export const UserPage = () => {
     const dispatch = useDispatch();
@@ -24,19 +27,10 @@ export const UserPage = () => {
     const isLoading = useSelector(selectIsTweetsLoading);
     const classes = useStylesHomeStyle();
     const [activeTab, setActiveTab] = useState<number>(0);
-    const [userData, setUserData] = useState<any | undefined>(); // useState<User | undefined>
+    const userData = useSelector(selectUserData)
 
     useEffect(() => {
         dispatch(fetchTweets())
-        // const id_or_username = window.location.pathname.split("/").pop()
-        const pathname = window.location.pathname
-        const user = pathname.includes('/user')
-        if(user) {
-            UserApi.getCurrentUserData().then(({data}) => {
-                setUserData(data)
-            })
-        }
-        // dispatch(fetchTags())
     }, [dispatch])
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -58,13 +52,17 @@ export const UserPage = () => {
             <div className="user__header"></div>
             <div className="user__info">
                 <Avatar />
-                {/* <h2 className='user__info-fullname'>{userData?.username}</h2> */}
-                <span>
-                    {userData?.profile?.fullname}
-                    @{userData?.username}
-                    {/* <h2 className='user__info-fullname'>{userData?.profile?.fullname}</h2>
-                    <h4 className='user__info-username'>@{userData?.username}</h4> */}
-                </span>
+                <div style={{display: 'flex'}}>
+                    <p className='user__info-fullname'>{userData?.profile?.fullname}</p>
+                    <p className='user__info-username'>@{userData?.username}</p>
+                    <Button
+                        // onClick={handleClickAddTweet}
+                        color="primary"
+                        variant="contained"
+                    >
+                        Редактировать профиль
+                    </Button>
+                </div>
                 <h4 className='user__info-username'>{userData?.id}-й пользователь типоТвиттера</h4>
                 <p className='user__info-description'>{userData?.email}</p>
                 <p className='user__info-description'>{userData?.profile?.about}</p>

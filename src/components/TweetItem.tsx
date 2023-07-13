@@ -26,18 +26,17 @@ import { textWithLinks } from '../utils/textWithLinks';
 interface TweetProps {
     id: string;
     text: string;
-    classes: ReturnType<typeof useStylesHomeStyle>;
-    created_at: string;
-    // avatar_url: string;
-    photos?: string[];
     username?: string;
+    fullname?: string;
+    photos?: string[];
+    classes: ReturnType<typeof useStylesHomeStyle>;
     likes?: number;
     comments?: any;
-    isComment?: boolean;
-    fullname?: string;
+    created_at: string;
+    // avatar_url: string;
 }
 
-export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos, classes, likes, comments, created_at, isComment}: TweetProps): ReactElement => {
+export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos, classes, likes, comments, created_at}: TweetProps): ReactElement => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -70,7 +69,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
     };
 
     return (
-        <a onClick={isComment ? undefined : handleClickTweet} className={classes.tweetWrapper} href={isComment ? undefined : `/home/tweet/${id}`}>
+        <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${id}`}>
             <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
                 <Grid container spacing={3}>
                     <Grid item xs={1}>
@@ -123,38 +122,30 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
                                 {photos && <MediaList media={photos} classes={classes}/>}
                             </Typography>
                             <div className={classes.tweetFooter}>
-                                {isComment 
-                                    ? (<></>) 
-                                    : 
-                                    (
-                                        <>
-                                            <div>
-                                                <IconButton>
-                                                    <CommentIcon style={{fontSize: 20}} />
-                                                </IconButton>
-                                                <span>{comments?.length}</span>
-                                            </div>
-                                            <div>
-                                                <IconButton>
-                                                    <RepostIcon style={{fontSize: 20}} />
-                                                </IconButton>
-                                                <span></span>
-                                            </div>
-                                            <div>
-                                                <IconButton>
-                                                    <LikeIcon style={{fontSize: 20}} />
-                                                </IconButton>
-                                                <span style={{position: 'relative', top: 1}}>{likes}</span>
-                                            </div>
-                                            <div>
-                                                <IconButton>
-                                                    <ShareIcon style={{fontSize: 20}} />
-                                                </IconButton>
-                                                <span></span>
-                                            </div>
-                                        </>
-                                    )
-                                }
+                                <div>
+                                    <IconButton>
+                                        <CommentIcon style={{fontSize: 20}} />
+                                    </IconButton>
+                                    <span>{comments?.length}</span>
+                                </div>
+                                <div>
+                                    <IconButton>
+                                        <RepostIcon style={{fontSize: 20}} />
+                                    </IconButton>
+                                    <span></span>
+                                </div>
+                                <div>
+                                    <IconButton>
+                                        <LikeIcon style={{fontSize: 20}} />
+                                    </IconButton>
+                                    <span style={{position: 'relative', top: 1}}>{likes}</span>
+                                </div>
+                                <div>
+                                    <IconButton>
+                                        <ShareIcon style={{fontSize: 20}} />
+                                    </IconButton>
+                                    <span></span>
+                                </div>
                             </div>
                         </div>
                     </Grid>

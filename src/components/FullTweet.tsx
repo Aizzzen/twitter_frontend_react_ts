@@ -25,6 +25,7 @@ import classNames from "classnames";
 import {MediaList} from "./MediaList";
 import { AddTweetForm } from './AddTweetForm';
 import { AddCommentForm } from './AddCommentForm';
+import {CommentItem} from "./CommentItem";
 
 export const FullTweet: FC = (): ReactElement | null => {
     const classes = useStylesHomeStyle();
@@ -119,13 +120,13 @@ export const FullTweet: FC = (): ReactElement | null => {
                 </div>
                 <Divider />
                 {tweetData.comments?.map((el: any) => (
-                    <TweetItem
-                        id={el.id}
-                        username={el.user}
+                    <CommentItem
+                        key={el.id}
                         text={el.text}
-                        created_at={el.created_at}
+                        username={el.user}
+                        fullname={el.fullname}
                         classes={classes}
-                        isComment={true}
+                        created_at={el.created_at}
                     />
                 ))}
             </>

@@ -63,7 +63,7 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                     <div>
                         <SearchIcon className={classes.navbarListItemIcon}/>
                         <Hidden smDown>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Поиск</Typography>
+                            <Typography className={classes.navbarListItemLabel} variant='h6'><strike>Поиск</strike></Typography>
                         </Hidden>
                     </div>
                 </li>
@@ -87,7 +87,7 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                     <div>
                         <BookmarkIcon className={classes.navbarListItemIcon}/>
                         <Hidden smDown>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Закладки</Typography>
+                            <Typography className={classes.navbarListItemLabel} variant='h6'><strike>Закладки</strike></Typography>
                         </Hidden>
                     </div>
                 </li>
@@ -95,7 +95,7 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                     <div>
                         <ListIcon className={classes.navbarListItemIcon}/>
                         <Hidden smDown>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Список</Typography>
+                            <Typography className={classes.navbarListItemLabel} variant='h6'><strike>Список</strike></Typography>
                         </Hidden>
                     </div>
                 </li>

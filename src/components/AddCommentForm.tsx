@@ -13,6 +13,7 @@ import {AddFormState} from "../store/ducks/tweets/contracts/state";
 import {fetchAddComment, setAddFormState} from "../store/ducks/tweets/actionCreators";
 import {selectAddFormState} from "../store/ducks/tweets/selectors";
 import { useParams } from 'react-router-dom';
+import {selectUserData} from "../store/ducks/user/selectors";
 
 interface AddCommentFormProps {
     classes: ReturnType<typeof useStylesHomeStyle>;
@@ -27,6 +28,7 @@ type Comment = {
 
 export const AddCommentForm: FC<AddCommentFormProps> = ({classes, maxRows}: AddCommentFormProps): ReactElement => {
     const dispatch = useDispatch()
+    const userData = useSelector(selectUserData)
     const addFormState = useSelector(selectAddFormState)
     const MAX_LENGTH = 280
     const [text, setText] = useState<string>('');
@@ -44,7 +46,7 @@ export const AddCommentForm: FC<AddCommentFormProps> = ({classes, maxRows}: AddC
         dispatch(setAddFormState(AddFormState.LOADING))        
         dispatch(fetchAddComment({
             text: text,
-            user: 2,
+            user: Number(userData?.id),
             tweet: Number(id)
         }))
         setText('');
@@ -73,7 +75,6 @@ export const AddCommentForm: FC<AddCommentFormProps> = ({classes, maxRows}: AddC
                     {text && (
                         <>
                             <span>{textCount}</span>
-                            {/*<span>{text.length} / 280</span>*/}
                             <div className={classes.addFormCircleProgress}>
                                 <CircularProgress
                                     style={text.length > MAX_LENGTH ? {color: 'red'} : undefined}
@@ -108,7 +109,7 @@ export const AddCommentForm: FC<AddCommentFormProps> = ({classes, maxRows}: AddC
             </div>
             {addFormState === AddFormState.ERROR && (
                 <Alert severity="error">
-                    Ошибка при добавлении типотвита{' '}
+                    Ошибка при добавлении комментария{' '}
                     <span aria-label="emoji-plak" role="img">😞</span>
                 </Alert>
             )}
