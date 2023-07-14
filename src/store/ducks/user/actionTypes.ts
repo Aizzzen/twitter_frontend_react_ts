@@ -3,6 +3,7 @@ import {LoginFormProps} from "../../../pages/SignIn/components/LoginModal";
 import {User} from "./contracts/state";
 import {LoadingStatus} from "../../types";
 import {RegisterFormProps} from "../../../pages/SignIn/components/RegisterModal";
+import {ProfileFormProps} from "../../../components/ProfileModal";
 
 export enum UserActionsType {
     SET_USER_DATA = 'user/SET_USER_DATA',
@@ -11,6 +12,7 @@ export enum UserActionsType {
     FETCH_USER_DATA = 'user/FETCH_USER_DATA',
     SET_LOADING_STATE = 'user/SET_LOADING_STATE',
     SIGN_OUT = 'user/SIGN_OUT',
+    FETCH_UPDATE_PROFILE = 'FETCH_UPDATE_PROFILE',
 }
 
 export interface FetchSignOutActionInterface extends Action<UserActionsType> {
@@ -25,6 +27,11 @@ export interface FetchSignInActionInterface extends Action<UserActionsType> {
 export interface FetchSignUpActionInterface extends Action<UserActionsType> {
     type: UserActionsType.FETCH_SIGN_UP;
     payload: RegisterFormProps;
+}
+
+export interface FetchUpdateProfileActionInterface extends Action<UserActionsType> {
+    type: UserActionsType.FETCH_UPDATE_PROFILE;
+    payload: ProfileFormProps;
 }
 
 export interface FetchUserDataActionInterface extends Action<UserActionsType> {

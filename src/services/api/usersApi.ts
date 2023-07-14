@@ -1,6 +1,7 @@
 import {LoginFormProps} from "../../pages/SignIn/components/LoginModal";
 import {RegisterFormProps} from "../../pages/SignIn/components/RegisterModal";
 import {axios} from "../../core/axios";
+import {ProfileFormProps} from "../../components/ProfileModal";
 
 
 interface Response {
@@ -38,6 +39,11 @@ export const UserApi = {
                 console.log(response)
                 return response;
             })
+    },
+    async updateProfile(payload: ProfileFormProps) {
+        const {data} = await axios.put<Response>(`${api_url}/user-data/`, payload)
+        console.log(data)
+        return data
     },
     // async fetchUsers() {
     //     return await axios

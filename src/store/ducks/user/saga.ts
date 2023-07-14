@@ -2,7 +2,12 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { UserApi } from '../../../services/api/usersApi';
 import { LoadingStatus } from '../../types';
 import { setUserData, setUserLoadingStatus } from './actionCreators';
-import {FetchSignInActionInterface, FetchSignUpActionInterface, UserActionsType} from "./actionTypes";
+import {
+    FetchSignInActionInterface,
+    FetchSignUpActionInterface,
+    FetchUpdateProfileActionInterface,
+    UserActionsType
+} from "./actionTypes";
 
 export function* fetchSignInRequest({ payload }: FetchSignInActionInterface) {
     try {
@@ -38,9 +43,21 @@ export function* fetchSignUpRequest({ payload }: FetchSignUpActionInterface) {
     }
 }
 
+export function* fetchUpdateUserProfile({ payload }: FetchUpdateProfileActionInterface) {
+    try {
+        yield put(setUserLoadingStatus(LoadingStatus.LOADING));
+        yield call(UserApi.updateProfile, payload);
+        yield put(setUserLoadingStatus(LoadingStatus.SUCCESS));
+    } catch (error) {
+        yield put(setUserLoadingStatus(LoadingStatus.ERROR));
+    }
+}
+
+
 export function* userSaga() {
     // на               action         срабатывает      генератор
     yield takeLatest(UserActionsType.FETCH_SIGN_IN, fetchSignInRequest);
     yield takeLatest(UserActionsType.FETCH_SIGN_UP, fetchSignUpRequest);
     yield takeLatest(UserActionsType.FETCH_USER_DATA, fetchUserDataRequest);
+    yield takeLatest(UserActionsType.FETCH_UPDATE_PROFILE, fetchUpdateUserProfile);
 }

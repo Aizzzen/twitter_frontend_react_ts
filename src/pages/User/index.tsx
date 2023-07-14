@@ -14,12 +14,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectIsTweetsLoading, selectTweetsItems} from "../../store/ducks/tweets/selectors";
 import {TweetItem} from "../../components/TweetItem";
 import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
-import {UserApi} from "../../services/api/usersApi";
 import format from "date-fns/format";
 import ru from "date-fns/locale/ru";
 import {selectUserData} from "../../store/ducks/user/selectors";
-import {AddFormState} from "../../store/ducks/tweets/contracts/state";
 import Button from "@material-ui/core/Button";
+import {ProfileModal} from "../../components/ProfileModal";
 
 export const UserPage = () => {
     const dispatch = useDispatch();
@@ -27,6 +26,8 @@ export const UserPage = () => {
     const isLoading = useSelector(selectIsTweetsLoading);
     const classes = useStylesHomeStyle();
     const [activeTab, setActiveTab] = useState<number>(0);
+    const [visibleModal, setVisibleModal] = useState<boolean>(false);
+
     const userData = useSelector(selectUserData)
 
     useEffect(() => {
@@ -50,31 +51,39 @@ export const UserPage = () => {
             </Paper>
 
             <div className="user__header"></div>
+
             <div className="user__info">
                 <Avatar />
-                <div style={{display: 'flex'}}>
-                    <p className='user__info-fullname'>{userData?.profile?.fullname}</p>
-                    <p className='user__info-username'>@{userData?.username}</p>
+                <div className="user__info-button">
                     <Button
-                        // onClick={handleClickAddTweet}
+                        onClick={() => setVisibleModal(true)}
                         color="primary"
                         variant="contained"
                     >
                         Редактировать профиль
                     </Button>
                 </div>
+                <div className='user__info-names'>
+                    <span className='user__info-fullname'>{userData?.profile?.fullname}</span>&nbsp;
+                    <span className='user__info-username'>@{userData?.username}</span>
+                </div>
                 <h4 className='user__info-username'>{userData?.id}-й пользователь типоТвиттера</h4>
-                <p className='user__info-description'>{userData?.email}</p>
-                <p className='user__info-description'>{userData?.profile?.about}</p>
                 <ul className='user__info-details'>
-                    <li>{userData?.profile?.location}</li>
                     <li>
-                        <a target='_blank' href={userData?.profile?.website}>{userData?.profile?.website}</a>
+                        <strong>Почта: </strong>{userData?.email}
                     </li>
-                    {/* <li>Дата регистрации:
-                        <span> {format(new Date(userData?.date_joined), 'dd.MM.yyyy г.', { locale: ru })}</span>
-                    </li> */}
-                    {/*<li>Дата регистрации: {userData?.data_joined}</li>*/}
+                    <li style={{overflowX: 'hidden'}}>
+                        <strong>Обо мне: </strong>{userData?.profile?.about}
+                    </li>
+                    <li>
+                        <strong>Местоположение: </strong>{userData?.profile?.location}
+                    </li>
+                    <li>
+                        <strong>Сайт: </strong><a target='_blank' href={userData?.profile?.website}>{userData?.profile?.website}</a>
+                    </li>
+                    <li>
+                        <strong>Дата регистрации: </strong>{format(new Date(userData?.date_joined), 'dd.MM.yyyy г.', { locale: ru })}
+                    </li>
                 </ul>
             </div>
             <Tabs value={activeTab} indicatorColor="primary" textColor="primary" onChange={handleChange}>
@@ -94,6 +103,7 @@ export const UserPage = () => {
                     ))
                 )}
             </div>
+            <ProfileModal visibleModal={visibleModal} setVisibleModal={setVisibleModal}/>
         </Paper>
     );
 };

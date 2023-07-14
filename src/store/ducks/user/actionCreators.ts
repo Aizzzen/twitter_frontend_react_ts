@@ -1,12 +1,17 @@
 import { LoginFormProps } from '../../../pages/SignIn/components/LoginModal';
 import { UserState } from './contracts/state';
 import {
-    FetchSignInActionInterface, FetchSignOutActionInterface, FetchSignUpActionInterface, FetchUserDataActionInterface,
+    FetchSignInActionInterface,
+    FetchSignOutActionInterface,
+    FetchSignUpActionInterface,
+    FetchUpdateProfileActionInterface,
+    FetchUserDataActionInterface,
     SetUserDataActionInterface,
     SetUserLoadingStatusActionInterface,
     UserActionsType
 } from "./actionTypes";
 import {RegisterFormProps} from "../../../pages/SignIn/components/RegisterModal";
+import {ProfileFormProps} from "../../../components/ProfileModal";
 
 export const setUserData = (payload: UserState['data']): SetUserDataActionInterface => ({
     type: UserActionsType.SET_USER_DATA,
@@ -31,6 +36,11 @@ export const fetchSignUp = (payload: RegisterFormProps): FetchSignUpActionInterf
     payload,
 });
 
+export const fetchUpdateProfile = (payload: ProfileFormProps): FetchUpdateProfileActionInterface => ({
+    type: UserActionsType.FETCH_UPDATE_PROFILE,
+    payload,
+});
+
 export const setUserLoadingStatus = (
     payload: UserState['status'],
 ): SetUserLoadingStatusActionInterface => ({
@@ -42,5 +52,6 @@ export type UserActions =
     | SetUserDataActionInterface
     | SetUserLoadingStatusActionInterface
     | FetchUserDataActionInterface
-    | FetchSignOutActionInterface;
+    | FetchSignOutActionInterface
+    | FetchUpdateProfileActionInterface;
 

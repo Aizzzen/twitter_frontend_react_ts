@@ -96,7 +96,7 @@ export const CommentItem: FC<CommentProps> = ({text, username, fullname, classes
                                 </Menu>
                             </div>
                         </div>
-                        <Typography style={{"whiteSpace": "pre-line", marginRight: 10}} variant='body1' gutterBottom>
+                        <Typography style={{whiteSpace: "pre-line", marginRight: 10}} variant='body1' gutterBottom>
                             <span dangerouslySetInnerHTML={{__html: newText}}/>
                         </Typography>
                     </div>

@@ -5,8 +5,7 @@
   }
   &__info {
     margin-top: -70px;
-    padding: 20px;
-    padding-top: 0;
+    padding: 0 20px 20px;
     font-size: 16px;
 
     .MuiAvatar-root {
@@ -23,8 +22,20 @@
       flex-wrap: wrap;
 
       li {
+        word-wrap: break-word;
         margin-right: 30px;
       }
+    }
+
+    &-button {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -35px;
+    }
+
+    &-names {
+      display: flex;
+      align-items: center;
     }
 
     &-fullname {
@@ -34,15 +45,14 @@
     }
 
     &-details {
+      word-wrap: break-word;
       color: #5b7083;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     &-username {
       color: #5b7083;
-    }
-
-    &-description {
-      font-size: 16px;
     }
   }
 
