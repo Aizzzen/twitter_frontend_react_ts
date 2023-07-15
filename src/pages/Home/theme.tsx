@@ -117,7 +117,8 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
     tweetHeader: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingTop: 10
     },
     tweetContent: {
         flex: 1

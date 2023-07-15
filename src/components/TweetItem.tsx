@@ -41,17 +41,13 @@ interface TweetProps {
 }
 
 export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos, classes, likes, comments, created_at}: TweetProps): ReactElement => {
-
     const navigate = useNavigate();
     const newText = textWithLinks(text)
-
     const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
         event.preventDefault();
         // event.stopPropagation();
         navigate(`/home/tweet/${id}`);
     }
-
-
 
     return (
         <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${id}`}>
