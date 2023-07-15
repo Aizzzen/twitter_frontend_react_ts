@@ -27,7 +27,7 @@ export interface ProfileFormProps {
 }
 
 const ProfileFormSchema = yup.object().shape({
-    fullname: yup.string().min(6, 'Минимальная длина 6 символов'),
+    fullname: yup.string().min(2, 'Минимальная длина 2 символов'),
     location: yup.string(),
     about: yup.string(),
     website: yup.string()

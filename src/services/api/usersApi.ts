@@ -2,6 +2,7 @@ import {LoginFormProps} from "../../pages/SignIn/components/LoginModal";
 import {RegisterFormProps} from "../../pages/SignIn/components/RegisterModal";
 import {axios} from "../../core/axios";
 import {ProfileFormProps} from "../../components/ProfileModal";
+import {FullRegisterFormProps} from "../../pages/SignIn/components/FullRegisterModal";
 
 
 interface Response {
@@ -18,7 +19,7 @@ export const UserApi = {
                 return response;
             })
     },
-    async signUp(authData: RegisterFormProps) {
+    async signUp(authData: RegisterFormProps | FullRegisterFormProps) {
         return await axios
             .post<Response>(`${api_url}/auth/users/`, authData)
             .then(response => {

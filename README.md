@@ -16,3 +16,21 @@
     npm start
 
 Проект будет запущен на 3000 порту: [http://localhost:3000](http://localhost:3000)
+
+## Технологии:
+- React
+- Redux-Saga
+- Typescript
+- React Router Dom v6
+- Axios
+- React Hook Form
+- yup
+- Reselect
+- Material
+- Sass
+- Classnames
+- Medium Zoom
+- Date Fns
+- Dotenv
+- Json Server
+- React Dev Utils

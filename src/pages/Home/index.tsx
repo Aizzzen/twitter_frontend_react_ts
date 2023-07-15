@@ -15,6 +15,7 @@ import {fetchTags} from "../../store/ducks/tags/actionCreators";
 import {Route, Routes} from "react-router-dom";
 import {GoBackButton} from "../../components/GoBackButton";
 import {FullTweet} from "../../components/FullTweet";
+import {fetchUserData} from "../../store/ducks/user/actionCreators";
 
 
 export const Home: FC = (): ReactElement => {
@@ -25,6 +26,7 @@ export const Home: FC = (): ReactElement => {
 
     useEffect(() => {
         dispatch(fetchTweets())
+        // dispatch(fetchUserData())
         // dispatch(fetchTags())
     }, [dispatch])
 

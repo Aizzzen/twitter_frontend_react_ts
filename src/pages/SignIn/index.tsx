@@ -12,6 +12,7 @@ import MessageIcon from '@material-ui/icons/ModeCommentOutlined';
 
 import {LoginModal} from "./components/LoginModal";
 import {RegisterModal} from "./components/RegisterModal";
+import {FullRegisterModal} from "./components/FullRegisterModal";
 
 export const useStylesSignIn = makeStyles((theme: Theme) => ({
     wrapper: {
@@ -88,11 +89,13 @@ export const useStylesSignIn = makeStyles((theme: Theme) => ({
 
 export const SignIn: FC = (): ReactElement => {
     const classes = useStylesSignIn();
-    const [visibleModal, setVisibleModal] = useState<'signIn' | 'signUp'>();
+    const [visibleModal, setVisibleModal] = useState<'signIn' | 'signUp' | 'signUpFull'>();
 
     const handleClickOpenSignIn = (): void => setVisibleModal('signIn');
 
     const handleClickOpenSignUp = (): void => setVisibleModal('signUp');
+
+    const handleClickOpenSignUpFull = (): void => setVisibleModal('signUpFull');
 
     const handleCloseModal = (): void => setVisibleModal(undefined);
 
@@ -138,7 +141,16 @@ export const SignIn: FC = (): ReactElement => {
                         color='primary'
                         fullWidth
                     >
-                        Зарегистрироваться
+                        Быстрая регистрация
+                    </Button>
+                    <Button
+                        onClick={handleClickOpenSignUpFull}
+                        style={{ marginBottom: 20 }}
+                        variant='contained'
+                        color='primary'
+                        fullWidth
+                    >
+                        Полная регистрация
                     </Button>
                     <Button
                         onClick={handleClickOpenSignIn}
@@ -150,6 +162,7 @@ export const SignIn: FC = (): ReactElement => {
                     </Button>
                     <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal}/>
                     <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal}/>
+                    <FullRegisterModal open={visibleModal === 'signUpFull'} onClose={handleCloseModal}/>
                 </div>
             </section>
         </div>

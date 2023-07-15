@@ -16,6 +16,7 @@ export function* fetchSignInRequest({ payload }: FetchSignInActionInterface) {
         console.log(data)
         window.localStorage.setItem('Bearer', data.access);
         yield put(setUserData(data));
+        yield put(setUserLoadingStatus(LoadingStatus.SUCCESS));
     } catch (error) {
         yield put(setUserLoadingStatus(LoadingStatus.ERROR));
     }
@@ -28,6 +29,7 @@ export function* fetchUserDataRequest() {
         // const { data } = yield call(UserApi.getMe);
         const { data } = yield call(UserApi.getCurrentUserData);
         yield put(setUserData(data));
+        yield put(setUserLoadingStatus(LoadingStatus.SUCCESS));
     } catch (error) {
         yield put(setUserLoadingStatus(LoadingStatus.ERROR));
     }

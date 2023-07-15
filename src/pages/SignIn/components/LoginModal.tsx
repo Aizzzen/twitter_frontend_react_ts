@@ -12,8 +12,9 @@ import {Notification} from "../../../components/Notification";
 import {Color} from "@material-ui/lab/Alert";
 import {useDispatch, useSelector} from "react-redux";
 import {LoadingStatus} from "../../../store/types";
-import {fetchSignIn} from "../../../store/ducks/user/actionCreators";
+import {fetchSignIn, fetchUserData} from "../../../store/ducks/user/actionCreators";
 import {selectUserStatus} from "../../../store/ducks/user/selectors";
+import {fetchTweets} from "../../../store/ducks/tweets/actionCreators";
 
 interface LoginModalProps {
     open: boolean;

@@ -12,6 +12,7 @@ import {
 } from "./actionTypes";
 import {RegisterFormProps} from "../../../pages/SignIn/components/RegisterModal";
 import {ProfileFormProps} from "../../../components/ProfileModal";
+import {FullRegisterFormProps} from "../../../pages/SignIn/components/FullRegisterModal";
 
 export const setUserData = (payload: UserState['data']): SetUserDataActionInterface => ({
     type: UserActionsType.SET_USER_DATA,
@@ -31,7 +32,7 @@ export const fetchUserData = (): FetchUserDataActionInterface => ({
     type: UserActionsType.FETCH_USER_DATA,
 });
 
-export const fetchSignUp = (payload: RegisterFormProps): FetchSignUpActionInterface => ({
+export const fetchSignUp = (payload: RegisterFormProps | FullRegisterFormProps): FetchSignUpActionInterface => ({
     type: UserActionsType.FETCH_SIGN_UP,
     payload,
 });
