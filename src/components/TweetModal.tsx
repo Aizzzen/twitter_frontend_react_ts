@@ -15,6 +15,7 @@ import * as yup from "yup";
 import {fetchTweetData, fetchUpdateTweet, setTweetData} from "../store/ducks/tweet/actionCreators";
 import {selectTweetData} from "../store/ducks/tweet/selectors";
 import {selectTweetsItems} from "../store/ducks/tweets/selectors";
+import {fetchTweets} from "../store/ducks/tweets/actionCreators";
 
 
 interface TweetModalProps {
@@ -34,21 +35,17 @@ const TweetModalFormSchema = yup.object().shape({
 
 export const TweetModal: FC<TweetModalProps> = ({id, visibleModal, setVisibleModal}: TweetModalProps) => {
     const classes = useStylesSignIn();
-    const tweetsItems = useSelector(selectTweetsItems);
-    const tweetData = tweetsItems.filter(el => el.id === id)[0]
     const dispatch = useDispatch();
+    const tweetData = useSelector(selectTweetData);
 
     const { control, handleSubmit, errors } = useForm<TweetModalFormProps>({
         resolver: yupResolver(TweetModalFormSchema)
     });
 
     const onSubmit = async (data: TweetModalFormProps) => {
-        console.log({
-            id,
-            data
-        })
         dispatch(fetchUpdateTweet({id, data}));
         alert('Данные были обновлены')
+        dispatch(fetchTweets())
     };
 
     const handleCloseModal = (): void => setVisibleModal(false);

@@ -41,10 +41,7 @@ interface TweetProps {
 }
 
 export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos, classes, likes, comments, created_at}: TweetProps): ReactElement => {
-    const dispatch = useDispatch();
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [visibleModal, setVisibleModal] = useState<boolean>(false);
-    const open = Boolean(anchorEl);
+
     const navigate = useNavigate();
     const newText = textWithLinks(text)
 
@@ -54,32 +51,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
         navigate(`/home/tweet/${id}`);
     }
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        event.stopPropagation();
-        event.preventDefault();
-        setAnchorEl(event.currentTarget);
-    };
 
-    const handleClose = (event: React.MouseEvent<HTMLElement>): void => {
-        event.stopPropagation();
-        event.preventDefault();
-        setAnchorEl(null);
-    };
-
-    const handleUpdate = (event: React.MouseEvent<HTMLElement>): void => {
-        event.stopPropagation();
-        event.preventDefault();
-        handleClose(event)
-        setVisibleModal(true)
-    };
-
-
-    const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
-        handleClose(event)
-        if(window.confirm('Вы действительно хотите удалить твит?')) {
-            dispatch(removeTweet(id))
-        }
-    };
 
     return (
         <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${id}`}>
@@ -104,31 +76,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
                                     <span className={classes.tweetUserName}>·</span>&nbsp;
                                     <span className={classes.tweetUserName}>{formatDate(new Date(created_at))}</span>&nbsp;
                                 </div>
-                                <div>
-                                    <IconButton
-                                        aria-label="more"
-                                        aria-controls="long-menu"
-                                        aria-haspopup="true"
-                                        onClick={handleClick}
-                                    >
-                                        <MoreVertIcon />
-                                    </IconButton>
-                                    <Menu
-                                        id="long-menu"
-                                        anchorEl={anchorEl}
-                                        keepMounted
-                                        open={open}
-                                        onClose={handleClose}
-                                    >
-                                        <MenuItem onClick={handleUpdate}>
-                                            Редактировать
-                                        </MenuItem>
-                                        {/*<MenuItem onClick={handleClose}>*/}
-                                        <MenuItem onClick={handleRemove}>
-                                            Удалить типотвит
-                                        </MenuItem>
-                                    </Menu>
-                                </div>
+                            {/*    */}
                             </div>
                             <Typography style={{"whiteSpace": "pre-line", marginRight: 10}} variant='body1' gutterBottom>
                                 <span dangerouslySetInnerHTML={{__html: newText}}/>
@@ -164,7 +112,6 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
                     </Grid>
                 </Grid>
             </Paper>
-            {visibleModal && <TweetModal id={id} visibleModal={visibleModal} setVisibleModal={setVisibleModal} />}
         </a>
     );
 };

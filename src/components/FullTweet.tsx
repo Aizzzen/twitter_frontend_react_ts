@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useEffect} from 'react';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import mediumZoom from 'medium-zoom';
 import {selectIsTweetLoading, selectTweetData} from "../store/ducks/tweet/selectors";
 import {useDispatch, useSelector} from "react-redux";
@@ -19,24 +19,27 @@ import format from 'date-fns/format'
 import ru from 'date-fns/locale/ru'
 import { textWithLinks } from '../utils/textWithLinks';
 
-import { TweetItem } from './TweetItem';
-
 import classNames from "classnames";
 import {MediaList} from "./MediaList";
-import { AddTweetForm } from './AddTweetForm';
 import { AddCommentForm } from './AddCommentForm';
 import {CommentItem} from "./CommentItem";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import {removeTweet} from "../store/ducks/tweets/actionCreators";
+import {TweetModal} from "./TweetModal";
 
 export const FullTweet: FC = (): ReactElement | null => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [visibleModal, setVisibleModal] = useState<boolean>(false);
+    const open = Boolean(anchorEl);
     const classes = useStylesHomeStyle();
     const dispatch = useDispatch();
     const tweetData = useSelector(selectTweetData);
     const isLoading = useSelector(selectIsTweetLoading);
-    const params: { id?: string } = useParams();
+    const params = useParams();
     const id = params.id;
-    const newText = textWithLinks(tweetData ? tweetData.text : "")
-
-    console.log(tweetData, 'tweetData')
+    const newText = textWithLinks(tweetData?.text ? tweetData?.text : "")
 
     useEffect(() => {
         if (id) {
@@ -45,13 +48,39 @@ export const FullTweet: FC = (): ReactElement | null => {
         return () => {
             dispatch(setTweetData(undefined));
         };
-    }, [dispatch, id]);
+    }, [dispatch, id, visibleModal]);
 
     useEffect(() => {
         if(!isLoading) {
             mediumZoom('.tweet-media img')
         }
     }, [isLoading])
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = (event: React.MouseEvent<HTMLElement>): void => {
+        event.preventDefault();
+        event.stopPropagation();
+        setAnchorEl(null);
+    };
+
+    const handleUpdate = (event: React.MouseEvent<HTMLElement>): void => {
+        event.preventDefault();
+        event.stopPropagation();
+        setVisibleModal(true)
+        handleClose(event)
+    };
+
+    const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
+        handleClose(event)
+        if(id && window.confirm('Вы действительно хотите удалить твит?')) {
+            dispatch(removeTweet(id))
+        }
+    };
 
     if (isLoading) {
         return (
@@ -80,6 +109,31 @@ export const FullTweet: FC = (): ReactElement | null => {
                                 </span>&nbsp;
                             </div>
                         </Typography>
+                        <div>
+                            <IconButton
+                                aria-label="more"
+                                aria-controls="long-menu"
+                                aria-haspopup="true"
+                                onClick={handleClick}
+                            >
+                                <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                                id="long-menu"
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={open}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleUpdate}>
+                                    Редактировать
+                                </MenuItem>
+                                {/*<MenuItem onClick={handleClose}>*/}
+                                <MenuItem onClick={handleRemove}>
+                                    Удалить типотвит
+                                </MenuItem>
+                            </Menu>
+                        </div>
                     </div>
                     <Typography className={classes.fullTweetText} gutterBottom>
                         <span style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html: newText}}/>
@@ -131,10 +185,9 @@ export const FullTweet: FC = (): ReactElement | null => {
                         created_at={el.created_at}
                     />
                 ))}
+                {visibleModal && id && <TweetModal id={id} visibleModal={visibleModal} setVisibleModal={setVisibleModal} />}
             </>
         );
-
     }
-
     return null;
 };
