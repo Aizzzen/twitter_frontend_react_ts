@@ -14,13 +14,14 @@ import Button from "@material-ui/core/Button";
 import * as yup from "yup";
 import {fetchTweetData, fetchUpdateTweet, setTweetData} from "../store/ducks/tweet/actionCreators";
 import {selectTweetData} from "../store/ducks/tweet/selectors";
+import {selectTweetsItems} from "../store/ducks/tweets/selectors";
 
 
 interface TweetModalProps {
     id: string;
     visibleModal: boolean
     setVisibleModal: any;
-    tweetText: string | undefined;
+    tweetData?: any;
 }
 
 export interface TweetModalFormProps {
@@ -31,8 +32,10 @@ const TweetModalFormSchema = yup.object().shape({
     text: yup.string()
 })
 
-export const TweetModal: FC<TweetModalProps> = ({id, visibleModal, setVisibleModal, tweetText}: TweetModalProps) => {
+export const TweetModal: FC<TweetModalProps> = ({id, visibleModal, setVisibleModal}: TweetModalProps) => {
     const classes = useStylesSignIn();
+    const tweetsItems = useSelector(selectTweetsItems);
+    const tweetData = tweetsItems.filter(el => el.id === id)[0]
     const dispatch = useDispatch();
 
     const { control, handleSubmit, errors } = useForm<TweetModalFormProps>({
@@ -74,7 +77,8 @@ export const TweetModal: FC<TweetModalProps> = ({id, visibleModal, setVisibleMod
                             }}
                             variant="filled"
                             type="text"
-                            defaultValue={tweetText}
+                            // defaultValue=""
+                            defaultValue={tweetData?.text}
                             helperText={errors.text?.message}
                             error={!!errors.text}
                             fullWidth

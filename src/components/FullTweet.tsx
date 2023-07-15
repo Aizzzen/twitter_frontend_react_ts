@@ -36,6 +36,8 @@ export const FullTweet: FC = (): ReactElement | null => {
     const id = params.id;
     const newText = textWithLinks(tweetData ? tweetData.text : "")
 
+    console.log(tweetData, 'tweetData')
+
     useEffect(() => {
         if (id) {
             dispatch(fetchTweetData(id));

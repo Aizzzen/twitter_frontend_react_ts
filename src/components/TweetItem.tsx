@@ -25,6 +25,7 @@ import { textWithLinks } from '../utils/textWithLinks';
 import {TweetModal} from "./TweetModal";
 import {fetchTweetData} from "../store/ducks/tweet/actionCreators";
 import {selectTweetData} from "../store/ducks/tweet/selectors";
+import {selectTweets, selectTweetsItems} from "../store/ducks/tweets/selectors";
 
 interface TweetProps {
     id: string;
@@ -163,6 +164,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
                     </Grid>
                 </Grid>
             </Paper>
+            {visibleModal && <TweetModal id={id} visibleModal={visibleModal} setVisibleModal={setVisibleModal} />}
         </a>
     );
 };
