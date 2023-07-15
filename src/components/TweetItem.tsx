@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useState} from 'react';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import classNames from "classnames";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -20,8 +20,11 @@ import {useNavigate} from "react-router-dom";
 import {formatDate} from "../utils/formatDate";
 import {MediaList} from "./MediaList";
 import {removeTweet} from "../store/ducks/tweets/actionCreators";
-import {useDispatch} from "react-redux";
-import { textWithLinks } from '../utils/textWithLinks'; 
+import {useDispatch, useSelector} from "react-redux";
+import { textWithLinks } from '../utils/textWithLinks';
+import {TweetModal} from "./TweetModal";
+import {fetchTweetData} from "../store/ducks/tweet/actionCreators";
+import {selectTweetData} from "../store/ducks/tweet/selectors";
 
 interface TweetProps {
     id: string;
@@ -39,10 +42,11 @@ interface TweetProps {
 export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos, classes, likes, comments, created_at}: TweetProps): ReactElement => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [visibleModal, setVisibleModal] = useState<boolean>(false);
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
     const newText = textWithLinks(text)
-    
+
     const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
         event.preventDefault();
         // event.stopPropagation();
@@ -60,6 +64,14 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
         event.preventDefault();
         setAnchorEl(null);
     };
+
+    const handleUpdate = (event: React.MouseEvent<HTMLElement>): void => {
+        event.stopPropagation();
+        event.preventDefault();
+        handleClose(event)
+        setVisibleModal(true)
+    };
+
 
     const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
         handleClose(event)
@@ -107,7 +119,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
                                         open={open}
                                         onClose={handleClose}
                                     >
-                                        <MenuItem onClick={handleClose}>
+                                        <MenuItem onClick={handleUpdate}>
                                             Редактировать
                                         </MenuItem>
                                         {/*<MenuItem onClick={handleClose}>*/}

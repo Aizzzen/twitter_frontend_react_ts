@@ -1,5 +1,6 @@
 import {axios} from "../../core/axios";
 import {Tweet} from "../../store/ducks/tweets/contracts/state";
+import {TweetModalFormProps} from "../../components/TweetModal";
 
 
 interface Response<T> {
@@ -23,6 +24,10 @@ export const TweetsApi = {
     async fetchTweetData(id: string): Promise<Response<Tweet>> {
         const {data} = await axios.get(`${api_url}/tweets/${id}/`);
         return data[0];
+    },
+    async fetchUpdateTweetData(payload: { id: string, data: TweetModalFormProps }): Promise<Response<Tweet>> {
+        const {data} = await axios.put(`${api_url}/tweets/${payload.id}/`, payload.data);
+        return data;
     },
     async addTweet(payload: {text: string, formData: FormData}): Promise<Response<Tweet>> {
         const {data} = await axios.post(`${api_url}/tweets/`, payload.formData, {
