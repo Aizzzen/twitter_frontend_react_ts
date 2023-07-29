@@ -13,7 +13,7 @@ const api_url = process.env.REACT_APP_API_URL
 export const TweetsApi = {
     async fetchTweets(): Promise<Response<Tweet[]>> {
         const {data} = await axios.get(`${api_url}/tweets/`);
-        return data;
+        return data.results;
     },
     async fetchCurrentUserTweets(): Promise<Response<Tweet[]>> {
         const {data} = await axios.get(`${api_url}/tweets/my/`);
@@ -21,7 +21,7 @@ export const TweetsApi = {
     },
     async fetchTweetData(id: string): Promise<Response<Tweet>> {
         const {data} = await axios.get(`${api_url}/tweets/${id}/`);
-        return data[0];
+        return data.results[0];
     },
     async fetchUpdateTweetData(payload: { id: string, data: TweetModalFormProps }): Promise<Response<Tweet>> {
         const {data} = await axios.put(`${api_url}/tweets/detail/${payload.id}/`, payload.data);

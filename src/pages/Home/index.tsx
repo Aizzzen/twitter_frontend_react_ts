@@ -69,14 +69,24 @@ export const Home: FC = (): ReactElement => {
 
             <Routes>
                 <Route path='/' element={
-                    isLoading ? (
-                        <div className={classes.tweetsCentred}>
-                            <CircularProgress />
-                        </div>
-                    ) : (
+                    // isLoading ? (
+                    //     <div className={classes.tweetsCentred}>
+                    //         {/*<CircularProgress />*/}
+                    //     </div>
+                    // ) : (
+                    //     tweets.map((tweet) => (
+                    //         <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} likes={tweet.likes} comments={tweet.comments} classes={classes} />
+                    //     ))
+                    // )
+
+                    tweets ? (
                         tweets.map((tweet) => (
                             <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} likes={tweet.likes} comments={tweet.comments} classes={classes} />
                         ))
+                    ) : (
+                        <div className={classes.tweetsCentred}>
+                            {/*<CircularProgress />*/}
+                        </div>
                     )
                 }/>
                 <Route path='/tweet/:id' element={<FullTweet />} />
