@@ -4,6 +4,7 @@ import {tagsReducer} from "./ducks/tags/reducer";
 import {tweetReducer} from "./ducks/tweet/reducer";
 import {userReducer} from "./ducks/user/reducer";
 import {usersReducer} from "./ducks/users/reducer";
+import {chatsReducer} from "./ducks/chats/reducer";
 
 export const rootReducer = combineReducers({
     tweets: tweetsReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
     tags: tagsReducer,
     user: userReducer,
     users: usersReducer,
+    chats: chatsReducer,
 })

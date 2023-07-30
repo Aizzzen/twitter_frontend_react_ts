@@ -76,12 +76,14 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                     </div>
                 </li>
                 <li className={classes.navbarListItem}>
-                    <div>
-                        <MessageIcon className={classes.navbarListItemIcon}/>
-                        <Hidden smDown>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Сообщения</Typography>
-                        </Hidden>
-                    </div>
+                    <Link to='/chats'>
+                        <div>
+                            <MessageIcon className={classes.navbarListItemIcon}/>
+                            <Hidden smDown>
+                                <Typography className={classes.navbarListItemLabel} variant='h6'>Сообщения</Typography>
+                            </Hidden>
+                        </div>
+                    </Link>
                 </li>
                 <li className={classes.navbarListItem}>
                     <div>

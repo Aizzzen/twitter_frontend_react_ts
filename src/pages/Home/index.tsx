@@ -16,6 +16,7 @@ import {Route, Routes} from "react-router-dom";
 import {GoBackButton} from "../../components/GoBackButton";
 import {FullTweet} from "../../components/FullTweet";
 import {fetchUserData} from "../../store/ducks/user/actionCreators";
+import {fetchChats} from "../../store/ducks/chats/actionCreators";
 
 
 export const Home: FC = (): ReactElement => {
@@ -69,24 +70,14 @@ export const Home: FC = (): ReactElement => {
 
             <Routes>
                 <Route path='/' element={
-                    // isLoading ? (
-                    //     <div className={classes.tweetsCentred}>
-                    //         {/*<CircularProgress />*/}
-                    //     </div>
-                    // ) : (
-                    //     tweets.map((tweet) => (
-                    //         <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} likes={tweet.likes} comments={tweet.comments} classes={classes} />
-                    //     ))
-                    // )
-
-                    tweets ? (
+                    isLoading ? (
+                        <div className={classes.tweetsCentred}>
+                            <CircularProgress />
+                        </div>
+                    ) : (
                         tweets.map((tweet) => (
                             <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} likes={tweet.likes} comments={tweet.comments} classes={classes} />
                         ))
-                    ) : (
-                        <div className={classes.tweetsCentred}>
-                            {/*<CircularProgress />*/}
-                        </div>
                     )
                 }/>
                 <Route path='/tweet/:id' element={<FullTweet />} />

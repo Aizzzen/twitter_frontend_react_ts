@@ -10,6 +10,7 @@ import {selectIsAuth, selectUserStatus} from "./store/ducks/user/selectors";
 import {LoadingStatus} from "./store/types";
 import {useStylesHomeStyle} from "./pages/Home/theme";
 import TwitterIcon from "@material-ui/icons/Twitter";
+import {ChatsPage} from "./pages/chats/ChatsPage";
 
 function App() {
     const classes = useStylesHomeStyle()
@@ -47,6 +48,7 @@ function App() {
                     <Layout>
                         <Route path='/home/*' element={<Home/>}/>
                         <Route path='/user/*' element={<UserPage/>}/>
+                        <Route path='/chats/*' element={<ChatsPage/>}/>
                     </Layout>
                 }/>
             </Routes>

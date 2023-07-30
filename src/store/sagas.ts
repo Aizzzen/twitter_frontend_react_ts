@@ -3,6 +3,7 @@ import {tweetsSaga} from "./ducks/tweets/saga";
 import {tagsSaga} from "./ducks/tags/saga";
 import {tweetSaga} from "./ducks/tweet/saga";
 import {userSaga} from "./ducks/user/saga";
+import {chatsSaga} from "./ducks/chats/saga";
 
 export default function* rootSaga() {
     yield all([
@@ -11,5 +12,6 @@ export default function* rootSaga() {
         tweetSaga(),
         userSaga(),
         userSaga(),
+        chatsSaga(),
     ])
 }
