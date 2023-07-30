@@ -11,6 +11,7 @@ import {LoadingStatus} from "./store/types";
 import {useStylesHomeStyle} from "./pages/Home/theme";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import {ChatsPage} from "./pages/chats/ChatsPage";
+import {Chat} from "./components/chat-view/ChatView";
 
 function App() {
     const classes = useStylesHomeStyle()

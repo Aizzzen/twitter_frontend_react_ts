@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import {useStylesHomeStyle} from "../pages/Home/theme";
+import {Link} from "react-router-dom";
 
 interface ChatItemProps {
     chat_id: string;
@@ -19,11 +20,11 @@ export const ChatItem: FC<ChatItemProps> = ({chat_id, username, classes}: ChatIt
     }
 
     return (
-        <a
+        <Link
+            to={`/chats/${chat_id}/`}
             key={chat_id}
             // onClick={handleClickChat}
             className={classes.tweetWrapper}
-            href={`/chats/${chat_id}/`}
         >
             <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
                 <Grid container spacing={3}>
@@ -54,6 +55,6 @@ export const ChatItem: FC<ChatItemProps> = ({chat_id, username, classes}: ChatIt
                     </Grid>
                 </Grid>
             </Paper>
-        </a>
+        </Link>
     );
 };

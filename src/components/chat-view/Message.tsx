@@ -12,9 +12,8 @@ interface MessageProps {
 
 const Message: FC<MessageProps> = ({order, chatId, msg, stamp}: MessageProps) => {
     return (
-        <div className={`${styles.message_item} ${order === "mine" ? styles.flex : ""}`}>
+        <div className={`${styles.message_item} ${order === "mine" ? styles.flex : ""}`} >
             <div className={`${order === "mine" ? styles.mine : styles.content}`} style={{position: 'relative'}}>
-                <h2 className={styles.name}>~ {chatId}</h2>
                 <p className={styles.text}>{msg}</p>
                 <h2 className={styles.stamp}>
                     {

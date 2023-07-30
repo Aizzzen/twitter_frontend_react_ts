@@ -10,6 +10,7 @@ import {Chat} from "../../components/chat-view/ChatView";
 export const ChatsPage = () => {
     const classes = useStylesHomeStyle();
     const dispatch = useDispatch()
+    const currentPath = window.location.pathname
 
     useEffect(() => {
         dispatch(fetchChats())
@@ -20,8 +21,11 @@ export const ChatsPage = () => {
             <Paper className={classes.tweetsHeader} variant='outlined'>
                 <Typography variant='h6'>типоЧаты</Typography>
             </Paper>
-            {/*<ChatList/>*/}
-            <Chat/>
+            {currentPath === '/chats' ? (
+                <ChatList/>
+            ) : (
+                <Chat/>
+            )}
         </Paper>
         );
 };
