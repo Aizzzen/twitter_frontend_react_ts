@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Container, Grid, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/SearchOutlined';
 
@@ -9,15 +9,29 @@ import {useStylesHomeStyle} from "./Home/theme";
 import {Routes} from "react-router-dom";
 import {Users} from "../components/Users";
 
+// @ts-ignore
+import styles from './Layout.module.scss'
+
 interface Layout {
     children: React.ReactNode;
 }
 
 export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
     const classes = useStylesHomeStyle();
+    const currentPath = window.location.pathname
+
+    useEffect(() => {
+        window.scrollTo(
+            {
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            }
+        )
+    }, [])
 
     return (
-        <Container className={classes.wrapper} maxWidth="lg">
+        <Container className={`classes.wrapper ${currentPath === '/chats' ? styles.hidden : ""}`} maxWidth="lg" >
             <Grid container spacing={3}>
                 <Grid sm={1} md={3} item>
                     <Navbar classes={classes} />

@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import {ChatList} from "../../components/ChatList";
 import {useDispatch} from "react-redux";
 import {fetchChats} from "../../store/ducks/chats/actionCreators";
+import {Chat} from "../../components/chat-view/ChatView";
 
 export const ChatsPage = () => {
     const classes = useStylesHomeStyle();
@@ -19,7 +20,8 @@ export const ChatsPage = () => {
             <Paper className={classes.tweetsHeader} variant='outlined'>
                 <Typography variant='h6'>типоЧаты</Typography>
             </Paper>
-            <ChatList/>
+            {/*<ChatList/>*/}
+            <Chat/>
         </Paper>
         );
 };

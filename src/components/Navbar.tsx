@@ -71,7 +71,7 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                     <div>
                         <NotificationIcon className={classes.navbarListItemIcon}/>
                         <Hidden smDown>
-                            <Typography className={classes.navbarListItemLabel} variant='h6'>Уведомления</Typography>
+                            <Typography className={classes.navbarListItemLabel} variant='h6'><strike>Уведомления</strike></Typography>
                         </Hidden>
                     </div>
                 </li>
