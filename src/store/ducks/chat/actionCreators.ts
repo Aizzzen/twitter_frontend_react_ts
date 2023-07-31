@@ -1,16 +1,25 @@
-import {ChatsState, LoadingState} from './contracts/state';
+import {ChatState, LoadingState} from './contracts/state';
 import {
-    ChatsActionsType,
-    FetchChatsActionInterface,
-    SetChatsActionInterface
+    ChatActionsType,
+    FetchMessagesActionInterface, ReceiveMessagesActionInterface, SetChatUserActionInterface,
+    SetMessagesActionInterface
 } from "./actionTypes";
 
 
-export const setChats = (payload: ChatsState['items']): SetChatsActionInterface => ({
-    type: ChatsActionsType.SET_CHATS,
+export const receiveMessages = (payload: ChatState['items']): ReceiveMessagesActionInterface => ({
+    type: ChatActionsType.RECEIVE_MESSAGES,
     payload,
 });
 
+export const setMessages = (payload: ChatState['items']): SetMessagesActionInterface => ({
+    type: ChatActionsType.SET_MESSAGES,
+    payload,
+});
+
+export const setChatUser = (payload: ChatState['user']): SetChatUserActionInterface => ({
+    type: ChatActionsType.SET_CHAT_USER,
+    payload,
+});
 //
 // export const fetchAddTweet = (payload: { formData: FormData, text: string }): FetchAddTweetActionInterface => ({
 //     type: TweetsActionsType.FETCH_ADD_TWEET,
@@ -49,13 +58,17 @@ export const setChats = (payload: ChatsState['items']): SetChatsActionInterface 
 //     payload,
 // });
 //
-export const fetchChats = (): FetchChatsActionInterface => ({
-    type: ChatsActionsType.FETCH_CHATS,
+export const fetchMessages = (payload: string): FetchMessagesActionInterface => ({
+    type: ChatActionsType.FETCH_MESSAGES,
+    payload,
 });
 
+//
 export type ChatsActions =
-    | SetChatsActionInterface
-    | FetchChatsActionInterface
+    | SetMessagesActionInterface
+    | FetchMessagesActionInterface
+    | SetChatUserActionInterface
+    | ReceiveMessagesActionInterface
     // | FetchAddCommentActionInterface
     // | SetTweetsLoadingStateActionInterface
     // | FetchAddTweetActionInterface

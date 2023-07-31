@@ -1,19 +1,28 @@
 import {Action} from "redux";
-import {ChatsState, LoadingState} from "./contracts/state";
+import {ChatState, LoadingState} from "./contracts/state";
 
-export enum ChatsActionsType {
-    FETCH_CHATS = 'tweets/FETCH_CHATS',
-    SET_CHATS = 'tweets/SET_CHATS',
+export enum ChatActionsType {
     FETCH_MESSAGES = 'tweets/FETCH_MESSAGES',
     SET_MESSAGES = 'tweets/SET_MESSAGES',
+    SET_CHAT_USER = 'tweets/SET_CHAT_USER',
+    RECEIVE_MESSAGES = 'tweets/RECEIVE_MESSAGES',
 }
 
-
-export interface SetChatsActionInterface extends Action<ChatsActionsType> {
-    type: ChatsActionsType.SET_CHATS;
-    payload: ChatsState['items'];
+export interface ReceiveMessagesActionInterface extends Action<ChatActionsType> {
+    type: ChatActionsType.RECEIVE_MESSAGES;
+    payload: ChatState['items'];
 }
 
+export interface SetMessagesActionInterface extends Action<ChatActionsType> {
+    type: ChatActionsType.SET_MESSAGES;
+    payload: ChatState['items'];
+}
+
+export interface SetChatUserActionInterface extends Action<ChatActionsType> {
+    type: ChatActionsType.SET_CHAT_USER;
+    payload: ChatState['user'];
+}
+//
 // export interface FetchAddTweetActionInterface extends Action<TweetsActionsType> {
 //     type: TweetsActionsType.FETCH_ADD_TWEET;
 //     payload: {text: string, formData: FormData};
@@ -40,10 +49,11 @@ export interface SetChatsActionInterface extends Action<ChatsActionsType> {
 //     payload: string;
 // }
 //
-export interface FetchChatsActionInterface extends Action<ChatsActionsType> {
-    type: ChatsActionsType.FETCH_CHATS;
+export interface FetchMessagesActionInterface extends Action<ChatActionsType> {
+    type: ChatActionsType.FETCH_MESSAGES;
+    payload: string;
 }
-
+//
 // export interface SetTweetsLoadingStateActionInterface extends Action<TweetsActionsType> {
 //     type: TweetsActionsType.SET_LOADING_STATE;
 //     payload: LoadingState;

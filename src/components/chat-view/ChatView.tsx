@@ -1,15 +1,49 @@
-import Avatar from '@material-ui/core/Avatar/Avatar';
-import React, {FC, Fragment, useEffect, useRef, useState} from 'react';
-
+import React, {FC, useEffect, useState} from 'react';
 // @ts-ignore
 import styles from "./ChatView.module.scss";
-import Message from "./Message";
-import SearchIcon from "@material-ui/icons/Search";
-import {Messages} from "./Messages";
+import {Messages} from "./chat-message/Messages";
+import {fetchMessages, receiveMessages} from "../../store/ducks/chat/actionCreators";
+import {w3cwebsocket as W3CWebSocket} from "websocket";
+import {useDispatch, useSelector} from "react-redux";
+import {selectUserData} from "../../store/ducks/user/selectors";
+import {ChatTextArea} from "./ChatTextArea";
 
 
 export const Chat: FC = () => {
-    const [text, setText] = useState()
+    const dispatch = useDispatch()
+    const userData = useSelector(selectUserData)
+    const [text, setText] = useState<string>('')
+    const path = window.location.pathname.split('/')
+    const id = path[path.length-2]
+    const client = new W3CWebSocket('ws://127.0.0.1:8000/ws/api/v1/chat/' + id + '/');
+
+    const addMessage = (msg: any) => {
+        let message = JSON.parse(msg);
+        let new_msg = {"text": message.message, "user": message.user_id}
+        dispatch(receiveMessages(new_msg))
+    }
+
+    const sendMessage = (e: any) => {
+        e.preventDefault();
+        client.send(JSON.stringify(
+            {
+                "user_id": userData.id,
+                "message": text,
+            }
+        ));
+        setText('')
+    }
+
+    useEffect(() => {
+        dispatch(fetchMessages(id))
+        client.onopen = () => {
+            console.log('WebSocket Client Connected');
+        };
+        client.onmessage = (e: any) => {
+            // console.log(e.data, 'e.data')
+            addMessage(e.data);
+        }
+    }, [])
 
     return (
         <div className={styles.chat}>
@@ -32,24 +66,9 @@ export const Chat: FC = () => {
                 </div>
             </div>
 
-            <Messages/>
+            <Messages text={text} setText={setText}/>
 
-            {/*INPUT*/}
-            <div className={styles.send_message}>
-                {/*<img className={styles.iconSize} src={EmojiIcon} alt=""/>*/}
-                {/*<img className={styles.iconSize} src={FileIcon} alt=""/>*/}
-                <textarea
-                    value={text}
-                    // onChange={handleChange}
-                    className={styles.new_message}
-                    placeholder="Введите сообщение"
-                />
-                <img
-                    className={styles.iconSize}
-                    // src={SendIcon} alt=""
-                    // onClick={text.length > 0 ? handleClick : undefined}
-                />
-            </div>
+            <ChatTextArea text={text} setText={setText} sendMessage={sendMessage}/>
         </div>
     );
 };

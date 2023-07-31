@@ -116,6 +116,7 @@
 }
 
 .message_item {
+  margin: 5px 0;
   position: relative;
   justify-content: flex-end;
 }
@@ -124,6 +125,7 @@
   background: #71C9F8;
   padding: 4px 10px;
   border-radius: 8px;
+  min-width: 50px;
   max-width: 350px;
   display: inline-block;
 }
@@ -175,6 +177,7 @@
   padding: 4px 10px;
   /*padding: 7px 60px 7px 10px;*/
   border-radius: 8px;
+  min-width: 50px;
   max-width: 350px;
 }
 

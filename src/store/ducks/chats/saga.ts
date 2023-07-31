@@ -1,5 +1,4 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {LoadingState} from "./contracts/state";
 import {ChatsActionsType} from "./actionTypes";
 import {ChatsApi} from "../../../services/api/chatsApi";
 import {setChats} from "./actionCreators";
@@ -36,5 +35,4 @@ export function* fetchChatsRequest() {
 
 export function* chatsSaga() {
     yield takeLatest(ChatsActionsType.FETCH_CHATS, fetchChatsRequest)
-
 }

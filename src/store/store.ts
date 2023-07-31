@@ -8,6 +8,7 @@ import {TweetState} from "./ducks/tweet/contracts/state";
 import {UserState} from "./ducks/user/contracts/state";
 import {UsersState} from "./ducks/users/contracts/state";
 import {ChatsState} from "./ducks/chats/contracts/state";
+import {ChatState} from "./ducks/chat/contracts/state";
 
 const composeEnhancers =
     (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -21,6 +22,7 @@ export interface RootState {
     user: UserState;
     users: UsersState;
     chats: ChatsState;
+    chat: ChatState;
 }
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)))

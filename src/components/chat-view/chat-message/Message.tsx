@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 
 // @ts-ignore
-import styles from './ChatView.module.scss';
+import styles from '../ChatView.module.scss';
 
 interface MessageProps {
     order?: string;
