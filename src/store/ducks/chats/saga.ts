@@ -8,30 +8,13 @@ export function* fetchChatsRequest() {
     try {
         const {data} = yield call(ChatsApi.fetchChats)
         console.log(data)
-        yield put(setChats(data))
+        const chats = Object.entries(data)
+        yield put(setChats(chats))
     }
     catch (e) {
         // yield put(setTweetsLoadingState(LoadingState.ERROR))
     }
 }
-
-// export function* fetchAddTweetRequest({ payload }: FetchAddTweetActionInterface) {
-//     try {
-//     } catch (error) {
-//     }
-// }
-//
-// export function* fetchAddCommentRequest({ payload }: FetchAddCommentActionInterface) {
-//     try {
-//     } catch (error) {
-//     }
-// }
-//
-// export function* fetchRemoveTweetRequest({ payload }: RemoveTweetActionInterface) {
-//     try {
-//     } catch (error) {
-//     }
-// }
 
 export function* chatsSaga() {
     yield takeLatest(ChatsActionsType.FETCH_CHATS, fetchChatsRequest)

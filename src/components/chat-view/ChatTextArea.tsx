@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 // @ts-ignore
 import styles from "./ChatView.module.scss";
+import Button from "@material-ui/core/Button";
 
 interface ChatTextAreaProps {
     text: string;
@@ -12,7 +13,6 @@ export const ChatTextArea: FC<ChatTextAreaProps> = ({text, setText, sendMessage}
 
     const handleChange = (textValue: string) => {
         setText(textValue)
-        console.log(text)
     }
 
     return (
@@ -30,12 +30,14 @@ export const ChatTextArea: FC<ChatTextAreaProps> = ({text, setText, sendMessage}
             {/*    // src={SendIcon} alt=""*/}
             {/*    // onClick={text.length > 0 ? handleClick : undefined}*/}
             {/*/>*/}
-            <button
+            <Button
+                color="primary"
+                variant="contained"
                 className={styles.iconSize}
                 onClick={sendMessage}
             >
                 Отправить сообщение
-            </button>
+            </Button>
         </div>
     );
 };

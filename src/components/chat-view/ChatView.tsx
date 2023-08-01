@@ -21,18 +21,22 @@ export const Chat: FC = () => {
 
     const addMessage = (msg: any) => {
         let message = JSON.parse(msg);
-        let new_msg = {"text": message.message, "user": message.user_id}
+        let new_msg = {"text": message.message, "user": message.user_id, created_at: Date.now()}
         dispatch(receiveMessages(new_msg))
     }
 
     const sendMessage = (e: any) => {
         e.preventDefault();
-        client.send(JSON.stringify(
-            {
-                "user_id": userData.id,
-                "message": text,
-            }
-        ));
+        if(text.length > 0) {
+            client.send(JSON.stringify(
+                {
+                    "user_id": userData.id,
+                    "message": text,
+                }
+            ));
+        } else {
+            alert('Невозможно отправить пустое сообщение')
+        }
         setText('')
     }
 
@@ -42,7 +46,6 @@ export const Chat: FC = () => {
             console.log('WebSocket Client Connected');
         };
         client.onmessage = (e: any) => {
-            // console.log(e.data, 'e.data')
             addMessage(e.data);
         }
     }, [])
@@ -71,7 +74,7 @@ export const Chat: FC = () => {
                 </div>
             </div>
 
-            <Messages text={text} setText={setText}/>
+            <Messages/>
 
             <ChatTextArea text={text} setText={setText} sendMessage={sendMessage}/>
         </div>

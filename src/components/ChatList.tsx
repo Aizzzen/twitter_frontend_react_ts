@@ -8,9 +8,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 export const ChatList = () => {
     const classes = useStylesHomeStyle();
-    const chatsItems = useSelector(selectChatsItems); // chats
-    const chats = Object.entries(chatsItems)
-    console.log(chats)
+    const chats = useSelector(selectChatsItems);
     const isLoading = useSelector(selectIsTweetsLoading);
 
     return (

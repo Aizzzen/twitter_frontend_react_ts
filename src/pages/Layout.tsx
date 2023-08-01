@@ -18,7 +18,6 @@ interface Layout {
 
 export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
     const classes = useStylesHomeStyle();
-    const currentPath = window.location.pathname
 
     useEffect(() => {
         window.scrollTo(
@@ -31,7 +30,7 @@ export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
     }, [])
 
     return (
-        <Container className={`classes.wrapper ${currentPath === '/chats' ? styles.hidden : ""}`} maxWidth="lg" >
+        <Container id={'layout-container'} className={`classes.wrapper`} maxWidth="lg" >
             <Grid container spacing={3}>
                 <Grid sm={1} md={3} item>
                     <Navbar classes={classes} />

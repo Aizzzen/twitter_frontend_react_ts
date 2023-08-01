@@ -2,7 +2,6 @@ import {ChatState, LoadingState} from "./contracts/state";
 import produce, {Draft} from "immer";
 import {ChatsActions} from "./actionCreators";
 import {ChatActionsType} from "./actionTypes";
-import {TweetsActionsType} from "../tweets/actionTypes";
 
 export const initialChatState: ChatState = {
     user: null,
