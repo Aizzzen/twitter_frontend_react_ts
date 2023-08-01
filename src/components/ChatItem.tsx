@@ -9,11 +9,12 @@ import {Link} from "react-router-dom";
 
 interface ChatItemProps {
     chat_id: string;
+    fullname: string;
     username: string;
     classes: ReturnType<typeof useStylesHomeStyle>
 }
 
-export const ChatItem: FC<ChatItemProps> = ({chat_id, username, classes}: ChatItemProps) => {
+export const ChatItem: FC<ChatItemProps> = ({chat_id, fullname, username, classes}: ChatItemProps) => {
 
     const handleClickChat = () => {
 
@@ -40,7 +41,7 @@ export const ChatItem: FC<ChatItemProps> = ({chat_id, username, classes}: ChatIt
                         <div className={classes.tweetContent}>
                             <div className={classes.tweetHeader}>
                                 <div style={{marginBottom: 8}}>
-                                    {/*<b>{chat[1].fullname ? chat[1].fullname : 'fullname'}</b>&nbsp;*/}
+                                    <b>{fullname ? fullname : ''}</b>&nbsp;
                                     <span className={classes.tweetUserName}>
                                         @{username}
                                     </span>&nbsp;

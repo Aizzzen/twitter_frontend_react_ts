@@ -10,10 +10,11 @@ export function* fetchMessagesRequest({payload: id}: FetchMessagesActionInterfac
     try {
         // @ts-ignore
         const data = yield call(ChatsApi.fetchMessages, id)
+        console.log(data)
         const rev = reverse(data.msgs.results)
-        console.log(rev)
+        console.log(data)
         yield put(setMessages(rev))
-        yield put(setChatUser(data.user[0]))
+        yield put(setChatUser(data.user))
     }
     catch (e) {
         // yield put(setTweetsLoadingState(LoadingState.ERROR))

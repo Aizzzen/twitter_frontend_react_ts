@@ -7,11 +7,13 @@ import {w3cwebsocket as W3CWebSocket} from "websocket";
 import {useDispatch, useSelector} from "react-redux";
 import {selectUserData} from "../../store/ducks/user/selectors";
 import {ChatTextArea} from "./ChatTextArea";
+import {selectChatUser} from "../../store/ducks/chat/selectors";
 
 
 export const Chat: FC = () => {
     const dispatch = useDispatch()
     const userData = useSelector(selectUserData)
+    const chatUser = useSelector(selectChatUser)
     const [text, setText] = useState<string>('')
     const path = window.location.pathname.split('/')
     const id = path[path.length-2]
@@ -54,7 +56,10 @@ export const Chat: FC = () => {
                         {/*<img src={<Avatar/>} alt=""/>*/}
                     </a>
                     <div className={styles.meta}>
-                        <h2 className={styles.name}>Yunus Gadamurov</h2>
+                        <h2 className={styles.name}>
+                            {chatUser?.fullname ? chatUser?.fullname : ''}&nbsp;
+                            @{chatUser?.username}
+                        </h2>
                         <h2 className={styles.status}>был(а) недавно</h2>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ export const ChatList = () => {
                     </div>
                 ) : (
                     chats.map((chat: any) => (
-                        <ChatItem key={chat[0]} chat_id={chat[0]} username={chat[1].username} classes={classes}/>
+                        <ChatItem key={chat[0]} chat_id={chat[0]} fullname={chat[1].fullname} username={chat[1].username} classes={classes}/>
                     ))
                 )
             }

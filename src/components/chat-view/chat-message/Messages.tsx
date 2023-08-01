@@ -13,6 +13,12 @@ interface MessageProps {
     setText: any;
 }
 
+type Msg = {
+    user: number;
+    text: string;
+    created_at: Date;
+}
+
 export const Messages: FC<MessageProps> = ({text, setText}: MessageProps) => {
     const messages = useSelector(selectChatItems)
     const chatUser = useSelector(selectChatUser)
@@ -27,8 +33,8 @@ export const Messages: FC<MessageProps> = ({text, setText}: MessageProps) => {
         <div className={`${styles.messages}`}>
             {messages?.map((msg: any, i: number) =>
                 <Fragment key={i}>
-                    {msg.user === chatUser.id && <Message chatId={msg.user} msg={msg.text} stamp={new Date()} key={i} />}
-                    {msg.user === userData.id && <Message chatId={msg.user} msg={msg.text} stamp={new Date()} key={i} order={"mine"} />}
+                    {msg.user === chatUser.id && <Message msg={msg.text} stamp={msg.created_at} key={i} />}
+                    {msg.user === userData.id && <Message msg={msg.text} stamp={msg.created_at} key={i} order={"mine"} />}
                 </Fragment>
             )}
         </div>
