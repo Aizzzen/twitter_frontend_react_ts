@@ -19,16 +19,24 @@ export const Messages: FC = () => {
     const chatUser = useSelector(selectChatUser)
     const userData = useSelector(selectUserData)
     const messagesEndRef = useRef(null)
+    const messagesStartRef = useRef(null)
 
     useEffect(() => {
         console.log(messages)
         // @ts-ignore
         messagesEndRef?.current?.scrollIntoView()
         window.scrollTo(0, 0)
+
     }, [messages])
 
+    // @ts-ignore
+    messagesStartRef?.current?.addEventListener('scroll', (e) => {
+        console.log(e.target.scrollTop === 0)
+    })
+
     return (
-        <div className={`${styles.messages}`}>
+        <div ref={messagesStartRef} className={`${styles.messages}`}>
+            {/*<div ref={messagesStartRef}></div>*/}
             {messages?.map((msg: any, i: number) =>
                 <Fragment key={i}>
                     {msg.user === chatUser.id && <Message msg={msg.text} stamp={msg.created_at} key={i} />}

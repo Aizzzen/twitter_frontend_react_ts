@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 // @ts-ignore
 import styles from "./ChatView.module.scss";
 import {Messages} from "./chat-message/Messages";
