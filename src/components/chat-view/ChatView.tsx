@@ -7,20 +7,23 @@ import {w3cwebsocket as W3CWebSocket} from "websocket";
 import {useDispatch, useSelector} from "react-redux";
 import {selectUserData} from "../../store/ducks/user/selectors";
 import {ChatTextArea} from "./ChatTextArea";
-import {selectChatUser} from "../../store/ducks/chat/selectors";
+import {selectChatItems, selectChatUser} from "../../store/ducks/chat/selectors";
 
 
 export const Chat: FC = () => {
     const dispatch = useDispatch()
     const userData = useSelector(selectUserData)
     const chatUser = useSelector(selectChatUser)
+    const messages = useSelector(selectChatItems)
     const [text, setText] = useState<string>('')
     const path = window.location.pathname.split('/')
-    const id = path[path.length-2]
-    const client = new W3CWebSocket('ws://127.0.0.1:8000/ws/api/v1/chat/' + id + '/');
+    const chatId = path[path.length-2]
+    const client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/api/v1/chat/${chatId}/`);
+    const [offset, setOffset] = useState<number>(40)
 
     const addMessage = (msg: any) => {
         let message = JSON.parse(msg);
+        // setOffset(prev => prev++)
         let new_msg = {"text": message.message, "user": message.user_id, created_at: Date.now()}
         dispatch(receiveMessages(new_msg))
     }
@@ -41,7 +44,7 @@ export const Chat: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchMessages(id))
+        dispatch(fetchMessages({chatId}))
         client.onopen = () => {
             console.log('WebSocket Client Connected');
         };
@@ -74,7 +77,7 @@ export const Chat: FC = () => {
                 </div>
             </div>
 
-            <Messages/>
+            <Messages chatId={chatId} offset={offset} setOffset={setOffset}/>
 
             <ChatTextArea text={text} setText={setText} sendMessage={sendMessage}/>
         </div>

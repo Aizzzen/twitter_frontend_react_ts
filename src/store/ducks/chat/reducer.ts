@@ -2,9 +2,11 @@ import {ChatState, LoadingState} from "./contracts/state";
 import produce, {Draft} from "immer";
 import {ChatsActions} from "./actionCreators";
 import {ChatActionsType} from "./actionTypes";
+import {TweetsActionsType} from "../tweets/actionTypes";
 
 export const initialChatState: ChatState = {
     user: null,
+    next: true,
     items: [],
     loading_state: LoadingState.NEVER,
 }
@@ -17,6 +19,11 @@ export const chatReducer = produce((draft: Draft<ChatState>, action: ChatsAction
             draft.loading_state = LoadingState.LOADED
             break;
 
+        case ChatActionsType.SET_MORE_MESSAGES:
+            draft.items = [...action.payload, ...draft.items]
+            draft.loading_state = LoadingState.LOADED
+            break;
+
         case ChatActionsType.SET_CHAT_USER:
             draft.user = action.payload
             // draft.loading_state = LoadingState.LOADED
@@ -24,6 +31,10 @@ export const chatReducer = produce((draft: Draft<ChatState>, action: ChatsAction
 
         case ChatActionsType.FETCH_MESSAGES:
             draft.items = []
+            draft.loading_state = LoadingState.LOADING
+            break;
+
+        case ChatActionsType.FETCH_MORE_MESSAGES:
             draft.loading_state = LoadingState.LOADING
             break;
 

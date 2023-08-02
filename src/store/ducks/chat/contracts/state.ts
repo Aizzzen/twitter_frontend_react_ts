@@ -11,6 +11,7 @@ export interface Message {
 
 export interface ChatState {
     user: any;
+    next: boolean;
     items: Message[] | any;
     loading_state: LoadingState;
 }
