@@ -13,8 +13,7 @@ export function* fetchMessagesRequest({payload}: FetchMessagesActionInterface) {
         console.log(data)
         const rev = reverse(data.msgs.results)
         yield put(setMessages(rev))
-        // yield put(setMessages(data.msgs.results))
-        yield put(setIsNextLink(data.msgs.next === 'string'))
+        yield put(setIsNextLink(data.msgs.next !== null))
         yield put(setChatUser(data.user))
     }
     catch (e) {
@@ -29,8 +28,7 @@ export function* fetchMoreMessagesRequest({payload}: FetchMoreMessagesActionInte
         console.log(data)
         const rev = reverse(data.msgs.results)
         yield put(setMoreMessages(rev))
-        // yield put(setMoreMessages(data.msgs.results))
-        yield put(setIsNextLink(data.msgs.next === 'string'))
+        yield put(setIsNextLink(data.msgs.next !== null))
     }
     catch (e) {
         // yield put(setTweetsLoadingState(LoadingState.ERROR))

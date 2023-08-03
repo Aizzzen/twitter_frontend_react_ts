@@ -24,6 +24,11 @@ export const chatReducer = produce((draft: Draft<ChatState>, action: ChatsAction
             draft.loading_state = LoadingState.LOADED
             break;
 
+        case ChatActionsType.SET_NEXT_LINK:
+            draft.next = action.payload
+            draft.loading_state = LoadingState.LOADED
+            break;
+
         case ChatActionsType.SET_CHAT_USER:
             draft.user = action.payload
             // draft.loading_state = LoadingState.LOADED

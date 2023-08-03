@@ -5,8 +5,7 @@ import Message from "./Message";
 import {useDispatch, useSelector} from "react-redux";
 import {selectChatItems, selectChatUser, selectIsNextLink} from "../../../store/ducks/chat/selectors";
 import {selectUserData} from "../../../store/ducks/user/selectors";
-import {fetchMessages, fetchMoreMessages, receiveMessages} from "../../../store/ducks/chat/actionCreators";
-import {w3cwebsocket as W3CWebSocket} from "websocket";
+import {fetchMoreMessages} from "../../../store/ducks/chat/actionCreators";
 
 interface MessagesProps {
     chatId: string | number;
@@ -28,16 +27,11 @@ export const Messages: FC<MessagesProps> = ({chatId, offset, setOffset}: Message
     const IsNextLink = useSelector(selectIsNextLink)
     const messagesEndRef = useRef(null)
     const messagesStartRef = useRef(null)
-
     const [scrollOnTop, setScrollOnTop] = useState<boolean>(false)
-    const [pegMessages, setPegMessages] = useState<boolean>(true) // string or null
+    // const [pegMessages, setPegMessages] = useState<boolean>(true) // string or null
 
     // @ts-ignore
     messagesStartRef?.current?.addEventListener('scroll', (e) => {
-        // console.log(
-        //     e.target.scrollHeight,
-        //     e.target.scrollTop
-        // )
         if (e.target.scrollTop === 0) {
             setScrollOnTop(true)
         }
@@ -73,18 +67,18 @@ export const Messages: FC<MessagesProps> = ({chatId, offset, setOffset}: Message
         // @ts-ignore
         messagesEndRef?.current?.scrollIntoView()
         window.scrollTo(0, 0)
-        console.log(messages)
     }, [messages])
 
     useEffect(() => {
-        dispatch(fetchMoreMessages({chatId, offset}))
-        setScrollOnTop(false)
-        console.log(messages)
-    }, [scrollOnTop, IsNextLink])
+        if(IsNextLink && scrollOnTop) {
+            dispatch(fetchMoreMessages({chatId, offset}))
+            setScrollOnTop(false)
+            setOffset((prev: number) => prev + 20);
+        }
+    }, [scrollOnTop])
 
     return (
-        <div ref={messagesStartRef} className={`${styles.messages}`}>
-            {/*<div ref={messagesStartRef}></div>*/}
+        <div ref={messagesStartRef} className={styles.messages}>
             {messages?.map((msg: any, i: number) =>
                 <Fragment key={i}>
                     {msg.user === chatUser?.id && <Message msg={msg.text} stamp={msg.created_at} key={i} />}
