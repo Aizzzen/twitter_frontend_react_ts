@@ -1,52 +1,48 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {useStylesSignIn} from "../pages/SignIn";
 import {useDispatch, useSelector} from "react-redux";
-import {selectUserData, selectUserStatus} from "../store/ducks/user/selectors";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {fetchUpdateProfile, fetchUserData} from "../store/ducks/user/actionCreators";
-import {LoadingStatus} from "../store/types";
 import {ModalWindow} from "./ModalWindow";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import * as yup from "yup";
-import {fetchTweetData, fetchUpdateTweet, setTweetData} from "../store/ducks/tweet/actionCreators";
-import {selectTweetData} from "../store/ducks/tweet/selectors";
-import {selectTweetsItems} from "../store/ducks/tweets/selectors";
-import {fetchTweets} from "../store/ducks/tweets/actionCreators";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import {selectUserData} from "../store/ducks/user/selectors";
+import {fetchChats, fetchCreateChat} from "../store/ducks/chats/actionCreators";
 
 
-interface TweetModalProps {
-    id: string;
+interface ChatCreateModalProps {
     visibleModal: boolean
     setVisibleModal: any;
-    tweetData?: any;
 }
 
-export interface TweetModalFormProps {
-    text: string;
+export interface ChatCreateModalFormProps {
+    username: string;
 }
 
-const TweetModalFormSchema = yup.object().shape({
-    text: yup.string()
+const ChatCreateModalFormSchema = yup.object().shape({
+    username: yup.string()
 })
 
-export const TweetModal: FC<TweetModalProps> = ({id, visibleModal, setVisibleModal}: TweetModalProps) => {
+export const ChatCreateModal: FC<ChatCreateModalProps> = ({visibleModal, setVisibleModal}: ChatCreateModalProps) => {
     const classes = useStylesSignIn();
     const dispatch = useDispatch();
-    const tweetData = useSelector(selectTweetData);
+    const userData = useSelector(selectUserData)
 
-    const { control, handleSubmit, errors } = useForm<TweetModalFormProps>({
-        resolver: yupResolver(TweetModalFormSchema)
+    const { control, handleSubmit, errors } = useForm<ChatCreateModalFormProps>({
+        resolver: yupResolver(ChatCreateModalFormSchema)
     });
 
-    const onSubmit = async (data: TweetModalFormProps) => {
-        dispatch(fetchUpdateTweet({id, data}));
+    const onSubmit = async (data: ChatCreateModalFormProps) => {
+        let payload = {
+            user1: userData?.username,
+            user2: data.username
+        }
+        dispatch(fetchCreateChat(payload));
         alert('Данные были обновлены')
-        dispatch(fetchTweets())
+        dispatch(fetchChats())
     };
 
     const handleCloseModal = (): void => setVisibleModal(false);
@@ -56,9 +52,9 @@ export const TweetModal: FC<TweetModalProps> = ({id, visibleModal, setVisibleMod
             visible={visibleModal}
             onClose={handleCloseModal}
             classes={classes}
-            title="Редактировать типоТвит"
+            title="Начать чат с @..."
         >
-            <div style={{width: 550}}>
+            <div style={{width: 400}}>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                 >
@@ -67,19 +63,18 @@ export const TweetModal: FC<TweetModalProps> = ({id, visibleModal, setVisibleMod
                             <Controller
                                 as={TextField}
                                 control={control}
-                                name="text"
+                                name="username"
                                 className={classes.registerField}
                                 id="text"
-                                label="Текст типоТвита"
+                                label="Введите имя пользователя без @"
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
                                 variant="filled"
                                 type="text"
-                                // defaultValue=""
-                                defaultValue={tweetData?.text}
-                                helperText={errors.text?.message}
-                                error={!!errors.text}
+                                defaultValue=""
+                                helperText={errors.username?.message}
+                                error={!!errors.username}
                                 fullWidth
                                 autoFocus
                             />

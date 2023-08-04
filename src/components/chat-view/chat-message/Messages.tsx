@@ -30,13 +30,14 @@ export const Messages: FC<MessagesProps> = ({chatId, offset, setOffset}: Message
     const messagesEndRef = useRef(null)
     const messagesStartRef = useRef(null)
     const [scrolledOnTop, setScrolledOnTop] = useState<boolean>(false)
-    const [scrolledOnTopOnce, setScrolledOnTopOnce] = useState<boolean>(false)
-
-    const [chatMessEl, setChatMessEl] = useState<HTMLElement | null>(null)
+    // const [scrolledOnTopOnce, setScrolledOnTopOnce] = useState<boolean>(false)
+    // const [chatMessEl, setChatMessEl] = useState<HTMLElement | null>(null)
 
     // TODO: скролл вниз при добавлении сообщения
     // TODO: сохранение скролла при подгрузке сообщений
     // TODO: пока что приходится выбирать одно из двух, и то с натяжкой
+
+    // попробовать вынести состояние scrolledOnTop/Once в ипнут, чтобы при вводе включать и отключать его
 
     // @ts-ignore
     messagesStartRef?.current?.addEventListener('scroll', (e) => {
@@ -46,22 +47,22 @@ export const Messages: FC<MessagesProps> = ({chatId, offset, setOffset}: Message
     })
 
     useEffect(() => {
-        setChatMessEl(document.getElementById(`${messages[0]?.id}`))
+        // setChatMessEl(document.getElementById(`${messages[0]?.id}`))
         // console.log(chatMessEl)
-        if(!scrolledOnTopOnce) {
+        // if(!scrolledOnTopOnce) {
             // @ts-ignore
             messagesEndRef?.current?.scrollIntoView()
             window.scrollTo(0, 0)
-        }
+        // }
     }, [messages])
 
     useEffect(() => {
         if(IsNextLink && scrolledOnTop) {
             dispatch(fetchMoreMessages({chatId, offset}))
             setScrolledOnTop(false)
-            setScrolledOnTopOnce(true)
+            // setScrolledOnTopOnce(true)
             setOffset((prev: number) => prev + 20);
-            chatMessEl?.scrollIntoView()
+            // chatMessEl?.scrollIntoView()
             // console.log(chatMessEl)
         }
     }, [scrolledOnTop])

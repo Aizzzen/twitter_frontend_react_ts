@@ -1,15 +1,28 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {ChatsActionsType} from "./actionTypes";
+import {ChatsActionsType, FetchCreateChatActionInterface} from "./actionTypes";
 import {ChatsApi} from "../../../services/api/chatsApi";
 import {setChats} from "./actionCreators";
+import {reverse} from "../../../utils/reverseArr";
 
 
 export function* fetchChatsRequest() {
     try {
         const {data} = yield call(ChatsApi.fetchChats)
-        console.log(data)
         const chats = Object.entries(data)
-        yield put(setChats(chats))
+        const rev = reverse(chats)
+        yield put(setChats(rev))
+    }
+    catch (e) {
+        // yield put(setTweetsLoadingState(LoadingState.ERROR))
+    }
+}
+
+export function* fetchCreateChatRequest({ payload }: FetchCreateChatActionInterface) {
+    try {
+        // @ts-ignore
+        const data = yield call(ChatsApi.fetchCreateChat, payload)
+        console.log(data)
+        // yield put(setChats(rev))
     }
     catch (e) {
         // yield put(setTweetsLoadingState(LoadingState.ERROR))
@@ -18,4 +31,5 @@ export function* fetchChatsRequest() {
 
 export function* chatsSaga() {
     yield takeLatest(ChatsActionsType.FETCH_CHATS, fetchChatsRequest)
+    yield takeLatest(ChatsActionsType.FETCH_CREATE_CHAT, fetchCreateChatRequest)
 }
