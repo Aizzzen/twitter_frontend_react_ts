@@ -1,22 +1,49 @@
 import {call, put, takeLatest} from "redux-saga/effects";
-import {addComment, addTweet, setAddFormState, setTweets, setTweetsLoadingState} from "./actionCreators";
+import {
+    addComment,
+    addTweet,
+    setAddFormState,
+    setMoreTweets,
+    setNextPage,
+    setTweets,
+    setTweetsLoadingState
+} from "./actionCreators";
 import {TweetsApi} from "../../../services/api/tweetsApi";
 import {AddFormState, LoadingState} from "./contracts/state";
-import {FetchAddTweetActionInterface, FetchAddCommentActionInterface, RemoveTweetActionInterface, TweetsActionsType} from "./actionTypes";
+import {
+    FetchAddTweetActionInterface,
+    FetchAddCommentActionInterface,
+    RemoveTweetActionInterface,
+    TweetsActionsType,
+    FetchMoreTweetsActionInterface
+} from "./actionTypes";
 
 
 // yield put === dispatch
 export function* fetchTweetsRequest() {
     try {
-        let items = []
+        let data = []
         const pathname = window.location.pathname
         const user = pathname.includes('/user')
         if(user) {
-            items = yield call(TweetsApi.fetchCurrentUserTweets)
+            data = yield call(TweetsApi.fetchCurrentUserTweets)
+            yield put(setTweets(data))
         } else {
-            items = yield call(TweetsApi.fetchTweets)
+            data = yield call(TweetsApi.fetchTweets)
+            yield put(setTweets(data.results))
+            yield put(setNextPage(data.next.split('=')[1]))
         }
-        yield put(setTweets(items))
+    }
+    catch (e) {
+        yield put(setTweetsLoadingState(LoadingState.ERROR))
+    }
+}
+
+export function* fetchMoreTweetsRequest({ payload }: FetchMoreTweetsActionInterface) {
+    try {
+        // @ts-ignore
+        const data = yield call(TweetsApi.fetchMoreTweets, payload)
+        yield put(setMoreTweets(data.results))
     }
     catch (e) {
         yield put(setTweetsLoadingState(LoadingState.ERROR))
@@ -53,6 +80,7 @@ export function* fetchRemoveTweetRequest({ payload }: RemoveTweetActionInterface
 
 export function* tweetsSaga() {
     yield takeLatest(TweetsActionsType.FETCH_TWEETS, fetchTweetsRequest)
+    yield takeLatest(TweetsActionsType.FETCH_MORE_TWEETS, fetchMoreTweetsRequest)
     yield takeLatest(TweetsActionsType.FETCH_ADD_TWEET, fetchAddTweetRequest);
     yield takeLatest(TweetsActionsType.FETCH_ADD_COMMENT, fetchAddCommentRequest);
     yield takeLatest(TweetsActionsType.REMOVE_TWEET, fetchRemoveTweetRequest);

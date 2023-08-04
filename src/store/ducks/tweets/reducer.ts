@@ -5,6 +5,7 @@ import {TweetsActionsType} from "./actionTypes";
 
 export const initialTweetsState: TweetsState = {
     items: [],
+    next_page: null,
     add_form_state: AddFormState.NEVER,
     loading_state: LoadingState.NEVER,
 }
@@ -15,6 +16,16 @@ export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
         case TweetsActionsType.SET_TWEETS:
             draft.items = action.payload
             draft.loading_state = LoadingState.LOADED
+            break;
+
+        case TweetsActionsType.SET_MORE_TWEETS:
+            draft.items = [...draft.items, ...action.payload]
+            draft.next_page = null
+            draft.loading_state = LoadingState.LOADED
+            break;
+
+        case TweetsActionsType.SET_NEXT_PAGE:
+            draft.next_page = action.payload
             break;
 
         case TweetsActionsType.FETCH_TWEETS:

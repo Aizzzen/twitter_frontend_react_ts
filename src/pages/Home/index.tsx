@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useEffect} from 'react';
+import React, {FC, ReactElement, useEffect, useRef, useState} from 'react';
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
@@ -9,14 +9,16 @@ import {AddTweetForm} from "../../components/AddTweetForm";
 import {useStylesHomeStyle} from "./theme";
 
 import {useDispatch, useSelector} from "react-redux";
-import {fetchTweets} from "../../store/ducks/tweets/actionCreators";
-import {selectIsTweetsLoading, selectTweetsItems} from "../../store/ducks/tweets/selectors";
-import {fetchTags} from "../../store/ducks/tags/actionCreators";
+import {fetchMoreTweets, fetchTweets} from "../../store/ducks/tweets/actionCreators";
+import {
+    selectIsTweetsLoading,
+    selectNextPage,
+    selectTweetsItems
+} from "../../store/ducks/tweets/selectors";
 import {Route, Routes} from "react-router-dom";
 import {GoBackButton} from "../../components/GoBackButton";
 import {FullTweet} from "../../components/FullTweet";
-import {fetchUserData} from "../../store/ducks/user/actionCreators";
-import {fetchChats} from "../../store/ducks/chats/actionCreators";
+import Button from "@material-ui/core/Button";
 
 
 export const Home: FC = (): ReactElement => {
@@ -24,6 +26,16 @@ export const Home: FC = (): ReactElement => {
     const dispatch = useDispatch();
     const tweets = useSelector(selectTweetsItems);
     const isLoading = useSelector(selectIsTweetsLoading);
+    const nextPage = useSelector(selectNextPage)
+    const [disabled, setDisabled] = useState<boolean>(false)
+
+    const handleFetchMoreTweets = () => {
+        if(nextPage) {
+            dispatch(fetchMoreTweets({nextPage}))
+        } else {
+            setDisabled(true)
+        }
+    }
 
     useEffect(() => {
         dispatch(fetchTweets())
@@ -75,9 +87,21 @@ export const Home: FC = (): ReactElement => {
                             <CircularProgress />
                         </div>
                     ) : (
-                        tweets.map((tweet) => (
-                            <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} likes={tweet.likes} comments={tweet.comments} classes={classes} />
-                        ))
+                        <>
+                            {tweets.map((tweet) => (
+                                <TweetItem key={tweet.id} {...tweet} photos={tweet.photos} likes={tweet.likes}
+                                           comments={tweet.comments} classes={classes}/>
+                            ))}
+                            <Button
+                                disabled={disabled}
+                                variant='contained'
+                                color='primary'
+                                style={{display: 'flex', margin: '0 auto', marginTop: 10}}
+                                onClick={handleFetchMoreTweets}
+                            >
+                                {disabled ? "Нечего загружать :)" : "Загрузить больше"}
+                            </Button>
+                        </>
                     )
                 }/>
                 <Route path='/tweet/:id' element={<FullTweet />} />

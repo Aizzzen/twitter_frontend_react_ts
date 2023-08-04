@@ -13,10 +13,15 @@ const api_url = process.env.REACT_APP_API_URL
 export const TweetsApi = {
     async fetchTweets(): Promise<Response<Tweet[]>> {
         const {data} = await axios.get(`${api_url}/tweets/`);
-        return data.results;
+        return data;
+    },
+    async fetchMoreTweets(payload: {nextPage: string}): Promise<Response<Tweet[]>> {
+        const {data} = await axios.get(`${api_url}/tweets/?page=${payload.nextPage}`);
+        return data;
     },
     async fetchCurrentUserTweets(): Promise<Response<Tweet[]>> {
         const {data} = await axios.get(`${api_url}/tweets/my/`);
+        console.log(data)
         return data;
     },
     async fetchTweetData(id: string): Promise<Response<Tweet>> {

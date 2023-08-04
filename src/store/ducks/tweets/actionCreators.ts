@@ -9,13 +9,24 @@ import {
     SetAddFormStateActionInterface,
     SetTweetsActionInterface,
     SetTweetsLoadingStateActionInterface,
-    TweetsActionsType
+    TweetsActionsType,
+    SetNextPageActionInterface, FetchMoreTweetsActionInterface, SetMoreTweetsActionInterface
 } from "./actionTypes";
 
 
 
 export const setTweets = (payload: TweetsState['items']): SetTweetsActionInterface => ({
     type: TweetsActionsType.SET_TWEETS,
+    payload,
+});
+
+export const setMoreTweets = (payload: TweetsState['items']): SetMoreTweetsActionInterface => ({
+    type: TweetsActionsType.SET_MORE_TWEETS,
+    payload,
+});
+
+export const setNextPage = (payload: TweetsState['next_page']): SetNextPageActionInterface => ({
+    type: TweetsActionsType.SET_NEXT_PAGE,
     payload,
 });
 
@@ -60,6 +71,11 @@ export const fetchTweets = (): FetchTweetsActionInterface => ({
     type: TweetsActionsType.FETCH_TWEETS,
 });
 
+export const fetchMoreTweets = (payload: {nextPage: string}): FetchMoreTweetsActionInterface => ({
+    type: TweetsActionsType.FETCH_MORE_TWEETS,
+    payload
+});
+
 export type TweetsActions =
     | SetTweetsActionInterface
     | FetchTweetsActionInterface
@@ -69,5 +85,8 @@ export type TweetsActions =
     | AddTweetActionInterface
     | AddTweetCommentActionInterface
     | SetAddFormStateActionInterface
-    | RemoveTweetActionInterface;
+    | RemoveTweetActionInterface
+    | SetNextPageActionInterface
+    | FetchMoreTweetsActionInterface
+    | SetMoreTweetsActionInterface;
 

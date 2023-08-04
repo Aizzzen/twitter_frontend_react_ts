@@ -24,6 +24,7 @@ export interface Tweet {
 
 export interface TweetsState {
     items: Tweet[];
+    next_page: null | string;
     loading_state: LoadingState;
     add_form_state: AddFormState;
 }
