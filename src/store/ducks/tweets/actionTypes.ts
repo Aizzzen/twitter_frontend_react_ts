@@ -13,7 +13,6 @@ export enum TweetsActionsType {
     FETCH_ADD_COMMENT = 'tweets/FETCH_ADD_COMMENT',
     ADD_COMMENT = 'tweets/ADD_COMMENT',
     REMOVE_TWEET = 'tweets/REMOVE_TWEET',
-    REMOVE_COMMENT = 'tweets/REMOVE_COMMENT',
     SET_ADD_FORM_STATE = 'tweets/SET_ADD_FORM_STATE',
 }
 
@@ -57,11 +56,6 @@ export interface AddTweetCommentActionInterface extends Action<TweetsActionsType
 export interface RemoveTweetActionInterface extends Action<TweetsActionsType> {
     type: TweetsActionsType.REMOVE_TWEET;
     payload: string;
-}
-
-export interface RemoveCommentActionInterface extends Action<TweetsActionsType> {
-    type: TweetsActionsType.REMOVE_COMMENT;
-    payload: { tweetId: string, id: string };
 }
 
 export interface FetchTweetsActionInterface extends Action<TweetsActionsType> {

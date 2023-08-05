@@ -40,8 +40,8 @@ export const TweetsApi = {
     async removeTweet(id: string): Promise<void> {
         const res = await axios.delete(`${api_url}/tweets/detail/${id}/`)
     },
-    async removeComment(id: string): Promise<void> {
-        const res = await axios.delete(`${api_url}/comments/detail/${id}/`)
+    async removeComment(payload: {id: string}): Promise<void> {
+        const res = await axios.delete(`${api_url}/comments/detail/${payload.id}/`)
     },
     // removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets/${id}/`),
     async addComment(payload: {text: string, user: number, tweet: number}): Promise<Response<any>> {

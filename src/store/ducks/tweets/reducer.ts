@@ -49,12 +49,6 @@ export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
             draft.items = draft.items.filter((obj) => obj.id !== action.payload)
             break;
 
-        //     comment id tweet id
-        // case TweetsActionsType.REMOVE_COMMENT:
-        //     draft.items = draft.items
-        //         .filter((obj) => obj.id === action.payload.tweetId)
-        //     break;
-
         case TweetsActionsType.ADD_TWEET:
             draft.items.splice(0, 0, action.payload)
             // TODO: Подумать, какой статус выбрать, если твит был добавлен

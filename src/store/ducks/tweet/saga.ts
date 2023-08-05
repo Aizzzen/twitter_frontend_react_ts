@@ -1,6 +1,6 @@
 import {
     FetchTweetDataActionInterface,
-    FetchUpdateTweetDataActionInterface,
+    FetchUpdateTweetDataActionInterface, RemoveCommentActionInterface,
     setTweetData,
     setTweetLoadingState,
     TweetActionsType
@@ -28,7 +28,16 @@ export function* fetchUpdateTweetDataRequest({ payload }: FetchUpdateTweetDataAc
     }
 }
 
+export function* fetchRemoveCommentRequest({ payload }: RemoveCommentActionInterface) {
+    try {
+        yield call(TweetsApi.removeComment, payload);
+    } catch (error) {
+        alert('Ошибка при удалении комментария')
+    }
+}
+
 export function* tweetSaga() {
     yield takeLatest(TweetActionsType.FETCH_TWEET_DATA, fetchTweetDataRequest);
     yield takeLatest(TweetActionsType.FETCH_UPDATE_TWEET, fetchUpdateTweetDataRequest);
+    yield takeLatest(TweetActionsType.REMOVE_COMMENT, fetchRemoveCommentRequest);
 }

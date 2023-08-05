@@ -13,13 +13,13 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {formatDate} from "../utils/formatDate";
-import {removeComment, removeTweet} from "../store/ducks/tweets/actionCreators";
 import {useDispatch} from "react-redux";
 import { textWithLinks } from '../utils/textWithLinks';
+import {fetchTweetData, removeComment} from "../store/ducks/tweet/actionCreators";
 
 interface CommentProps {
-    tweetId: string;
-    id: string | number;
+    tweetId?: string;
+    id: string;
     text: string;
     username?: string;
     fullname?: string;
@@ -33,6 +33,7 @@ export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, full
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const newText = textWithLinks(text)
+
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         event.stopPropagation();
@@ -48,12 +49,13 @@ export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, full
 
     const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
         handleClose(event)
-        let payload = {
-            tweetId: tweetId.toString(),
-            id: id.toString()
-        }
         if(window.confirm('Вы действительно хотите удалить комментарий?')) {
-            dispatch(removeComment(payload))
+            dispatch(removeComment({id}))
+            setTimeout(() => {
+                if(tweetId) {
+                    dispatch(fetchTweetData(tweetId))
+                }
+            }, 1000)
         }
     };
 

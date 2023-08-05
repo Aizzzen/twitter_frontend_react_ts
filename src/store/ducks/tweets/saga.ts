@@ -15,7 +15,7 @@ import {
     FetchAddCommentActionInterface,
     RemoveTweetActionInterface,
     TweetsActionsType,
-    FetchMoreTweetsActionInterface, RemoveCommentActionInterface
+    FetchMoreTweetsActionInterface
 } from "./actionTypes";
 
 
@@ -77,19 +77,10 @@ export function* fetchRemoveTweetRequest({ payload }: RemoveTweetActionInterface
     }
 }
 
-export function* fetchRemoveCommentRequest({ payload }: RemoveCommentActionInterface) {
-    try {
-        yield call(TweetsApi.removeComment, payload.id);
-    } catch (error) {
-        alert('Ошибка при удалении комментария')
-    }
-}
-
 export function* tweetsSaga() {
     yield takeLatest(TweetsActionsType.FETCH_TWEETS, fetchTweetsRequest)
     yield takeLatest(TweetsActionsType.FETCH_MORE_TWEETS, fetchMoreTweetsRequest)
     yield takeLatest(TweetsActionsType.FETCH_ADD_TWEET, fetchAddTweetRequest);
     yield takeLatest(TweetsActionsType.FETCH_ADD_COMMENT, fetchAddCommentRequest);
     yield takeLatest(TweetsActionsType.REMOVE_TWEET, fetchRemoveTweetRequest);
-    yield takeLatest(TweetsActionsType.REMOVE_COMMENT, fetchRemoveCommentRequest);
 }

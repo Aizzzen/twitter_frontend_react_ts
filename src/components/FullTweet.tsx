@@ -180,7 +180,7 @@ export const FullTweet: FC = (): ReactElement | null => {
                 <Divider />
                 {tweetData.comments?.map((el: any) => (
                     <CommentItem
-                        tweetId={tweetData.id}
+                        tweetId={id}
                         key={el.id}
                         id={el.id}
                         text={el.text}
