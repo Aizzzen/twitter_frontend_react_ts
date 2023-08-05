@@ -1,11 +1,5 @@
 import {axios} from "../../core/axios";
 
-
-interface Response<T> {
-    data: T
-    // status: string;
-}
-
 const api_url = process.env.REACT_APP_API_URL
 
 export const ChatsApi = {

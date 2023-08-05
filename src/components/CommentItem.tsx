@@ -13,11 +13,13 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {formatDate} from "../utils/formatDate";
-import {removeTweet} from "../store/ducks/tweets/actionCreators";
+import {removeComment, removeTweet} from "../store/ducks/tweets/actionCreators";
 import {useDispatch} from "react-redux";
 import { textWithLinks } from '../utils/textWithLinks';
 
 interface CommentProps {
+    tweetId: string;
+    id: string | number;
     text: string;
     username?: string;
     fullname?: string;
@@ -26,7 +28,7 @@ interface CommentProps {
     // avatar_url: string;
 }
 
-export const CommentItem: FC<CommentProps> = ({text, username, fullname, classes, created_at}: CommentProps): ReactElement => {
+export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, fullname, classes, created_at}: CommentProps): ReactElement => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -46,9 +48,12 @@ export const CommentItem: FC<CommentProps> = ({text, username, fullname, classes
 
     const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
         handleClose(event)
+        let payload = {
+            tweetId: tweetId.toString(),
+            id: id.toString()
+        }
         if(window.confirm('Вы действительно хотите удалить комментарий?')) {
-            // dispatch(removeTweet(id))
-            // dispatch(removeComment(id))
+            dispatch(removeComment(payload))
         }
     };
 
@@ -58,7 +63,6 @@ export const CommentItem: FC<CommentProps> = ({text, username, fullname, classes
                 <Grid item xs={1}>
                     <Avatar
                         alt={`Аватарка пользователя`}
-                        // alt={`Аватарка пользователя ${user.fullname}`}
                         // src={user.avatar_url}
                         className={classes.tweetAvatar}
                     />

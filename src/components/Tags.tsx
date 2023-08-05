@@ -19,11 +19,11 @@ interface TagsProps {
 
 export const Tags: FC<TagsProps> = ({classes}: TagsProps): ReactElement | null => {
     const items = useSelector(selectTagsItems);
-    const isLoaded = useSelector(selectIsTagsLoaded);
+    // const isLoaded = useSelector(selectIsTagsLoaded);
 
-    if(!isLoaded) {
-        return null
-    }
+    // if(!isLoaded) {
+    //     return null
+    // }
 
     return (
         <Paper className={classes.rightSideBlock}>
@@ -31,23 +31,36 @@ export const Tags: FC<TagsProps> = ({classes}: TagsProps): ReactElement | null =
                 <b>Актуальные темы</b>
             </Paper>
             <List>
-                {items.map((item) => (
-                    <Fragment key={item._id}>
-                        <ListItem className={classes.rightSideBlockItem}>
-                            <Link to={`/home/search?q=${item.name}`}>
-                                <ListItemText
-                                    primary={item.name}
-                                    secondary={
-                                    <Typography component="span" variant="body2" color="textSecondary">
-                                        Твитов: {item.count}
-                                    </Typography>
-                                }
-                                />
-                            </Link>
-                        </ListItem>
-                        <Divider component="li" />
-                    </Fragment>
-                ))}
+                {/*{items.map((item) => (*/}
+                {/*    <Fragment key={item._id}>*/}
+                {/*        <ListItem className={classes.rightSideBlockItem}>*/}
+                {/*            <Link to={`/home/search?q=${item.name}`}>*/}
+                {/*                <ListItemText*/}
+                {/*                    primary={item.name}*/}
+                {/*                    secondary={*/}
+                {/*                    <Typography component="span" variant="body2" color="textSecondary">*/}
+                {/*                        Твитов: {item.count}*/}
+                {/*                    </Typography>*/}
+                {/*                }*/}
+                {/*                />*/}
+                {/*            </Link>*/}
+                {/*        </ListItem>*/}
+                {/*        <Divider component="li" />*/}
+                {/*    </Fragment>*/}
+                {/*))}*/}
+                <ListItem className={classes.rightSideBlockItem}>
+                    <Link to={`/home/search?q=${1}`}>
+                        <ListItemText
+                            primary={'#кудапропалкоронавирус'}
+                            secondary={
+                                <Typography component="span" variant="body2" color="textSecondary">
+                                    типоТвитов: 26
+                                </Typography>
+                            }
+                        />
+                    </Link>
+                </ListItem>
+                <Divider component="li" />
             </List>
         </Paper>
     )

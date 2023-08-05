@@ -15,16 +15,10 @@ interface ChatItemProps {
 }
 
 export const ChatItem: FC<ChatItemProps> = ({chat_id, fullname, username, classes}: ChatItemProps) => {
-
-    const handleClickChat = () => {
-
-    }
-
     return (
         <Link
             to={`/chats/${chat_id}/`}
             key={chat_id}
-            // onClick={handleClickChat}
             className={classes.tweetWrapper}
         >
             <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant='outlined'>
@@ -45,8 +39,6 @@ export const ChatItem: FC<ChatItemProps> = ({chat_id, fullname, username, classe
                                     <span className={classes.tweetUserName}>
                                         @{username}
                                     </span>&nbsp;
-                                    {/*<span className={classes.tweetUserName}>·</span>&nbsp;*/}
-                                    {/*<span className={classes.tweetUserName}>{formatDate(new Date(tweet.created_at))}</span>&nbsp;*/}
                                 </div>
                             </div>
                             <Typography style={{"whiteSpace": "pre-line", marginRight: 10}} variant='body1' gutterBottom>

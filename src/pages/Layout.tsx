@@ -9,9 +9,6 @@ import {useStylesHomeStyle} from "./Home/theme";
 import {Routes} from "react-router-dom";
 import {Users} from "../components/Users";
 
-// @ts-ignore
-import styles from './Layout.module.scss'
-
 interface Layout {
     children: React.ReactNode;
 }

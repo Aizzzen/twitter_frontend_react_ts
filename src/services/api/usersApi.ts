@@ -26,25 +26,26 @@ export const UserApi = {
                 return response
             })
     },
-    async getMe() {
-        return await axios
-            .get<Response>(`${api_url}/auth/users/me/`)
-            .then(response => {
-                return response;
-            })
-    },
+    // async getMe() {
+    //     return await axios
+    //         .get<Response>(`${api_url}/auth/users/me/`)
+    //         .then(response => {
+    //             return response;
+    //         })
+    // },
     async getCurrentUserData() {
         return await axios
             .get<Response>(`${api_url}/user-data/`)
             .then(response => {
-                console.log(response)
                 return response;
             })
     },
     async updateProfile(payload: ProfileFormProps) {
-        const {data} = await axios.put<Response>(`${api_url}/user-data/`, payload)
-        console.log(data)
-        return data
+        return await axios
+            .put<Response>(`${api_url}/user-data/`, payload)
+            .then(response => {
+                return response
+            })
     },
     // async fetchUsers() {
     //     return await axios

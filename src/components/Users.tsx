@@ -22,46 +22,46 @@ export const Users = () => {
                 <b>Кого читать</b>
             </Paper>
             <List>
-                {
-                    items.map((obj) => (
-                        <ListItem className={classes.rightSideBlockItem}>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt="Remy Sharp"
-                                />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={obj?.username}
-                                secondary={
-                                    <Typography component="span" variant="body2" color="textSecondary">
-                                        @FavDockOfShame
-                                    </Typography>
-                                }
-                            />
-                            <Button color="primary">
-                                <PersonAddIcon />
-                            </Button>
-                        </ListItem>
-                    ))
-                }
-                {/*<ListItem className={classes.rightSideBlockItem}>*/}
-                {/*    <ListItemAvatar>*/}
-                {/*        <Avatar*/}
-                {/*            alt="Remy Sharp"*/}
-                {/*        />*/}
-                {/*    </ListItemAvatar>*/}
-                {/*    <ListItemText*/}
-                {/*        primary="Пользователи"*/}
-                {/*        secondary={*/}
-                {/*            <Typography component="span" variant="body2" color="textSecondary">*/}
-                {/*                Грузить всееех пользователей*/}
-                {/*            </Typography>*/}
-                {/*        }*/}
-                {/*    />*/}
-                {/*    <Button color="primary">*/}
-                {/*        <PersonAddIcon />*/}
-                {/*    </Button>*/}
-                {/*</ListItem>*/}
+                {/*{*/}
+                {/*    items.map((obj) => (*/}
+                {/*        <ListItem className={classes.rightSideBlockItem}>*/}
+                {/*            <ListItemAvatar>*/}
+                {/*                <Avatar*/}
+                {/*                    alt="Remy Sharp"*/}
+                {/*                />*/}
+                {/*            </ListItemAvatar>*/}
+                {/*            <ListItemText*/}
+                {/*                primary={obj?.username}*/}
+                {/*                secondary={*/}
+                {/*                    <Typography component="span" variant="body2" color="textSecondary">*/}
+                {/*                        @FavDockOfShame*/}
+                {/*                    </Typography>*/}
+                {/*                }*/}
+                {/*            />*/}
+                {/*            <Button color="primary">*/}
+                {/*                <PersonAddIcon />*/}
+                {/*            </Button>*/}
+                {/*        </ListItem>*/}
+                {/*    ))*/}
+                {/*}*/}
+                <ListItem className={classes.rightSideBlockItem}>
+                    <ListItemAvatar>
+                        <Avatar
+                            alt="Remy Sharp"
+                        />
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary="Yunus Gadamurov"
+                        secondary={
+                            <Typography component="span" variant="body2" color="textSecondary">
+                                Dio loh
+                            </Typography>
+                        }
+                    />
+                    <Button color="primary">
+                        <PersonAddIcon />
+                    </Button>
+                </ListItem>
                 <Divider component="li" />
             </List>
         </Paper>

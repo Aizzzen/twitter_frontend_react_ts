@@ -2,10 +2,8 @@ import {axios} from "../../core/axios";
 import {Tweet} from "../../store/ducks/tweets/contracts/state";
 import {TweetModalFormProps} from "../../components/TweetModal";
 
-
 interface Response<T> {
     data: T
-    // status: string;
 }
 
 const api_url = process.env.REACT_APP_API_URL
@@ -21,7 +19,6 @@ export const TweetsApi = {
     },
     async fetchCurrentUserTweets(): Promise<Response<Tweet[]>> {
         const {data} = await axios.get(`${api_url}/tweets/my/`);
-        console.log(data)
         return data;
     },
     async fetchTweetData(id: string): Promise<Response<Tweet>> {
@@ -42,6 +39,9 @@ export const TweetsApi = {
     },
     async removeTweet(id: string): Promise<void> {
         const res = await axios.delete(`${api_url}/tweets/detail/${id}/`)
+    },
+    async removeComment(id: string): Promise<void> {
+        const res = await axios.delete(`${api_url}/comments/detail/${id}/`)
     },
     // removeTweet: (id: string): Promise<void> => axios.delete(`${api_url}/tweets/${id}/`),
     async addComment(payload: {text: string, user: number, tweet: number}): Promise<Response<any>> {

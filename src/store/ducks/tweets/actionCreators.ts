@@ -10,7 +10,10 @@ import {
     SetTweetsActionInterface,
     SetTweetsLoadingStateActionInterface,
     TweetsActionsType,
-    SetNextPageActionInterface, FetchMoreTweetsActionInterface, SetMoreTweetsActionInterface
+    SetNextPageActionInterface,
+    FetchMoreTweetsActionInterface,
+    SetMoreTweetsActionInterface,
+    RemoveCommentActionInterface
 } from "./actionTypes";
 
 
@@ -67,6 +70,11 @@ export const removeTweet = (payload: string): RemoveTweetActionInterface => ({
     payload,
 });
 
+export const removeComment = (payload: { tweetId: string, id: string }): RemoveCommentActionInterface => ({
+    type: TweetsActionsType.REMOVE_COMMENT,
+    payload,
+});
+
 export const fetchTweets = (): FetchTweetsActionInterface => ({
     type: TweetsActionsType.FETCH_TWEETS,
 });
@@ -88,5 +96,6 @@ export type TweetsActions =
     | RemoveTweetActionInterface
     | SetNextPageActionInterface
     | FetchMoreTweetsActionInterface
-    | SetMoreTweetsActionInterface;
+    | SetMoreTweetsActionInterface
+    | RemoveCommentActionInterface;
 

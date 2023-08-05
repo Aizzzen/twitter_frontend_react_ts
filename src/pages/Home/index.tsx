@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useEffect, useRef, useState} from 'react';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";

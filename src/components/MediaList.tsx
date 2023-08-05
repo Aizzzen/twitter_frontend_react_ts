@@ -1,8 +1,7 @@
-import React, {FC, ReactElement} from 'react';
+import React, {FC} from 'react';
 import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from "@material-ui/icons/Clear";
 import {useStylesHomeStyle} from "../pages/Home/theme";
-import {ImageObj} from "./AddTweetForm";
 
 interface MediaListProps {
     media?: string[] | Photo[] | any;
@@ -24,12 +23,10 @@ export const MediaList: FC<MediaListProps> = ({media, classes, removeImage}: Med
     return (
         <div className={classes.mediaList}>
             {media && media.map((obj: any, i: any) => (
-                    <div key={i} className={classes.mediaListItem}
-                        // key={typeof obj === 'string' ? obj : obj.id}
-                    >
+                    <div key={i} className={classes.mediaListItem}>
                         <div>
                             <img
-                                // src={typeof obj === 'string' ? obj : `${process.env.REACT_APP_SERVER_URL}/media/${obj.media}`}
+                                alt=''
                                 src={obj.media}
                             />
                         </div>

@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useEffect, useState} from 'react';
+import React, {FC, ReactElement} from 'react';
 import classNames from "classnames";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -6,26 +6,17 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 
 import CommentIcon from "@material-ui/icons/ChatBubbleOutline";
 import RepostIcon from "@material-ui/icons/RepeatOutlined";
 import LikeIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import ShareIcon from "@material-ui/icons/ReplyOutlined";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {useNavigate} from "react-router-dom";
 import {formatDate} from "../utils/formatDate";
 import {MediaList} from "./MediaList";
-import {removeTweet} from "../store/ducks/tweets/actionCreators";
-import {useDispatch, useSelector} from "react-redux";
 import { textWithLinks } from '../utils/textWithLinks';
-import {TweetModal} from "./TweetModal";
-import {fetchTweetData} from "../store/ducks/tweet/actionCreators";
-import {selectTweetData} from "../store/ducks/tweet/selectors";
-import {selectTweets, selectTweetsItems} from "../store/ducks/tweets/selectors";
 
 interface TweetProps {
     id: string;
@@ -43,6 +34,7 @@ interface TweetProps {
 export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos, classes, likes, comments, created_at}: TweetProps): ReactElement => {
     const navigate = useNavigate();
     const newText = textWithLinks(text)
+
     const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
         event.preventDefault();
         // event.stopPropagation();
