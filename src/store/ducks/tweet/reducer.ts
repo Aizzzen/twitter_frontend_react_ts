@@ -19,6 +19,11 @@ export const tweetReducer = produce((draft: Draft<TweetState>, action: TweetActi
             draft.loading_state = LoadingState.LOADING;
             break;
 
+        case TweetActionsType.ADD_COMMENT:
+            // @ts-ignore
+            draft.data.comments = [...draft.data?.comments, action.payload]
+            break;
+
         case TweetActionsType.REMOVE_COMMENT:
             // @ts-ignore
             draft.data.comments = draft.data?.comments.filter(comment => comment.id.toString() !== action.payload.id)

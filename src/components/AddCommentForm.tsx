@@ -10,10 +10,11 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {useDispatch, useSelector} from "react-redux";
 import {AddFormState} from "../store/ducks/tweets/contracts/state";
-import {fetchAddComment, setAddFormState} from "../store/ducks/tweets/actionCreators";
+import {setAddFormState} from "../store/ducks/tweets/actionCreators";
 import {selectAddFormState} from "../store/ducks/tweets/selectors";
 import { useParams } from 'react-router-dom';
 import {selectUserData} from "../store/ducks/user/selectors";
+import {fetchAddComment, fetchTweetData} from "../store/ducks/tweet/actionCreators";
 
 interface AddCommentFormProps {
     classes: ReturnType<typeof useStylesHomeStyle>;
@@ -43,14 +44,19 @@ export const AddCommentForm: FC<AddCommentFormProps> = ({classes, maxRows}: AddC
     }
 
     const handleClickAddComment = (): void => {
-        dispatch(setAddFormState(AddFormState.LOADING))        
+        dispatch(setAddFormState(AddFormState.LOADING))
         dispatch(fetchAddComment({
             text: text,
             user: Number(userData?.id),
             tweet: Number(id)
         }))
         setText('');
-        dispatch(setAddFormState(AddFormState.NEVER))        
+        dispatch(setAddFormState(AddFormState.NEVER))
+        setTimeout(() => {
+            if(id) {
+                dispatch(fetchTweetData(id))
+            }
+        }, 1000)
     }
 
     return (

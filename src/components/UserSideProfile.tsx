@@ -42,8 +42,8 @@ export const UserSideProfile: FC<UserSideProfileProps> = ({classes}: UserSidePro
             <div onClick={handleOpenPopup} className={classes.sideProfile}>
                 <Avatar src='' />
                 <div className={classes.sideProfileInfo}>
-                    <b>{userData?.profile?.fullname}</b>
-                    <Typography style={{ color: colors.grey[500] }}>@{userData?.username}</Typography>
+                    <b>{userData.profile.fullname}</b>
+                    <Typography style={{ color: colors.grey[500] }}>@{userData.username}</Typography>
                 </div>
                 <ArrowBottomIcon />
             </div>

@@ -1,14 +1,17 @@
 import {
+    addComment,
+    FetchAddCommentActionInterface,
     FetchTweetDataActionInterface,
     FetchUpdateTweetDataActionInterface, RemoveCommentActionInterface,
     setTweetData,
     setTweetLoadingState,
     TweetActionsType
 } from "./actionCreators";
-import {Tweet} from "../tweets/contracts/state";
+import {AddFormState, Tweet} from "../tweets/contracts/state";
 import {call, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {TweetsApi} from "../../../services/api/tweetsApi";
 import {LoadingState} from "./contracts/state";
+import {setAddFormState} from "../tweets/actionCreators";
 
 export function* fetchTweetDataRequest({ payload: tweetId }: FetchTweetDataActionInterface) {
     try {
@@ -28,6 +31,17 @@ export function* fetchUpdateTweetDataRequest({ payload }: FetchUpdateTweetDataAc
     }
 }
 
+export function* fetchAddCommentRequest({ payload }: FetchAddCommentActionInterface) {
+    try {
+        // @ts-ignore
+        const item = yield call(TweetsApi.addComment, payload);
+        console.log(item)
+        yield put(addComment(item));
+    } catch (error) {
+        yield put(setAddFormState(AddFormState.ERROR));
+    }
+}
+
 export function* fetchRemoveCommentRequest({ payload }: RemoveCommentActionInterface) {
     try {
         yield call(TweetsApi.removeComment, payload);
@@ -40,4 +54,5 @@ export function* tweetSaga() {
     yield takeLatest(TweetActionsType.FETCH_TWEET_DATA, fetchTweetDataRequest);
     yield takeLatest(TweetActionsType.FETCH_UPDATE_TWEET, fetchUpdateTweetDataRequest);
     yield takeLatest(TweetActionsType.REMOVE_COMMENT, fetchRemoveCommentRequest);
+    yield takeLatest(TweetActionsType.FETCH_ADD_COMMENT, fetchAddCommentRequest);
 }

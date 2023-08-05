@@ -93,106 +93,107 @@ export const FullTweet: FC = (): ReactElement | null => {
         );
     }
 
-    if (tweetData) {
-        return (
-            <>
-                <Paper className={classes.fullTweet}>
-                    <div className={classNames(classes.tweetsHeaderUser)}>
-                        <Avatar
-                            className={classes.tweetAvatar}
-                            alt={`Аватарка пользователя`}
-                            // alt={`Аватарка пользователя ${tweetData.user.fullname}`}
-                            // src={tweetData.user.avatar_url}
-                        />
-                        <Typography>
-                            <b>{tweetData.fullname ? tweetData.fullname : 'fullname'}</b>&nbsp;
-                            <div>
+    if (!tweetData) {
+        return null
+    }
+
+    return (
+        <>
+            <Paper className={classes.fullTweet}>
+                <div className={classNames(classes.tweetsHeaderUser)}>
+                    <Avatar
+                        className={classes.tweetAvatar}
+                        alt={`Аватарка пользователя`}
+                        // alt={`Аватарка пользователя ${tweetData.user.fullname}`}
+                        // src={tweetData.user.avatar_url}
+                    />
+                    <Typography>
+                        <b>{tweetData.fullname ? tweetData.fullname : 'fullname'}</b>&nbsp;
+                        <div>
                                 <span className={classes.tweetUserName}>
                                     @{tweetData.username}
                                 </span>&nbsp;
-                            </div>
-                        </Typography>
-                        <div style={{position: 'relative', left: 300}}>
-                            <IconButton
-                                aria-label="more"
-                                aria-controls="long-menu"
-                                aria-haspopup="true"
-                                onClick={handleClick}
-                            >
-                                <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                                id="long-menu"
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleUpdate}>
-                                    Редактировать
-                                </MenuItem>
-                                {/*<MenuItem onClick={handleClose}>*/}
-                                <MenuItem onClick={handleRemove}>
-                                    Удалить типотвит
-                                </MenuItem>
-                            </Menu>
-                        </div>
-                    </div>
-                    <Typography className={classes.fullTweetText} gutterBottom>
-                        <span style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html: newText}}/>
-                        <div className='tweet-media'>
-                            {tweetData.photos && <MediaList media={tweetData.photos} classes={classes}/>}
                         </div>
                     </Typography>
-                    <Typography>
-                        <span className={classes.tweetUserName}>{format(new Date(tweetData.created_at), 'H:mm', { locale: ru })} · </span>
-                        <span className={classes.tweetUserName}>{format(new Date(tweetData.created_at), 'dd.MM.yyyy г.', { locale: ru })}</span>
-                    </Typography>
-                    <div className={classNames(classes.tweetFooter, classes.fullTweetFooter)}>
-                        <div>
-                            <IconButton>
-                                <CommentIcon style={{ fontSize: 25 }} />
-                            </IconButton>
-                            <span>{tweetData.comments?.length}</span>
-                        </div>
-                        <div>
-                            <IconButton>
-                                <RepostIcon style={{ fontSize: 25 }} />
-                            </IconButton>
-                        </div>
-                        <div>
-                            <IconButton>
-                                <LikeIcon style={{ fontSize: 25 }} />
-                            </IconButton>
-                            <span>{tweetData.likes}</span>
-                        </div>
-                        <div>
-                            <IconButton>
-                                <ShareIcon style={{ fontSize: 25 }} />
-                            </IconButton>
-                        </div>
+                    <div style={{position: 'relative', left: 300}}>
+                        <IconButton
+                            aria-label="more"
+                            aria-controls="long-menu"
+                            aria-haspopup="true"
+                            onClick={handleClick}
+                        >
+                            <MoreVertIcon />
+                        </IconButton>
+                        <Menu
+                            id="long-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={open}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={handleUpdate}>
+                                Редактировать
+                            </MenuItem>
+                            {/*<MenuItem onClick={handleClose}>*/}
+                            <MenuItem onClick={handleRemove}>
+                                Удалить типотвит
+                            </MenuItem>
+                        </Menu>
                     </div>
-                </Paper>
-                <Divider />
-                <div style={{padding: 20}}>
-                    <AddCommentForm classes={classes}/>
                 </div>
-                <Divider />
-                {tweetData.comments?.map((el: any) => (
-                    <CommentItem
-                        tweetId={id}
-                        key={el.id}
-                        id={el.id}
-                        text={el.text}
-                        username={el.user}
-                        fullname={el.fullname}
-                        classes={classes}
-                        created_at={el.created_at}
-                    />
-                ))}
-                {visibleModal && id && <TweetModal id={id} visibleModal={visibleModal} setVisibleModal={setVisibleModal} />}
-            </>
-        );
-    }
-    return null;
+                <Typography className={classes.fullTweetText} gutterBottom>
+                    <span style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html: newText}}/>
+                    <div className='tweet-media'>
+                        {tweetData.photos && <MediaList media={tweetData.photos} classes={classes}/>}
+                    </div>
+                </Typography>
+                <Typography>
+                    <span className={classes.tweetUserName}>{format(new Date(tweetData.created_at), 'H:mm', { locale: ru })} · </span>
+                    <span className={classes.tweetUserName}>{format(new Date(tweetData.created_at), 'dd.MM.yyyy г.', { locale: ru })}</span>
+                </Typography>
+                <div className={classNames(classes.tweetFooter, classes.fullTweetFooter)}>
+                    <div>
+                        <IconButton>
+                            <CommentIcon style={{ fontSize: 25 }} />
+                        </IconButton>
+                        <span>{tweetData.comments?.length}</span>
+                    </div>
+                    <div>
+                        <IconButton>
+                            <RepostIcon style={{ fontSize: 25 }} />
+                        </IconButton>
+                    </div>
+                    <div>
+                        <IconButton>
+                            <LikeIcon style={{ fontSize: 25 }} />
+                        </IconButton>
+                        <span>{tweetData.likes}</span>
+                    </div>
+                    <div>
+                        <IconButton>
+                            <ShareIcon style={{ fontSize: 25 }} />
+                        </IconButton>
+                    </div>
+                </div>
+            </Paper>
+            <Divider />
+            <div style={{padding: 20}}>
+                <AddCommentForm classes={classes}/>
+            </div>
+            <Divider />
+            {tweetData.comments?.map((el: any) => (
+                <CommentItem
+                    tweetId={id}
+                    key={el.id}
+                    id={el.id}
+                    text={el.text}
+                    username={el.user}
+                    fullname={el.fullname}
+                    classes={classes}
+                    created_at={el.created_at}
+                />
+            ))}
+            {visibleModal && id && <TweetModal id={id} visibleModal={visibleModal} setVisibleModal={setVisibleModal} />}
+        </>
+    );
 };

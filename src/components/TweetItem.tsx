@@ -37,7 +37,6 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
 
     const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
         event.preventDefault();
-        // event.stopPropagation();
         navigate(`/home/tweet/${id}`);
     }
 

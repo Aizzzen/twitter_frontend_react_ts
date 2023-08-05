@@ -13,9 +13,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import {useStylesHomeStyle} from "../pages/Home/theme";
 import {formatDate} from "../utils/formatDate";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { textWithLinks } from '../utils/textWithLinks';
 import {fetchTweetData, removeComment} from "../store/ducks/tweet/actionCreators";
+import {selectUserData} from "../store/ducks/user/selectors";
 
 interface CommentProps {
     tweetId?: string;
@@ -30,6 +31,7 @@ interface CommentProps {
 
 export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, fullname, classes, created_at}: CommentProps): ReactElement => {
     const dispatch = useDispatch();
+    const userData = useSelector(selectUserData)
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const newText = textWithLinks(text)
@@ -73,9 +75,9 @@ export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, full
                     <div className={classes.tweetContent}>
                         <div className={classes.tweetHeader}>
                             <div style={{marginBottom: 8}}>
-                                <b>{fullname ? fullname : 'fullname'}</b>&nbsp;
+                                <b>{fullname ? fullname : userData?.fullname}</b>&nbsp;
                                 <span className={classes.tweetUserName}>
-                                        @{username}
+                                        @{username ? username : userData?.username}
                                     </span>&nbsp;
                                 <span className={classes.tweetUserName}>·</span>&nbsp;
                                 <span className={classes.tweetUserName}>{formatDate(new Date(created_at))}</span>&nbsp;

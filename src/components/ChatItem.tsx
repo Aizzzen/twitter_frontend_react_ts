@@ -26,7 +26,6 @@ export const ChatItem: FC<ChatItemProps> = ({chat_id, fullname, username, classe
                     <Grid item xs={1}>
                         <Avatar
                             alt={`Аватарка пользователя`}
-                            // alt={`Аватарка пользователя ${user.fullname}`}
                             // src={user.avatar_url}
                             className={classes.tweetAvatar}
                         />
