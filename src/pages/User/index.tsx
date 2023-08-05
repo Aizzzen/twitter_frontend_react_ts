@@ -19,6 +19,7 @@ import ru from "date-fns/locale/ru";
 import {selectUserData} from "../../store/ducks/user/selectors";
 import Button from "@material-ui/core/Button";
 import {ProfileModal} from "../../components/ProfileModal";
+import {EmptyTweetList} from "../../components/ui/EmptyTweetList";
 
 export const UserPage = () => {
     const dispatch = useDispatch();
@@ -43,7 +44,9 @@ export const UserPage = () => {
             <Paper className={classes.tweetsHeader} variant="outlined">
                 <GoBackButton />
                 <div>
-                    <Typography variant="h6" style={{fontWeight: 500}}>{userData?.profile?.fullname}</Typography>
+                    <Typography variant="h6" style={{fontWeight: 500}}>
+                        {userData?.profile?.fullname ? userData?.profile?.fullname : `@${userData?.username}`}
+                    </Typography>
                     <Typography variant="caption" display="block" gutterBottom>
                         твитов {tweets.length}
                     </Typography>
@@ -98,9 +101,17 @@ export const UserPage = () => {
                         <CircularProgress />
                     </div>
                 ) : (
-                    tweets.map((tweet) => (
-                        <TweetItem key={tweet.id} classes={classes} photos={tweet.photos} {...tweet} />
-                    ))
+                    <>
+                        {tweets.length === 0 ? (
+                            <EmptyTweetList/>
+                        ) : (
+                            <>
+                                {tweets.map((tweet) => (
+                                    <TweetItem key={tweet.id} classes={classes} photos={tweet.photos} {...tweet} />
+                                ))}
+                            </>
+                        )}
+                    </>
                 )}
             </div>
             <ProfileModal visibleModal={visibleModal} setVisibleModal={setVisibleModal}/>

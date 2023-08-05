@@ -56,7 +56,7 @@ export const TweetItem: FC<TweetProps> = ({id, text, username, fullname, photos,
                         <div className={classes.tweetContent}>
                             <div className={classes.tweetHeader}>
                                 <div style={{marginBottom: 8}}>
-                                    <b>{fullname ? fullname : 'fullname'}</b>&nbsp;
+                                    <b>{fullname ? fullname : ''}</b>&nbsp;
                                     <span className={classes.tweetUserName}>
                                         @{username}
                                     </span>&nbsp;
