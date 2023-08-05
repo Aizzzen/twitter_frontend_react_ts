@@ -13,7 +13,6 @@ export function* fetchSignInRequest({ payload }: FetchSignInActionInterface) {
     try {
         yield put(setUserLoadingStatus(LoadingStatus.LOADING));
         const {data} = yield call(UserApi.signIn, payload);
-        console.log(data)
         window.localStorage.setItem('Bearer', data.access);
         yield put(setUserData(data));
         yield put(setUserLoadingStatus(LoadingStatus.SUCCESS));
@@ -22,7 +21,6 @@ export function* fetchSignInRequest({ payload }: FetchSignInActionInterface) {
     }
 }
 
-// проверка авторизованности пользователя
 export function* fetchUserDataRequest() {
     try {
         yield put(setUserLoadingStatus(LoadingStatus.LOADING));
@@ -57,7 +55,6 @@ export function* fetchUpdateUserProfile({ payload }: FetchUpdateProfileActionInt
 
 
 export function* userSaga() {
-    // на               action         срабатывает      генератор
     yield takeLatest(UserActionsType.FETCH_SIGN_IN, fetchSignInRequest);
     yield takeLatest(UserActionsType.FETCH_SIGN_UP, fetchSignUpRequest);
     yield takeLatest(UserActionsType.FETCH_USER_DATA, fetchUserDataRequest);

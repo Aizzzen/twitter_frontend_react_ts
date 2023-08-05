@@ -2,10 +2,10 @@ import {call, put, takeLatest} from "redux-saga/effects";
 import {
     setTags,
     setTagsLoadingState,
-    TagsActionsType,
 } from "./actionCreators";
 import {TagsApi} from "../../../services/api/tagsApi";
 import {LoadingState} from "./contracts/state";
+import {TagsActionsType} from "./actionTypes";
 
 
 // yield put === dispatch

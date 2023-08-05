@@ -10,7 +10,6 @@ export function* fetchMessagesRequest({payload}: FetchMessagesActionInterface) {
     try {
         // @ts-ignore
         const data = yield call(ChatsApi.fetchMessages, payload.chatId)
-        console.log(data)
         const rev = reverse(data.msgs.results)
         yield put(setMessages(rev))
         yield put(setIsNextLink(data.msgs.next !== null))
@@ -25,7 +24,6 @@ export function* fetchMoreMessagesRequest({payload}: FetchMoreMessagesActionInte
     try {
         // @ts-ignore
         const data = yield call(ChatsApi.fetchMoreMessages, payload.chatId, payload.offset)
-        console.log(data)
         const rev = reverse(data.msgs.results)
         yield put(setMoreMessages(rev))
         yield put(setIsNextLink(data.msgs.next !== null))

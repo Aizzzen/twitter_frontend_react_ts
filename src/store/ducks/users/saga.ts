@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { TagsApi } from '../../../services/api/tagsApi';
 import { UserApi } from '../../../services/api/usersApi';
 import { LoadingStatus } from '../../types';
-import {setUsers, UsersActionsType} from "./actionCreators";
+import {setUsers} from "./actionCreators";
 
 export function* fetchUsersRequest() {
     // try {

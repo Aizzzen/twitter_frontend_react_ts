@@ -21,7 +21,6 @@ export function* fetchCreateChatRequest({ payload }: FetchCreateChatActionInterf
     try {
         // @ts-ignore
         const data = yield call(ChatsApi.fetchCreateChat, payload)
-        console.log(data)
         // yield put(setChats(rev))
     }
     catch (e) {

@@ -42,7 +42,6 @@ export const TweetsApi = {
     },
     async addComment(payload: {text: string, user: number, tweet: number}): Promise<Response<any>> {
         const {data} = await axios.post(`${api_url}/comments/`, payload);
-        console.log(data)
         return data;
     },
     async removeComment(payload: {id: string}): Promise<void> {

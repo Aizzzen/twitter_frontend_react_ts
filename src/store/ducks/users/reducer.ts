@@ -1,7 +1,8 @@
 import produce, { Draft } from 'immer';
 import { LoadingStatus } from '../../types';
-import { UsersActions, UsersActionsType } from './actionCreators';
+import { UsersActions } from './actionCreators';
 import { UsersState } from './contracts/state';
+import {UsersActionsType} from "./actionTypes";
 
 const initialUsersState: UsersState = {
     items: [],
