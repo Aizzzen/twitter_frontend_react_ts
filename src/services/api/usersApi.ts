@@ -13,18 +13,16 @@ const api_url = process.env.REACT_APP_API_URL
 
 export const UserApi = {
     async signIn(authData: LoginFormProps) {
-        return await axios
-            .post<Response>(`${api_url}/auth/jwt/create/`, authData)
-            .then(response => {
-                return response;
-            })
+        return await axios.post(`${api_url}/auth/jwt/create/`, authData)
     },
     async signUp(authData: RegisterFormProps | FullRegisterFormProps) {
-        return await axios
-            .post<Response>(`${api_url}/auth/users/`, authData)
-            .then(response => {
-                return response
-            })
+        return await axios.post(`${api_url}/auth/users/`, authData)
+    },
+    async getCurrentUserData(): Promise<any> {
+        return await axios.get(`${api_url}/user-data/`)
+    },
+    async updateProfile(payload: ProfileFormProps) {
+        return await axios.put(`${api_url}/user-data/`, payload)
     },
     // async getMe() {
     //     return await axios
@@ -33,20 +31,6 @@ export const UserApi = {
     //             return response;
     //         })
     // },
-    async getCurrentUserData() {
-        return await axios
-            .get<Response>(`${api_url}/user-data/`)
-            .then(response => {
-                return response;
-            })
-    },
-    async updateProfile(payload: ProfileFormProps) {
-        return await axios
-            .put<Response>(`${api_url}/user-data/`, payload)
-            .then(response => {
-                return response
-            })
-    },
     // async fetchUsers() {
     //     return await axios
     //         .get<Response>(`${api_url}/users-list/`)
