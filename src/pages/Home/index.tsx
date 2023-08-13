@@ -16,7 +16,7 @@ import {
     selectTweetsItems
 } from "../../store/ducks/tweets/selectors";
 import {Route, Routes} from "react-router-dom";
-import {GoBackButton} from "../../components/GoBackButton";
+import {GoBackButton} from "../../components/ui/GoBackButton";
 import {FullTweet} from "../../components/FullTweet";
 import Button from "@material-ui/core/Button";
 

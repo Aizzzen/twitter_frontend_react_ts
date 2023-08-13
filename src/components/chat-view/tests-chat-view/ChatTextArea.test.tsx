@@ -22,4 +22,13 @@ describe('Тестирование компоненты ChatTextArea', () => {
         expect(textArea).toBeNull()
         fireEvent.click(btn)
     })
+    test('Событие change (textarea)', () => {
+        const sendMessage = () => null
+        const setText = () => null
+        render(<ChatTextArea sendMessage={sendMessage} setText={setText} text={'test message'}/>)
+        const textarea = screen.getByPlaceholderText("Введите сообщение")
+        fireEvent.change(textarea, {
+            target: {value: 'Test value'}
+        })
+    })
 })

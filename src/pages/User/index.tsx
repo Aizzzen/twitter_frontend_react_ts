@@ -3,7 +3,7 @@ import Avatar from "@material-ui/core/Avatar/Avatar";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import React, {useEffect, useState} from 'react';
-import { GoBackButton } from '../../components/GoBackButton';
+import { GoBackButton } from '../../components/ui/GoBackButton';
 import {useStylesHomeStyle} from "../Home/theme";
 
 import './UserPage.scss'

@@ -70,10 +70,6 @@ export const Chat: FC = () => {
                     </div>
                 </div>
                 <div className={styles.actions}>
-                    {/*<img className={styles.icon_size} alt="">*/}
-                    {/*    <SearchIcon/>*/}
-                    {/*</img>*/}
-                    {/*<img className={styles.icon_size} src={MoreIcon} alt=""/>*/}
                 </div>
             </div>
 

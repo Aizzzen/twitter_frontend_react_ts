@@ -17,19 +17,12 @@ export const ChatTextArea: FC<ChatTextAreaProps> = ({text, setText, sendMessage}
 
     return (
         <div className={styles.send_message}>
-            {/*<img className={styles.iconSize} src={EmojiIcon} alt=""/>*/}
-            {/*<img className={styles.iconSize} src={FileIcon} alt=""/>*/}
             <textarea
                 value={text}
                 onChange={e => handleChange(e.target.value)}
                 className={styles.new_message}
                 placeholder="Введите сообщение"
             />
-            {/*<img*/}
-            {/*    className={styles.iconSize}*/}
-            {/*    // src={SendIcon} alt=""*/}
-            {/*    // onClick={text.length > 0 ? handleClick : undefined}*/}
-            {/*/>*/}
             <Button
                 data-testid="button-textarea"
                 color="primary"
