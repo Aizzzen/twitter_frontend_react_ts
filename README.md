@@ -40,3 +40,13 @@
 - React Dev Utils
 - Jest
 - Cypress
+
+
+## Тесты:
+- src/utils/\_\_tests__
+- src/components/\_\_tests__
+- src/components/ui/\_\_tests__
+- src/components/chat-view/\_\_tests__
+- src/store/ducks/tweets/\_\_tests__
+## Команда для запуска тестов:
+    npm run test
