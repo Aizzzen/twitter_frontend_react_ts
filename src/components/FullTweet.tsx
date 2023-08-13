@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTweetData, setTweetData} from "../store/ducks/tweet/actionCreators";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {useStylesHomeStyle} from "../pages/Home/theme";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
@@ -26,14 +26,13 @@ import {CommentItem} from "./CommentItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {fetchTweets, removeTweet} from "../store/ducks/tweets/actionCreators";
+import {removeTweet} from "../store/ducks/tweets/actionCreators";
 import {TweetModal} from "./TweetModal";
 
 export const FullTweet: FC = (): ReactElement | null => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [visibleModal, setVisibleModal] = useState<boolean>(false);
     const open = Boolean(anchorEl);
-    const navigate = useNavigate()
     const classes = useStylesHomeStyle();
     const dispatch = useDispatch();
     const tweetData = useSelector(selectTweetData);
@@ -80,7 +79,6 @@ export const FullTweet: FC = (): ReactElement | null => {
         handleClose(event)
         if(id && window.confirm('Вы действительно хотите удалить твит?')) {
             dispatch(removeTweet(id))
-            // navigate('/home', { replace: true })
             location.reload()
         }
     };

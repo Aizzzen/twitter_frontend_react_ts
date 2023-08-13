@@ -25,12 +25,12 @@ import {Link} from "react-router-dom";
 import {UserSideProfile} from "./UserSideProfile";
 
 interface NavbarProps {
-    classes: ReturnType<typeof useStylesHomeStyle>
+    // classes: ReturnType<typeof useStylesHomeStyle>
 }
 
-export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement => {
+export const Navbar: FC<NavbarProps> = ({}: NavbarProps): ReactElement => {
     const [visibleAddTweet, setSetVisibleAddTweet] = useState<boolean>(false);
-
+    const classes = useStylesHomeStyle()
     const handleClickOpenAddTweet = () => {
         setSetVisibleAddTweet(true)
     }
@@ -133,7 +133,7 @@ export const Navbar: FC<NavbarProps> = ({classes}: NavbarProps): ReactElement =>
                     </ModalWindow>
                 </li>
             </ul>
-            <UserSideProfile classes={classes} />
+            <UserSideProfile />
         </>
 );
 };

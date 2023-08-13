@@ -14,19 +14,20 @@ import {selectIsTagsLoaded, selectTagsItems} from "../store/ducks/tags/selectors
 import {Link} from "react-router-dom";
 
 interface TagsProps {
-    classes: ReturnType<typeof useStylesHomeStyle>;
+    // classes: ReturnType<typeof useStylesHomeStyle>;
 }
 
-export const Tags: FC<TagsProps> = ({classes}: TagsProps): ReactElement | null => {
-    const items = useSelector(selectTagsItems);
+export const Tags: FC<TagsProps> = ({}: TagsProps): ReactElement | null => {
+    // const items = useSelector(selectTagsItems);
     // const isLoaded = useSelector(selectIsTagsLoaded);
+    const classes = useStylesHomeStyle()
 
     // if(!isLoaded) {
     //     return null
     // }
 
     return (
-        <Paper className={classes.rightSideBlock}>
+        <Paper data-testid='tags-paper-container' className={classes.rightSideBlock}>
             <Paper className={classes.rightSideBlockHeader} variant="outlined">
                 <b>Актуальные темы</b>
             </Paper>

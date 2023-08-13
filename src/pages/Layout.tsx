@@ -30,7 +30,7 @@ export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
         <Container id={'layout-container'} className={`classes.wrapper`} maxWidth="lg" >
             <Grid container spacing={3}>
                 <Grid sm={1} md={3} item>
-                    <Navbar classes={classes} />
+                    <Navbar />
                 </Grid>
                 <Grid sm={8} md={6} item>
                     <Routes>
@@ -51,7 +51,7 @@ export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
                             }}
                             fullWidth
                         />
-                        <Tags classes={classes} />
+                        <Tags />
                         <Users  />
                     </div>
                 </Grid>

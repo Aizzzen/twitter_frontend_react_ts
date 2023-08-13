@@ -31,6 +31,7 @@ export const ChatTextArea: FC<ChatTextAreaProps> = ({text, setText, sendMessage}
             {/*    // onClick={text.length > 0 ? handleClick : undefined}*/}
             {/*/>*/}
             <Button
+                data-testid="button-textarea"
                 color="primary"
                 variant="contained"
                 className={styles.iconSize}

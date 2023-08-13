@@ -14,10 +14,10 @@ import {selectUsersItems} from "../store/ducks/users/selectors";
 
 export const Users = () => {
     const classes = useStylesHomeStyle();
-    const items = useSelector(selectUsersItems)
+    // const items = useSelector(selectUsersItems)
 
     return (
-        <Paper className={classes.rightSideBlock}>
+        <Paper data-testid='users-paper-container' className={classes.rightSideBlock}>
             <Paper className={classes.rightSideBlockHeader} variant="outlined">
                 <b>Кого читать</b>
             </Paper>

@@ -12,10 +12,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {fetchSignOut} from "../store/ducks/user/actionCreators";
 
 interface UserSideProfileProps {
-    classes: ReturnType<typeof useStylesHomeStyle>;
+    // classes: ReturnType<typeof useStylesHomeStyle>;
 }
 
-export const UserSideProfile: FC<UserSideProfileProps> = ({classes}: UserSideProfileProps) => {
+export const UserSideProfile: FC<UserSideProfileProps> = ({}: UserSideProfileProps) => {
+    const classes = useStylesHomeStyle()
     const dispatch = useDispatch();
     const userData = useSelector(selectUserData)
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
