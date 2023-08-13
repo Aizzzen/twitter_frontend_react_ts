@@ -43,14 +43,14 @@ export const Navbar: FC<NavbarProps> = ({}: NavbarProps): ReactElement => {
         <>
             <ul className={classes.navbarList}>
                 <li className={classes.navbarListItem}>
-                    <Link to='/home'>
+                    <Link data-testid='navbar-twiticon-link' to='/home'>
                         <IconButton className={classes.logo} aria-label='' color='primary'>
                             <TwitterIcon className={classes.logoIcon}/>
                         </IconButton>
                     </Link>
                 </li>
                 <li className={classes.navbarListItem}>
-                    <Link to="/home">
+                    <Link data-testid='navbar-homeicon-link' to="/home">
                         <div>
                             <HomeIcon className={classes.navbarListItemIcon} />
                             <Hidden smDown>
@@ -76,7 +76,7 @@ export const Navbar: FC<NavbarProps> = ({}: NavbarProps): ReactElement => {
                     </div>
                 </li>
                 <li className={classes.navbarListItem}>
-                    <Link to='/chats'>
+                    <Link data-testid='navbar-msgicon-link' to='/chats'>
                         <div>
                             <MessageIcon className={classes.navbarListItemIcon}/>
                             <Hidden smDown>
@@ -102,7 +102,7 @@ export const Navbar: FC<NavbarProps> = ({}: NavbarProps): ReactElement => {
                     </div>
                 </li>
                 <li className={classes.navbarListItem}>
-                    <Link to='/user/me'>
+                    <Link data-testid='navbar-profileicon-link' to='/user/me'>
                         <div>
                             <UserIcon className={classes.navbarListItemIcon} />
                             <Hidden smDown>
@@ -133,7 +133,7 @@ export const Navbar: FC<NavbarProps> = ({}: NavbarProps): ReactElement => {
                     </ModalWindow>
                 </li>
             </ul>
-            <UserSideProfile />
+            {/*<UserSideProfile />*/}
         </>
 );
 };

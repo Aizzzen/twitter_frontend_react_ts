@@ -703,7 +703,7 @@ module.exports = function (webpackEnv) {
             // profile: true,
           },
           issue: {
-            // This one is specifically to match during CI tests-components-ui,
+            // This one is specifically to match during CI __tests__-components-ui,
             // as micromatch doesn't match
             // '../cra-template-typescript/template/src/App.tsx'
             // otherwise.

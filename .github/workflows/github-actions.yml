@@ -16,8 +16,8 @@ jobs:
         run: npm install --force
       - name: build project
         run: npm run build
-#      - name: tests-components-ui
-#        run: npm run test
+      - name: run __tests__
+        run: npm run test
 #  build_and_pub:
 #    needs: init
 #    runs-on: ubuntu-latest

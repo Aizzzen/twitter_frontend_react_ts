@@ -40,7 +40,7 @@ export const UserPage = () => {
     };
 
     return (
-        <Paper className={classnames(classes.tweetsWrapper, 'user')} variant="outlined">
+        <Paper data-testid='user-page-paper-container' className={classnames(classes.tweetsWrapper, 'user')} variant="outlined">
             <Paper className={classes.tweetsHeader} variant="outlined">
                 <GoBackButton />
                 <div>

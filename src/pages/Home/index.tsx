@@ -42,7 +42,7 @@ export const Home: FC = (): ReactElement => {
     }, [dispatch])
 
     return (
-        <Paper className={classes.tweetsWrapper} variant='outlined'>
+        <Paper data-testid='home-page-paper-container' className={classes.tweetsWrapper} variant='outlined'>
             <Paper className={classes.tweetsHeader} variant='outlined'>
                 <Routes>
                     <Route path='/search/*' element={<GoBackButton />} />
