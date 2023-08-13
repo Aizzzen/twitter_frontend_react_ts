@@ -28,7 +28,7 @@ export const ChatList = () => {
                                 <>
                                     {chats.map((chat: any) => (
                                         <ChatItem key={chat[0]} chat_id={chat[0]} fullname={chat[1].fullname}
-                                                  username={chat[1].username} classes={classes}/>
+                                                  username={chat[1].username} />
                                     ))}
                                 </>
                             )

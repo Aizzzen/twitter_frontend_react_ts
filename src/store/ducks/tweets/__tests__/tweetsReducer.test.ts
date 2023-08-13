@@ -1,5 +1,5 @@
 import {tweetsReducer} from "../reducer"
-import {testState} from "../testState";
+import {testState} from "../../../testState";
 import {
     addTweet,
     fetchAddTweet,

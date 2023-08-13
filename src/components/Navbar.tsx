@@ -133,7 +133,7 @@ export const Navbar: FC<NavbarProps> = ({}: NavbarProps): ReactElement => {
                     </ModalWindow>
                 </li>
             </ul>
-            {/*<UserSideProfile />*/}
+            <UserSideProfile />
         </>
 );
 };

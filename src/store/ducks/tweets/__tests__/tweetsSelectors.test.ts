@@ -6,7 +6,7 @@ import {
     selectTweets, selectTweetsItems
 } from "../selectors";
 import {AddFormState, LoadingState} from "../contracts/state";
-import {testState} from "../testState";
+import {testState} from "../../../testState";
 
 describe('Тестирование селекторов tweets', () => {
     test('selectTweets', () => {

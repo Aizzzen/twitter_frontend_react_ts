@@ -24,13 +24,13 @@ interface CommentProps {
     text: string;
     username?: string;
     fullname?: string;
-    classes: ReturnType<typeof useStylesHomeStyle>;
     created_at: string;
     // avatar_url: string;
 }
 
-export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, fullname, classes, created_at}: CommentProps): ReactElement => {
-    const dispatch = useDispatch();
+export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, fullname, created_at}: CommentProps): ReactElement => {
+    const dispatch = useDispatch()
+    const classes = useStylesHomeStyle()
     const userData = useSelector(selectUserData)
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -98,7 +98,10 @@ export const CommentItem: FC<CommentProps> = ({tweetId, id, text, username, full
                                     open={open}
                                     onClose={handleClose}
                                 >
-                                    <MenuItem onClick={handleRemove}>
+                                    <MenuItem
+                                        data-testid='commentitem-menu-item'
+                                        onClick={handleRemove}
+                                    >
                                         Удалить комментарий
                                     </MenuItem>
                                 </Menu>

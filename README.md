@@ -38,8 +38,8 @@
 - Dotenv
 - Json Server
 - React Dev Utils
-- Jest
-- Cypress
+- jest
+- testing-library/react
 
 
 ## Тесты:

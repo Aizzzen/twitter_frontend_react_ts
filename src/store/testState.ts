@@ -1,6 +1,6 @@
-import {AddFormState, LoadingState} from "./contracts/state";
-import {LoadingStatus} from "../../types";
-import {RootState} from "../../store";
+import {AddFormState, LoadingState} from "./ducks/tweets/contracts/state";
+import {LoadingStatus} from "./types";
+import {RootState} from "./store";
 
 
 export const testState: RootState = {

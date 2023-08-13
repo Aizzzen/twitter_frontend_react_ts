@@ -108,9 +108,9 @@ export const FullTweet: FC = (): ReactElement | null => {
                     <Typography>
                         <b>{tweetData.fullname ? tweetData.fullname : 'Отредактируйте свой профиль :)'}</b>&nbsp;
                         <div>
-                                <span className={classes.tweetUserName}>
-                                    @{tweetData.username}
-                                </span>&nbsp;
+                            <span className={classes.tweetUserName}>
+                                @{tweetData.username}
+                            </span>&nbsp;
                         </div>
                     </Typography>
                     <div style={{position: 'relative', left: 300}}>
@@ -187,7 +187,6 @@ export const FullTweet: FC = (): ReactElement | null => {
                     text={el.text}
                     username={el.user}
                     fullname={el.fullname}
-                    classes={classes}
                     created_at={el.created_at}
                 />
             ))}

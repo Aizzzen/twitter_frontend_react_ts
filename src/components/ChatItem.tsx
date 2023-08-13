@@ -11,10 +11,10 @@ interface ChatItemProps {
     chat_id: string;
     fullname: string;
     username: string;
-    classes: ReturnType<typeof useStylesHomeStyle>
 }
 
-export const ChatItem: FC<ChatItemProps> = ({chat_id, fullname, username, classes}: ChatItemProps) => {
+export const ChatItem: FC<ChatItemProps> = ({chat_id, fullname, username}: ChatItemProps) => {
+    const classes = useStylesHomeStyle()
     return (
         <Link
             to={`/chats/${chat_id}/`}
