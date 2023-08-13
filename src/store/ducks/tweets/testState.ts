@@ -1,8 +1,9 @@
 import {AddFormState, LoadingState} from "./contracts/state";
 import {LoadingStatus} from "../../types";
+import {RootState} from "../../store";
 
 
-export const testState = {
+export const testState: RootState = {
     tweets: {
         items: [
             {
