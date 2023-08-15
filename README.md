@@ -1,6 +1,8 @@
 # Twitter_frontend_react_ts
 ![action status](https://github.com/Aizzzen/twitter_frontend_react_ts/actions/workflows/github-actions.yml/badge.svg)
 
+## Данный репозиторий это фронтенд фуллстек проекта, бэк доступен по <a href="https://github.com/Aizzzen/twitter_backend_django">ссылке</a>
+
 ## Реализовано:
 - страница регистрации и авторизации
 - страница пользователя
