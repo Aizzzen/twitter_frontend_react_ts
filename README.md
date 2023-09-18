@@ -44,7 +44,6 @@
 - jest
 - testing-library/react
 
-
 ## Тесты:
 - src/utils/\_\_tests__
 - src/components/\_\_tests__
