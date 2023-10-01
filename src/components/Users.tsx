@@ -54,7 +54,7 @@ export const Users = () => {
                         primary="Yunus Gadamurov"
                         secondary={
                             <Typography component="span" variant="body2" color="textSecondary">
-                                Dio loh
+                                Kono Dio da
                             </Typography>
                         }
                     />

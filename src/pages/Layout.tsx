@@ -27,9 +27,9 @@ export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
     }, [])
 
     return (
-        <Container id={'layout-container'} className={`classes.wrapper`} maxWidth="lg" >
-            <Grid container spacing={3}>
-                <Grid sm={1} md={3} item>
+        <Container id={'layout-container'} className={classes.wrapper} maxWidth="lg" >
+            <Grid container spacing={3} item className={classes.wrapperElem1}>
+                <Grid sm={1} md={3}>
                     <Navbar />
                 </Grid>
                 <Grid sm={8} md={6} item>
@@ -37,7 +37,7 @@ export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
                         {children}
                     </Routes>
                 </Grid>
-                <Grid sm={3} md={3} item>
+                <Grid sm={3} md={3} item className={classes.wrapperElem3}>
                     <div className={classes.rightSide}>
                         <SearchTextField
                             variant="outlined"
