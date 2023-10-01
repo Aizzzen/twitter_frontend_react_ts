@@ -55,9 +55,11 @@ export const UploadMedia: FC<UploadMediaProps> = ({media, onChangeMedia}: Upload
     return (
         <div>
             <MediaList media={media.map(obj => obj.blobUrl)} classes={classes} removeImage={removeImage}/>
-            <IconButton onClick={handleClickMedia} color="primary">
-                <ImageOutlinedIcon style={{ fontSize: 26 }} />
-            </IconButton>
+            {media.length < 5 && (
+                <IconButton onClick={handleClickMedia} color="primary">
+                    <ImageOutlinedIcon style={{ fontSize: 26 }} />
+                </IconButton>
+            )}
             <input ref={inputRef} type="file" multiple hidden id="upload-media"/>
         </div>
     );
