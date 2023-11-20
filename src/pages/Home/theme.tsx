@@ -10,31 +10,6 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
     },
     wrapper: {
         height: '100vh',
-
-        [theme.breakpoints.down(960)]: {
-            paddingLeft: 12,
-            paddingRight: 0,
-            marginRight: -20,
-        },
-    },
-    wrapperElem1: {
-        // [theme.breakpoints.down(960)]: {
-        //     padding: 12,
-        // },
-        //
-        // [theme.breakpoints.down(710)]: {
-        //     padding: 5,
-        // }
-    },
-    wrapperElem2: {
-        flexGrow: 0,
-        maxWidth: "100%",
-        flexBasis: "100%",
-    },
-    wrapperElem3: {
-        [theme.breakpoints.down(850)]: {
-            display: "none",
-        },
     },
     logo: {
         margin: '10px 0'
@@ -96,14 +71,6 @@ export const useStylesHomeStyle = makeStyles((theme: Theme) => ({
         borderRadius: 0,
         borderTop: 0,
         borderBottom: 0,
-
-        [theme.breakpoints.down(960)]: {
-            marginLeft: "1%",
-        },
-
-        [theme.breakpoints.down(850)]: {
-            marginLeft: "3%",
-        },
     },
     tweetsCentred: {
         marginTop: 50,
